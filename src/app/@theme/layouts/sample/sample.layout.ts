@@ -24,10 +24,10 @@ import { StateService } from '../../../@core/data/state.service';
       <nb-sidebar class="menu-sidebar"
                    tag="menu-sidebar"
                    responsive
-                   [end]="sidebar.id === 'end'">
+                   [end]="sidebar.id === 'end'" state="compacted">
         <nb-sidebar-header *ngIf="currentTheme !== 'corporate'">
           <a href="#" class="btn btn-hero-success main-btn">
-            <i class="ion ion-social-github"></i> <span>Support Us</span>
+            <i class="ion ion-social-github"></i> <span (click)="toggleSidebar()">Narmada</span>
           </a>
         </nb-sidebar-header>
         <ng-content select="nb-menu"></ng-content>
@@ -69,37 +69,37 @@ export class SampleLayoutComponent implements OnDestroy {
     {
       title: 'Buttons',
       icon: 'ion ion-android-radio-button-off',
-      link: '/pages/ui-features/buttons',
+      link: '/ui-features/buttons',
     },
     {
       title: 'Grid',
       icon: 'ion ion-android-radio-button-off',
-      link: '/pages/ui-features/grid',
+      link: '/ui-features/grid',
     },
     {
       title: 'Icons',
       icon: 'ion ion-android-radio-button-off',
-      link: '/pages/ui-features/icons',
+      link: '/ui-features/icons',
     },
     {
       title: 'Modals',
       icon: 'ion ion-android-radio-button-off',
-      link: '/pages/ui-features/modals',
+      link: '/ui-features/modals',
     },
     {
       title: 'Typography',
       icon: 'ion ion-android-radio-button-off',
-      link: '/pages/ui-features/typography',
+      link: '/ui-features/typography',
     },
     {
       title: 'Animated Searches',
       icon: 'ion ion-android-radio-button-off',
-      link: '/pages/ui-features/search-fields',
+      link: '/ui-features/search-fields',
     },
     {
       title: 'Tabs',
       icon: 'ion ion-android-radio-button-off',
-      link: '/pages/ui-features/tabs',
+      link: '/ui-features/tabs',
     },
   ];
   layout: any = {};

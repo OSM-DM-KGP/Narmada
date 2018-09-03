@@ -1,0 +1,83 @@
+<div class="row">
+	<!--  https://akveo.github.io/nebular/docs/components/infinite-list/overview#nbinfinitelistdirective -->
+	<!-- use infinite list -->
+	<div class="col-xl-2 col-lg-2 col-md-2"></div>
+
+	<div class="col-xl-8 col-lg-8 col-md-8">
+		<nb-card size="large">
+			<nb-card-header>New Resource</nb-card-header>
+			<nb-card-body style="padding: 10px 50px;">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label for="tweetText">Tweet text</label>
+							<input type="text" class="form-control" nbInput fullWidth placeholder="Full width" id="tweetText">
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="tweetCategory">Category</label>
+							<!-- <div [(ngModel)]="radioModel" id="tweetCategory" ngbRadioGroup
+							class="btn-group btn-group-toggle btn-outline-toggle-group btn-group-full-width btn-toggle-radio-group">
+								<label ngbButtonLabel class="btn btn-outline-primary">
+									<input ngbButton type="radio" value="left"> Left
+								</label>
+								<label ngbButtonLabel class="btn btn-outline-primary">
+									<input ngbButton type="radio" value="middle"> Middle
+								</label>
+								<label ngbButtonLabel class="btn btn-outline-primary">
+									<input ngbButton type="radio" value="right"> Right
+								</label>
+							</div> -->
+						<input type="text" class="form-control" id="tweetCategory" placeholder="First Name">
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label for="tweetQuantity">Quantity</label>
+						<input type="text" class="form-control" id="tweetQuantity" placeholder="2 kg">
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label for="tweetResource">Resource</label>
+						<input type="text" class="form-control" id="tweetResource" placeholder="Multiple select of 5">
+					</div>
+					<div class="form-group">
+						<label for="tweetContact">Contact</label>
+						<input type="text" class="form-control" id="tweetContact" placeholder="+91 1234567890">
+					</div>
+					<div class="form-group">
+						<label for="tweetSource">Source</label>
+						<input type="text" class="form-control" id="tweetSource" placeholder="Haryana">
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label for="tweetLocation">Location</label>
+						<input type="text" class="form-control" id="tweetLocation" placeholder="Search bar in google maps">
+					</div>
+				</div>
+			</div>
+
+		</nb-card-body>
+
+		<nb-card-footer>
+			<div style="align-items: center;" class="row">
+				<div class="col-sm-3"></div>
+				<button class="btn btn-danger">Discard</button>
+				<div class="col-sm-2"></div>
+				<button type="submit" class="btn btn-success">Save</button>
+			</div>
+		</nb-card-footer>
+	</nb-card>
+</div>
+
+<div class="col-xl-2 col-lg-2 col-md-2"></div>
+
+</div>
