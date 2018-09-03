@@ -12,10 +12,10 @@ import { takeWhile } from 'rxjs/operators/takeWhile';
         <ngx-header></ngx-header>
       </nb-layout-header>
 
-      <nb-sidebar class="menu-sidebar" tag="menu-sidebar" responsive >
+      <nb-sidebar class="menu-sidebar" tag="menu-sidebar" responsive state="compacted">
         <nb-sidebar-header *ngIf="currentTheme !== 'corporate'">
           <a href="#" class="btn btn-hero-success main-btn">
-            <i class="ion ion-social-github"></i> <span>Support Us</span>
+            <i class="ion ion-social-github"></i> <span (click)="toggleSidebar()">Narmada</span>
           </a>
         </nb-sidebar-header>
         <ng-content select="nb-menu"></ng-content>

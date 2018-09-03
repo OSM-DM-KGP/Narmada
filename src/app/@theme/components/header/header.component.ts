@@ -4,6 +4,7 @@ import { NbMenuService, NbSidebarService } from '@nebular/theme';
 import { UserService } from '../../../@core/data/users.service';
 import { AnalyticsService } from '../../../@core/utils/analytics.service';
 import { LayoutService } from '../../../@core/data/layout.service';
+import { RouterModule, Routes, Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-header',
@@ -22,7 +23,8 @@ export class HeaderComponent implements OnInit {
               private menuService: NbMenuService,
               private userService: UserService,
               private analyticsService: AnalyticsService,
-              private layoutService: LayoutService) {
+              private layoutService: LayoutService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -41,6 +43,10 @@ export class HeaderComponent implements OnInit {
     this.sidebarService.toggle(false, 'settings-sidebar');
 
     return false;
+  }
+
+  newResource() {
+    this.router.navigate(['/new'], { queryParams: { } });
   }
 
   goToHome() {

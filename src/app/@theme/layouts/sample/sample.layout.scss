@@ -110,7 +110,7 @@
         & > .menu-item:first-child {
           .menu-title {
             &::after {
-              content: 'new';
+              // content: 'new';
               color: nb-theme(color-white);
               margin-left: 1rem;
               background: nb-theme(color-danger);
