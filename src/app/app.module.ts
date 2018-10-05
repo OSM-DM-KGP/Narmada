@@ -14,9 +14,10 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ThemeModule } from './@theme/theme.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { GooglePlacesDirective } from './google-places.directive';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, GooglePlacesDirective],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
