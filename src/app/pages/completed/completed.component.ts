@@ -5,4 +5,8 @@ import { Component } from '@angular/core';
 	templateUrl: './completed.component.html',
 })
 export class CompletedComponent {
+	completedNeeds = {}; completedAvail = {};
+	completedMatch = {};
+
+	
 }

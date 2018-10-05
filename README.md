@@ -24,6 +24,10 @@ Narmada - Needs and Available Resource Matching and Allocation during Disasters
 
 <!-- {"_id":"907538578267353088","loc":"","tln":"","plt":"","cr":{"$date":"2017-09-12T04:07:12.000Z"},"pln":"","lang":"en","p":"","tlt":"","f":"","flrs":9,"acr":{"$date":"2017-02-02T11:58:16.000Z"},"t":"RT @DailyMonitor: Floods ravage four villages in Mbarara https://t.co/wwlOfyJlnp","uid":"827207015588040704","cc":""}, -->
 
+## ToDo
+
+- [ ] New => better message handling
+- [ ] Handle stages in tweet allocation => New key in db
 
 
 narmada db, tweets collection.
