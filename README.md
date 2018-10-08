@@ -5,20 +5,30 @@ Narmada - Needs and Available Resource Matching and Allocation during Disasters
 
 ```
 {
-	"_id" : "926799596232982529",
-	"lang" : "en",
-	"lat" : 47.273,
-	"long" : -123.267,
-	"loc" : "KGP",
-	"cc" : "US",
-	"cr" : ISODate("2014-09-30T04:00:00.000Z"),
-	"acr" : ISODate("2012-01-13T06:37:42.000Z"),
-	"text" : "Need in Mumbai",
-	"username" : "@amazing",
-	"Classification" : "Need",
-	"Matched" : -1,
-	"isCompleted" : false,
-	"Resources" : { "resource1" : { "location" : "Location", "Quantity" : 5, "Contact" : "+91 1234567890", "source" : "Powaii" } }
+    "_id" : "5bba860a32d1d751cddac52b",
+    "lang" : "en",
+    "text" : "a",
+    "Classification" : "Need",
+    "Matched" : -1,
+    "Locations" : {
+        "Assam, India" : {
+            "long" : 83.1859458,
+            "lat" : 26.0737044
+        }
+    },
+    "created" : ISODate("2018-10-07T22:17:46.699Z"),
+    "Contact" : {
+        "Phone number" : [],
+        "Email" : []
+    },
+    "status" : 0,
+    "Resources" : [ 
+        {
+            "_id" : ObjectId("5bba860a32d1d751cddac52c")
+        }
+    ],
+    "Sources" : [],
+    "isCompleted" : false
 }
 ```
 
@@ -27,7 +37,19 @@ Narmada - Needs and Available Resource Matching and Allocation during Disasters
 ## ToDo
 
 - [ ] New => better message handling
-- [ ] Handle stages in tweet allocation => New key in db
+- [X] Handle stages in tweet allocation => New key in db
+- [X] Infinite list
+- [ ] Top trending in theme-settings.components.ts 
+- [ ] Fetch asynchronously for home - N, A, M
+- [X] Upload all - data sanitize
+- [ ] Match tweets - frontend (display) and backend // Might consider another classification for this altogether (showMoreMatches) - all functions related to match, like showMatches
+- [ ] Trivially extend completed page once match done
+- [ ] What things do I want to edit ?
+- [ ] Api for matched tweet
+- [ ] Editing existing resource ?
+- [ ] Add google analytics 
+- [X] Search
+
 
 
 narmada db, tweets collection.

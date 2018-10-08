@@ -70,6 +70,12 @@ export class NewComponent {
 		console.log(this.sourceDesc, ' @ ', this.sourceLat, ' x ', this.sourceLong);
 	}
 
+	discard() {
+		this.tweetText = ''; this.selectedItems = [];
+		this.tweetContact = ''; this.tweetSource = '';
+		this.tweetQuantity = ''; this.sourceDesc = '';
+		this.sourceLat = 0; this.sourceLong = 0;
+	}
 
 	saveResource() {
 		this.invalidText = false; this.invalidType = false;
@@ -88,9 +94,12 @@ export class NewComponent {
 			console.log('Submit');
 			// console.log(this.sourceDesc, ',', this.sourceLat, 'x', this.sourceLong);
 			
-			var resources = {};
+			var resources = [];
 			for (var i = 0; i < this.selectedItems.length; i++) {
-				resources[this.selectedItems[i]['item_text']] = this.tweetQuantity.split(',')[i];
+				resources.push({
+					'quantity': this.tweetQuantity.split(',')[i],
+					'resource': this.selectedItems[i]['item_text'],
+				});
 			}
 			// add id, time also
 			// username not required

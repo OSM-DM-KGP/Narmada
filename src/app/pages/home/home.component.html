@@ -6,13 +6,13 @@
 			<nb-card-header>Need</nb-card-header>
 			<nb-card-body style="background-color: #E5E9F1 !important;">
 				<!-- List of cards -->
-				<nb-reveal-card>
+				<nb-reveal-card *ngFor="let Need of Needs">
 					<nb-card-front>
 						<nb-card size="xxsmall" status="info" accent="warning">
 							<!-- <nb-card-header>Tweet text @user </nb-card-header> -->
 							<nb-card-body>
-								<b>Tweet text @user </b><br>
-								DD / MM / YYYY <br /> Contact 
+								<b><span (click)="display(Need)">{{Need.text}}</span> @ {{Need.username}} </b><br>
+								{{humanReadableDate(Need.created)}} <br /> {{Need.contact}} 
 							</nb-card-body>
 							<!-- <nb-card-footer>By Wikipedia</nb-card-footer> -->
 						</nb-card>
@@ -21,145 +21,16 @@
 						<nb-card size="xxsmall" status="primary" accent="primary">
 							<!-- <nb-card-header>Details</nb-card-header> -->
 							<nb-card-body>
-								Resource   Quantity<br /> Location<br /> Source<br />
+								Resource: {{parseResources(Need.Resources)}}<br />
+								Loc: {{parseLoc(Need.Locations)}}<br />
+								Source: {{Need.Sources}}<br />
 							</nb-card-body>
 							<!-- <nb-card-footer> Save </nb-card-footer> -->
 						</nb-card>
 					</nb-card-back>
 				</nb-reveal-card>
 
-				<nb-reveal-card>
-					<nb-card-front>
-						<nb-card size="xxsmall" status="info" accent="warning">
-							<!-- <nb-card-header>Tweet text @user </nb-card-header> -->
-							<nb-card-body>
-								<b>Tweet text @user </b><br>
-								DD / MM / YYYY <br /> Contact 
-							</nb-card-body>
-							<!-- <nb-card-footer>By Wikipedia</nb-card-footer> -->
-						</nb-card>
-					</nb-card-front>
-					<nb-card-back>
-						<nb-card size="xxsmall" status="primary" accent="primary">
-							<!-- <nb-card-header>Details</nb-card-header> -->
-							<nb-card-body>
-								Resource   Quantity<br /> Location<br /> Source<br />
-							</nb-card-body>
-							<!-- <nb-card-footer> Save </nb-card-footer> -->
-						</nb-card>
-					</nb-card-back>
-				</nb-reveal-card>
-
-				<nb-reveal-card>
-					<nb-card-front>
-						<nb-card size="xxsmall" status="info" accent="warning">
-							<!-- <nb-card-header>Tweet text @user </nb-card-header> -->
-							<nb-card-body>
-								<b>Tweet text @user </b><br>
-								DD / MM / YYYY <br /> Contact 
-							</nb-card-body>
-							<!-- <nb-card-footer>By Wikipedia</nb-card-footer> -->
-						</nb-card>
-					</nb-card-front>
-					<nb-card-back>
-						<nb-card size="xxsmall" status="primary" accent="primary">
-							<!-- <nb-card-header>Details</nb-card-header> -->
-							<nb-card-body>
-								Resource   Quantity<br /> Location<br /> Source<br />
-							</nb-card-body>
-							<!-- <nb-card-footer> Save </nb-card-footer> -->
-						</nb-card>
-					</nb-card-back>
-				</nb-reveal-card>
-
-				<nb-reveal-card>
-					<nb-card-front>
-						<nb-card size="xxsmall" status="info" accent="warning">
-							<!-- <nb-card-header>Tweet text @user </nb-card-header> -->
-							<nb-card-body>
-								<b>Tweet text @user </b><br>
-								DD / MM / YYYY <br /> Contact 
-							</nb-card-body>
-							<!-- <nb-card-footer>By Wikipedia</nb-card-footer> -->
-						</nb-card>
-					</nb-card-front>
-					<nb-card-back>
-						<nb-card size="xxsmall" status="primary" accent="primary">
-							<!-- <nb-card-header>Details</nb-card-header> -->
-							<nb-card-body>
-								Resource   Quantity<br /> Location<br /> Source<br />
-							</nb-card-body>
-							<!-- <nb-card-footer> Save </nb-card-footer> -->
-						</nb-card>
-					</nb-card-back>
-				</nb-reveal-card>
-
-				<nb-reveal-card>
-					<nb-card-front>
-						<nb-card size="xxsmall" status="info" accent="warning">
-							<!-- <nb-card-header>Tweet text @user </nb-card-header> -->
-							<nb-card-body>
-								<b>Tweet text @user </b><br>
-								DD / MM / YYYY <br /> Contact 
-							</nb-card-body>
-							<!-- <nb-card-footer>By Wikipedia</nb-card-footer> -->
-						</nb-card>
-					</nb-card-front>
-					<nb-card-back>
-						<nb-card size="xxsmall" status="primary" accent="primary">
-							<!-- <nb-card-header>Details</nb-card-header> -->
-							<nb-card-body>
-								Resource   Quantity<br /> Location<br /> Source<br />
-							</nb-card-body>
-							<!-- <nb-card-footer> Save </nb-card-footer> -->
-						</nb-card>
-					</nb-card-back>
-				</nb-reveal-card>
-
-				<nb-reveal-card>
-					<nb-card-front>
-						<nb-card size="xxsmall" status="info" accent="warning">
-							<!-- <nb-card-header>Tweet text @user </nb-card-header> -->
-							<nb-card-body>
-								<b>Tweet text @user </b><br>
-								DD / MM / YYYY <br /> Contact 
-							</nb-card-body>
-							<!-- <nb-card-footer>By Wikipedia</nb-card-footer> -->
-						</nb-card>
-					</nb-card-front>
-					<nb-card-back>
-						<nb-card size="xxsmall" status="primary" accent="primary">
-							<!-- <nb-card-header>Details</nb-card-header> -->
-							<nb-card-body>
-								Resource   Quantity<br /> Location<br /> Source<br />
-							</nb-card-body>
-							<!-- <nb-card-footer> Save </nb-card-footer> -->
-						</nb-card>
-					</nb-card-back>
-				</nb-reveal-card>
-
-				<nb-reveal-card>
-					<nb-card-front>
-						<nb-card size="xxsmall" status="info" accent="warning">
-							<!-- <nb-card-header>Tweet text @user </nb-card-header> -->
-							<nb-card-body>
-								<b>Tweet text @user </b><br>
-								DD / MM / YYYY <br /> Contact 
-							</nb-card-body>
-							<!-- <nb-card-footer>By Wikipedia</nb-card-footer> -->
-						</nb-card>
-					</nb-card-front>
-					<nb-card-back>
-						<nb-card size="xxsmall" status="primary" accent="primary">
-							<!-- <nb-card-header>Details</nb-card-header> -->
-							<nb-card-body>
-								Resource   Quantity<br /> Location<br /> Source<br />
-							</nb-card-body>
-							<!-- <nb-card-footer> Save </nb-card-footer> -->
-						</nb-card>
-					</nb-card-back>
-				</nb-reveal-card>
-
+				<div style="text-align: center;"><a href="javascript:;" (click)="showMoreNeeds()">Show More</a></div>
 			</nb-card-body>
 		</nb-card>
 	</div>
@@ -170,13 +41,14 @@
 			<nb-card-header>Availability</nb-card-header>
 			<nb-card-body style="background-color: #E5E9F1 !important;">
 				<!-- List of cards -->
-				<nb-reveal-card>
+				<nb-reveal-card *ngFor="let Avail of Avails">
 					<nb-card-front>
 						<nb-card size="xxsmall" status="info" accent="info">
 							<!-- <nb-card-header>Tweet text @user </nb-card-header> -->
 							<nb-card-body>
-								<b>Tweet text @user </b><br>
-								DD / MM / YYYY <br /> Contact 
+								<b><span (click)="display(Avail)">{{Avail.text}}</span> @ {{Avail.username}} </b>
+								<br> {{humanReadableDate(Avail.created)}}
+								<br /> {{Avail.contact}}
 							</nb-card-body>
 							<!-- <nb-card-footer>By Wikipedia</nb-card-footer> -->
 						</nb-card>
@@ -185,172 +57,77 @@
 						<nb-card size="xxsmall" status="primary" accent="primary">
 							<!-- <nb-card-header>Details</nb-card-header> -->
 							<nb-card-body>
-								Resource   Quantity<br /> Location<br /> Source<br />
+								Resource: {{parseResources(Avail.Resources)}}
+								<br /> Loc: {{parseLoc(Avail.Locations)}}
+								<br /> Source: {{Avail.Sources}}
+								<br />
 							</nb-card-body>
 							<!-- <nb-card-footer> Save </nb-card-footer> -->
 						</nb-card>
 					</nb-card-back>
 				</nb-reveal-card>
-
-				<nb-reveal-card>
-					<nb-card-front>
-						<nb-card size="xxsmall" status="info" accent="info">
-							<!-- <nb-card-header>Tweet text @user </nb-card-header> -->
-							<nb-card-body>
-								<b>Tweet text @user </b><br>
-								DD / MM / YYYY <br /> Contact 
-							</nb-card-body>
-							<!-- <nb-card-footer>By Wikipedia</nb-card-footer> -->
-						</nb-card>
-					</nb-card-front>
-					<nb-card-back>
-						<nb-card size="xxsmall" status="primary" accent="primary">
-							<!-- <nb-card-header>Details</nb-card-header> -->
-							<nb-card-body>
-								Resource   Quantity<br /> Location<br /> Source<br />
-							</nb-card-body>
-							<!-- <nb-card-footer> Save </nb-card-footer> -->
-						</nb-card>
-					</nb-card-back>
-				</nb-reveal-card>
-
-				<nb-reveal-card>
-					<nb-card-front>
-						<nb-card size="xxsmall" status="info" accent="info">
-							<!-- <nb-card-header>Tweet text @user </nb-card-header> -->
-							<nb-card-body>
-								<b>Tweet text @user </b><br>
-								DD / MM / YYYY <br /> Contact 
-							</nb-card-body>
-							<!-- <nb-card-footer>By Wikipedia</nb-card-footer> -->
-						</nb-card>
-					</nb-card-front>
-					<nb-card-back>
-						<nb-card size="xxsmall" status="primary" accent="primary">
-							<!-- <nb-card-header>Details</nb-card-header> -->
-							<nb-card-body>
-								Resource   Quantity<br /> Location<br /> Source<br />
-							</nb-card-body>
-							<!-- <nb-card-footer> Save </nb-card-footer> -->
-						</nb-card>
-					</nb-card-back>
-				</nb-reveal-card>
-
-				<nb-reveal-card>
-					<nb-card-front>
-						<nb-card size="xxsmall" status="info" accent="info">
-							<!-- <nb-card-header>Tweet text @user </nb-card-header> -->
-							<nb-card-body>
-								<b>Tweet text @user </b><br>
-								DD / MM / YYYY <br /> Contact 
-							</nb-card-body>
-							<!-- <nb-card-footer>By Wikipedia</nb-card-footer> -->
-						</nb-card>
-					</nb-card-front>
-					<nb-card-back>
-						<nb-card size="xxsmall" status="primary" accent="primary">
-							<!-- <nb-card-header>Details</nb-card-header> -->
-							<nb-card-body>
-								Resource   Quantity<br /> Location<br /> Source<br />
-							</nb-card-body>
-							<!-- <nb-card-footer> Save </nb-card-footer> -->
-						</nb-card>
-					</nb-card-back>
-				</nb-reveal-card>
-
-				<nb-reveal-card>
-					<nb-card-front>
-						<nb-card size="xxsmall" status="info" accent="info">
-							<!-- <nb-card-header>Tweet text @user </nb-card-header> -->
-							<nb-card-body>
-								<b>Tweet text @user </b><br>
-								DD / MM / YYYY <br /> Contact 
-							</nb-card-body>
-							<!-- <nb-card-footer>By Wikipedia</nb-card-footer> -->
-						</nb-card>
-					</nb-card-front>
-					<nb-card-back>
-						<nb-card size="xxsmall" status="primary" accent="primary">
-							<!-- <nb-card-header>Details</nb-card-header> -->
-							<nb-card-body>
-								Resource   Quantity<br /> Location<br /> Source<br />
-							</nb-card-body>
-							<!-- <nb-card-footer> Save </nb-card-footer> -->
-						</nb-card>
-					</nb-card-back>
-				</nb-reveal-card>
-
-				<nb-reveal-card>
-					<nb-card-front>
-						<nb-card size="xxsmall" status="info" accent="info">
-							<!-- <nb-card-header>Tweet text @user </nb-card-header> -->
-							<nb-card-body>
-								<b>Tweet text @user </b><br>
-								DD / MM / YYYY <br /> Contact 
-							</nb-card-body>
-							<!-- <nb-card-footer>By Wikipedia</nb-card-footer> -->
-						</nb-card>
-					</nb-card-front>
-					<nb-card-back>
-						<nb-card size="xxsmall" status="primary" accent="primary">
-							<!-- <nb-card-header>Details</nb-card-header> -->
-							<nb-card-body>
-								Resource   Quantity<br /> Location<br /> Source<br />
-							</nb-card-body>
-							<!-- <nb-card-footer> Save </nb-card-footer> -->
-						</nb-card>
-					</nb-card-back>
-				</nb-reveal-card>
-
-				<nb-reveal-card>
-					<nb-card-front>
-						<nb-card size="xxsmall" status="info" accent="info">
-							<!-- <nb-card-header>Tweet text @user </nb-card-header> -->
-							<nb-card-body>
-								<b>Tweet text @user </b><br>
-								DD / MM / YYYY <br /> Contact 
-							</nb-card-body>
-							<!-- <nb-card-footer>By Wikipedia</nb-card-footer> -->
-						</nb-card>
-					</nb-card-front>
-					<nb-card-back>
-						<nb-card size="xxsmall" status="primary" accent="primary">
-							<!-- <nb-card-header>Details</nb-card-header> -->
-							<nb-card-body>
-								Resource   Quantity<br /> Location<br /> Source<br />
-							</nb-card-body>
-							<!-- <nb-card-footer> Save </nb-card-footer> -->
-						</nb-card>
-					</nb-card-back>
-				</nb-reveal-card>
-
+				
+				<div style="text-align: center;"> <a href="javascript:;" (click)="showMoreAvails()">Show More</a></div>
 			</nb-card-body>
 		</nb-card>
 	</div>
 
 	<div class="col-xl-3 col-lg-3 col-md-6">
-		<nb-card size="xsmall">
-			<nb-tabset fullWidth>
-				<nb-tab tabTitle="Trending" tabIcon="nb-arrow-retweet" responsive>
-					<div class="entry"><a href="#">#Hashtag1</a></div>
-					<div class="entry"><a href="#">#Hashtag2</a></div>
-					<div class="entry"><a href="#">#Hashtag3</a></div>
-					<div class="entry"><a href="#">#Hashtag4</a></div>
-					<div class="entry"><a href="#">#Hashtag5</a></div>
-				</nb-tab>
-			</nb-tabset>
+		<nb-card size="small">
+			<span *ngIf="!showSelected" style="padding: 2rem;">
+				<div class="input-group">
+					<span type="submit" (click)="filterTweets()" class="input-group-addon success icon"><i class="ion-search"></i></span>
+					<input type="text" class="form-control" placeholder="Search here" [(ngModel)]="searchString"/>
+				</div>
+
+				<div style="color: #E5E9F1 !important;">
+					<b>Some other search related info ? / Trending</b>
+				</div>
+			</span>
+			<!-- <span *ngIf="!showSelected" style="padding: 3rem; font-size: 3rem; color: #E5E9F1 !important;">
+				<b>Select a tweet to view details</b>
+			</span> -->
+			<span *ngIf="showSelected" style="padding: 1em;">
+				<div style="float: left;" class="icon" (click)="resetSelect()"><i class="ion-close-round"></i></div>
+				<div style="float: right;" class="icon" (click)="updateEdit()"> <i class="ion-checkmark"></i> </div>
+				<div style="text-align: center"> {{selectedResource.Classification}} </div>
+				<br />
+				<div class="input-group input-group-border-only">
+					<!-- <label for="newText">Text</label> -->
+					<input type="text" placeholder="{{selectedResource.text}}" class="form-control" 
+					value="{{selectedResource.text}}" [(ngModel)]="newText"/>
+				</div>
+				<div class="input-group input-group-border-only">
+					<!-- <label for="newText">Text</label> -->
+					<input type="text" placeholder="New resource" class="form-control" [(ngModel)]="newNewResource" />
+					<input type="text" placeholder="Quantity" class="form-control" [(ngModel)]="newNewQuantity" />
+				</div>
+				<div class="input-group input-group-border-only" *ngFor="let r of selectedResource.Resources">
+					<!-- <label for="newText">Text</label> -->
+					<input type="text" placeholder="{{r.resource}}" class="form-control" value="{{r.resource}}" disabled/>
+					<input type="text" placeholder="{{r.quantity}}" class="form-control" value="{{r.quantity}}" disabled/>
+				</div>
+				<br />
+				<div class="input-group input-group-border-only">
+					<!-- <label for="newText">Text</label> -->
+					<input type="text" placeholder="{{contactToString(selectedResource.Contact)}}" class="form-control" [(ngModel)]="newContact" value="{{contactToString(selectedResource.Contact)}}" />
+					<input type="text" placeholder="{{listToString(selectedResource.Sources)}}" class="form-control" [(ngModel)]="newSources" value="{{listToString(selectedResource.Sources)}}"
+					/>
+				</div>
+			</span>
 		</nb-card>
-		<nb-card size="medium">
-			<nb-tabset fullWidth>
-				<nb-tab tabTitle="Map" tabIcon="nb-location" responsive>
+		<nb-card size="small" style="padding: 1em;">
+			Map goes here
+			<!-- <nb-tabset fullWidth> -->
+				<!-- <nb-tab responsive> -->
 					<!-- <plotly-plot [data]="graph.data" [layout]="graph.layout"></plotly-plot> -->
 					<!-- <div id="PlotlyMap"></div> -->
 					<!-- <div style="width:100%;" leaflet [leafletOptions]="mapoptions"></div> -->
-				</nb-tab>
+				<!-- </nb-tab> -->
 				<!-- <nb-tab tabTitle="Trending" tabIcon="nb-arrow-retweet" responsive>
 					<p>List of <strong>orders</strong>.</p>
 				</nb-tab> -->
-			</nb-tabset>
+			<!-- </nb-tabset> -->
 		</nb-card>		
 	</div>
 
@@ -382,138 +159,7 @@
 					</nb-card-back>
 				</nb-reveal-card>
 
-				<nb-reveal-card>
-					<nb-card-front>
-						<nb-card size="xxsmall" status="info" accent="success">
-							<!-- <nb-card-header>Tweet text @user </nb-card-header> -->
-							<nb-card-body>
-								<b>Tweet text @user </b><br>
-								DD / MM / YYYY <br /> Contact 
-							</nb-card-body>
-							<!-- <nb-card-footer>By Wikipedia</nb-card-footer> -->
-						</nb-card>
-					</nb-card-front>
-					<nb-card-back>
-						<nb-card size="xxsmall" status="primary" accent="primary">
-							<!-- <nb-card-header>Details</nb-card-header> -->
-							<nb-card-body>
-								Resource   Quantity<br /> Location<br /> Source<br />
-							</nb-card-body>
-							<!-- <nb-card-footer> Save </nb-card-footer> -->
-						</nb-card>
-					</nb-card-back>
-				</nb-reveal-card>
-
-				<nb-reveal-card>
-					<nb-card-front>
-						<nb-card size="xxsmall" status="info" accent="success">
-							<!-- <nb-card-header>Tweet text @user </nb-card-header> -->
-							<nb-card-body>
-								<b>Tweet text @user </b><br>
-								DD / MM / YYYY <br /> Contact 
-							</nb-card-body>
-							<!-- <nb-card-footer>By Wikipedia</nb-card-footer> -->
-						</nb-card>
-					</nb-card-front>
-					<nb-card-back>
-						<nb-card size="xxsmall" status="primary" accent="primary">
-							<!-- <nb-card-header>Details</nb-card-header> -->
-							<nb-card-body>
-								Resource   Quantity<br /> Location<br /> Source<br />
-							</nb-card-body>
-							<!-- <nb-card-footer> Save </nb-card-footer> -->
-						</nb-card>
-					</nb-card-back>
-				</nb-reveal-card>
-
-				<nb-reveal-card>
-					<nb-card-front>
-						<nb-card size="xxsmall" status="info" accent="success">
-							<!-- <nb-card-header>Tweet text @user </nb-card-header> -->
-							<nb-card-body>
-								<b>Tweet text @user </b><br>
-								DD / MM / YYYY <br /> Contact 
-							</nb-card-body>
-							<!-- <nb-card-footer>By Wikipedia</nb-card-footer> -->
-						</nb-card>
-					</nb-card-front>
-					<nb-card-back>
-						<nb-card size="xxsmall" status="primary" accent="primary">
-							<!-- <nb-card-header>Details</nb-card-header> -->
-							<nb-card-body>
-								Resource   Quantity<br /> Location<br /> Source<br />
-							</nb-card-body>
-							<!-- <nb-card-footer> Save </nb-card-footer> -->
-						</nb-card>
-					</nb-card-back>
-				</nb-reveal-card>
-
-				<nb-reveal-card>
-					<nb-card-front>
-						<nb-card size="xxsmall" status="info" accent="success">
-							<!-- <nb-card-header>Tweet text @user </nb-card-header> -->
-							<nb-card-body>
-								<b>Tweet text @user </b><br>
-								DD / MM / YYYY <br /> Contact 
-							</nb-card-body>
-							<!-- <nb-card-footer>By Wikipedia</nb-card-footer> -->
-						</nb-card>
-					</nb-card-front>
-					<nb-card-back>
-						<nb-card size="xxsmall" status="primary" accent="primary">
-							<!-- <nb-card-header>Details</nb-card-header> -->
-							<nb-card-body>
-								Resource   Quantity<br /> Location<br /> Source<br />
-							</nb-card-body>
-							<!-- <nb-card-footer> Save </nb-card-footer> -->
-						</nb-card>
-					</nb-card-back>
-				</nb-reveal-card>
-
-				<nb-reveal-card>
-					<nb-card-front>
-						<nb-card size="xxsmall" status="info" accent="success">
-							<!-- <nb-card-header>Tweet text @user </nb-card-header> -->
-							<nb-card-body>
-								<b>Tweet text @user </b><br>
-								DD / MM / YYYY <br /> Contact 
-							</nb-card-body>
-							<!-- <nb-card-footer>By Wikipedia</nb-card-footer> -->
-						</nb-card>
-					</nb-card-front>
-					<nb-card-back>
-						<nb-card size="xxsmall" status="primary" accent="primary">
-							<!-- <nb-card-header>Details</nb-card-header> -->
-							<nb-card-body>
-								Resource   Quantity<br /> Location<br /> Source<br />
-							</nb-card-body>
-							<!-- <nb-card-footer> Save </nb-card-footer> -->
-						</nb-card>
-					</nb-card-back>
-				</nb-reveal-card>
-
-				<nb-reveal-card>
-					<nb-card-front>
-						<nb-card size="xxsmall" status="info" accent="success">
-							<!-- <nb-card-header>Tweet text @user </nb-card-header> -->
-							<nb-card-body>
-								<b>Tweet text @user </b><br>
-								DD / MM / YYYY <br /> Contact 
-							</nb-card-body>
-							<!-- <nb-card-footer>By Wikipedia</nb-card-footer> -->
-						</nb-card>
-					</nb-card-front>
-					<nb-card-back>
-						<nb-card size="xxsmall" status="primary" accent="primary">
-							<!-- <nb-card-header>Details</nb-card-header> -->
-							<nb-card-body>
-								Resource   Quantity<br /> Location<br /> Source<br />
-							</nb-card-body>
-							<!-- <nb-card-footer> Save </nb-card-footer> -->
-						</nb-card>
-					</nb-card-back>
-				</nb-reveal-card>
-
+				<div style="text-align: center;"><a href="javascript:;" (click)="showMoreMatches()">Show More</a></div>
 			</nb-card-body>
 		</nb-card>
 	</div>	

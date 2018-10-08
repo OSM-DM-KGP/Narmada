@@ -63,7 +63,7 @@
         "core-js": "2.5.1",
         "echarts": "^4.0.2",
         "intl": "1.2.5",
-        "ionicons": "2.0.1",
+        "ionicons": "^2.0.1",
         "leaflet": "1.2.0",
         "nebular-icons": "1.0.9",
         "ng-multiselect-dropdown": "^0.2.1",

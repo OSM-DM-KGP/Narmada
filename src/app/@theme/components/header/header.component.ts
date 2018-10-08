@@ -53,7 +53,8 @@ export class HeaderComponent implements OnInit {
     this.menuService.navigateHome();
   }
 
-  startSearch() {
+  startSearch(key) {
+    console.log('header key', key);
     this.analyticsService.trackEvent('startSearch');
   }
 }
