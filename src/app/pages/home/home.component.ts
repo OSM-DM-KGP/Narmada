@@ -24,9 +24,9 @@ export class HomeComponent {
 	showSelected = false; selectedResource = '';
 
 	// edit menu
-	searchString = '';
+	searchString = ''; showCancelSearch = false;
 	newText = ''; newNewResource = ''; newNewQuantity = '';
-	newContact = ''; newSources = '';
+	newContact = ''; newSources = ''; updatedQuantity = ''; toEditResource = {};
 
 	humanReadableDate(created) {
 		return created.split('T')[0];
@@ -79,6 +79,8 @@ export class HomeComponent {
 		this.showSelected = true;
 		this.selectedResource = Resource;
 		this.searchString = '';
+		this.newText = ''; this.newContact = ''; this.newSources ='';
+		this.toEditResource = {};
 	}
 
 	contactToString(contact) {
@@ -88,15 +90,29 @@ export class HomeComponent {
 		return sources.join();
 	}
 
+	clearSearch() {
+		this.searchString = '';
+		this.showCancelSearch = false;
+		this.filterTweets();
+	}
 	updateEdit() {
 		// selectedResource changed to something
 		console.log('updateEdit');
-		console.log(this.newText); console.log(this.newNewResource); console.log(this.newNewQuantity);
+		console.log(this.newText); console.log(this.newContact); console.log(this.newSources);
+	}
+	
+	resourceToEdit(r) {
+		this.toEditResource = r;
+		console.log(this.toEditResource);
+	}
+	updateResources() {
 		console.log(this.newContact); console.log(this.newSources);
 	}
 
+
 	filterTweets() {
 		console.log('Searched for ', this.searchString);
+		if(this.searchString != '') this.showCancelSearch = true;
 		this.Needs = [], this.Avails = [];
 		// one time process to reset original tweets
 		// $text: {$search: "italy"}

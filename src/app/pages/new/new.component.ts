@@ -23,8 +23,8 @@ export class NewComponent {
 	tweetText = ''; resourceType = '';
 	selectedItems = [];
 	tweetSource = ''; tweetContact = ''; tweetQuantity = '';
-	// sourceDesc = ''; sourceLat = 0; sourceLong = 0;
-	sourceDesc = 'Assam, India'; sourceLat = 26.0737044; sourceLong = 83.18594580000001;
+	sourceDesc = ''; sourceLat = 0; sourceLong = 0;
+	// sourceDesc = 'Assam, India'; sourceLat = 26.0737044; sourceLong = 83.18594580000001;
 	
 	ngOnInit() {
 		this.dropdownList = [
@@ -122,6 +122,7 @@ export class NewComponent {
 				Matched: -1,
 				Locations: loc,
 				Sources: this.tweetSource.split(','),
+				username: 'Naradmin',
 				Resources: resources,
 				Contact: {
 					Email: mails,
