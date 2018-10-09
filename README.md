@@ -1,5 +1,5 @@
 # Narmada
-Narmada - Needs and Available Resource Matching and Allocation during Disasters
+Narmada - Need and Available Resource Matching Assistant for Disasters and Adversities.
 
 ## Sample tweet
 
@@ -48,9 +48,25 @@ Narmada - Needs and Available Resource Matching and Allocation during Disasters
 - [ ] Api for matched tweet
 - [ ] Editing existing resource ?
 - [ ] Add google analytics 
-- [X] Search
-
-
+- [X] Search  - but what options ?
+- [ ] Status of resource (also in edit menu)
+- [ ] Map (focuses on need, and shows nearby - also based on matching)
+- [ ] Edit resources by one off dropdown
+- [ ] Host on cnerg, (contact Rohit, Satadal)
+- [ ] Delete resource
+- [ ] Highlight tweet that has been selected
+- [ ] Automatically parse tweet text in new page => code form Ritam
+- [ ] Ability to reply to original poster that so and so person needs your help (Twitter integration) => Data from SG to Ritam, and then to me
+- [ ] ^^ Needs data re-upload, with script that converts tweets to mongo-pushable json
+- [ ] Expand map when needed to occupy left half of screen
+- [ ] Manual, near the new button
+- [ ] Matched tweet UI ?
+- [ ] show matches tickbox on availability and needs based on which is not selected
+- [ ] Writeup for codefundo++ => Ritam
+- [X] X matched change from -1 to list Not required
+- [ ] Give user freedom to dictate matching bounds: Recent 15 days, and / or location
+- [ ] status enum - New, verified, assigned, completed (Match only verified needs)
+- [ ] Show tweet url if available, and tweet to button (Separate window for that) 
 
 narmada db, tweets collection.
 

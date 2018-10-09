@@ -1,6 +1,5 @@
 <div class="row">
-	<!--  https://akveo.github.io/nebular/docs/components/infinite-list/overview#nbinfinitelistdirective -->
-	<!-- use infinite list -->
+	<!--  Needs -->
 	<div class="col-xl-3 col-lg-3 col-md-6">
 		<nb-card size="xlarge">
 			<nb-card-header>Need</nb-card-header>
@@ -35,7 +34,7 @@
 		</nb-card>
 	</div>
 
-
+	<!--  Availabilites -->
 	<div class="col-xl-3 col-lg-3 col-md-6">
 		<nb-card size="xlarge">
 			<nb-card-header>Availability</nb-card-header>
@@ -72,52 +71,95 @@
 		</nb-card>
 	</div>
 
+	<!-- Show search, card, maps -->
 	<div class="col-xl-3 col-lg-3 col-md-6">
-		<nb-card size="small">
-			<span *ngIf="!showSelected" style="padding: 2rem;">
-				<div class="input-group">
-					<span type="submit" (click)="filterTweets()" class="input-group-addon success icon"><i class="ion-search"></i></span>
-					<input type="text" class="form-control" placeholder="Search here" [(ngModel)]="searchString"/>
-				</div>
+		<nb-reveal-card>
+			<nb-card-front>
+				<nb-card size="small">
+					<span *ngIf="!showSelected" style="padding: 2rem;">
+						<span *ngIf="showCancelSearch" (click)="clearSearch()" class="icon" style="float: right;"><i class="ion-close-round"></i></span>
+						<div class="input-group">
+							<span type="submit" (click)="filterTweets()" class="input-group-addon success icon"><i class="ion-search"></i></span>
+							<input type="text" class="form-control" placeholder="Search here" [(ngModel)]="searchString"/>
+						</div>
+						<br />
+						<h6>Top Trending</h6>
+						<div class="settings-row">
+							<div class="entry"><a href="#">#Hashtag1</a></div>
+							<div class="entry"><a href="#">#Hashtag2</a></div>
+							<div class="entry"><a href="#">#Hashtag3</a></div>
+							<div class="entry"><a href="#">#Hashtag4</a></div>
+							<div class="entry"><a href="#">#Hashtag5</a></div>
+						</div>
+						<br />
+						<div style="color: #E5E9F1 !important;">
+							<b>Select a tweet to view details</b>
+						</div>
+					</span>
+					<span *ngIf="showSelected" style="padding: 1em;">
+						<div style="float: left;" class="icon" (click)="resetSelect()"><i class="ion-close-round"></i></div>
+						<div style="float: right;" class="icon" (click)="updateEdit()"> <i class="ion-checkmark"></i> </div>
+						<div style="text-align: center"> {{selectedResource.Classification}} </div>
+						<br />
+						<div class="form-group">
+							<label for="newText">Text</label>
+							<textarea rows="2" class="form-control" 
+							value="{{selectedResource.text}}" placeholder="{{selectedResource.text}}" [(ngModel)]="newText"></textarea>
+						</div>
+						<div class="form-group">
+							<label for="newContact">Contact</label>
+							<input type="text" value="{{contactToString(selectedResource.Contact)}}"
+							placeholder="{{contactToString(selectedResource.Contact)}}" class="form-control" [(ngModel)]="newContact" />
+						</div>
+						<div class="form-group">
+							<label for="newSource">Sources</label>
+							<input type="text" value="{{listToString(selectedResource.Sources)}}" 
+							placeholder="{{listToString(selectedResource.Sources)}}" class="form-control" [(ngModel)]="newContact"/>
+						</div>
+						<span style="color: #E5E9F1 !important;">url: {{selectedResource.url}}</span>
+					</span>
+				</nb-card>
+			</nb-card-front>
+			<nb-card-back>
+				<nb-card size="small">
+					<span *ngIf="!showSelected" style="padding: 2rem;">
+						Could utilise this space for something else?
+					</span>
+					<span *ngIf="showSelected" style="padding: 1em;">
+						<div style="float: left;" class="icon" (click)="resetSelect()"><i class="ion-close-round"></i></div>
+						<div style="float: right;" class="icon" (click)="updateResources()"><i class="ion-checkmark"></i></div>
+						<div style="text-align: center"> {{selectedResource.Classification}} </div>
+						<br />
+						<div class="dropdown" ngbDropdown>
+							<button class="btn btn-outline-primary" type="button" ngbDropdownToggle>
+								edit resource
+							</button>
+							<ul class="dropdown-menu" ngbDropdownMenu>
+								<li class="dropdown-item" *ngFor="let r of selectedResource.Resources" (click)="resourceToEdit(r)">
+									{{r.resource}}
+								</li>
+							</ul>
+						</div>
+						<div class="form-group">
+							<input type="text" value="{{toEditResource.quantity || '0'}}" 
+							placeholder="{{toEditResource.quantity || 'Select a resource'}}" class="form-control" 
+							[(ngModel)]="updatedQuantity" />
+						</div>
+						<br />
+						<div class="form-group">
+							<label for="newNewResource">New Resource and Quantity</label>
+							<input type="text" placeholder="New resource" class="form-control" [(ngModel)]="newNewResource" />
+							<input type="text" placeholder="New quantity" class="form-control" [(ngModel)]="newNewResource" />
+						</div>
 
-				<div style="color: #E5E9F1 !important;">
-					<b>Some other search related info ? / Trending</b>
-				</div>
-			</span>
-			<!-- <span *ngIf="!showSelected" style="padding: 3rem; font-size: 3rem; color: #E5E9F1 !important;">
-				<b>Select a tweet to view details</b>
-			</span> -->
-			<span *ngIf="showSelected" style="padding: 1em;">
-				<div style="float: left;" class="icon" (click)="resetSelect()"><i class="ion-close-round"></i></div>
-				<div style="float: right;" class="icon" (click)="updateEdit()"> <i class="ion-checkmark"></i> </div>
-				<div style="text-align: center"> {{selectedResource.Classification}} </div>
-				<br />
-				<div class="input-group input-group-border-only">
-					<!-- <label for="newText">Text</label> -->
-					<input type="text" placeholder="{{selectedResource.text}}" class="form-control" 
-					value="{{selectedResource.text}}" [(ngModel)]="newText"/>
-				</div>
-				<div class="input-group input-group-border-only">
-					<!-- <label for="newText">Text</label> -->
-					<input type="text" placeholder="New resource" class="form-control" [(ngModel)]="newNewResource" />
-					<input type="text" placeholder="Quantity" class="form-control" [(ngModel)]="newNewQuantity" />
-				</div>
-				<div class="input-group input-group-border-only" *ngFor="let r of selectedResource.Resources">
-					<!-- <label for="newText">Text</label> -->
-					<input type="text" placeholder="{{r.resource}}" class="form-control" value="{{r.resource}}" disabled/>
-					<input type="text" placeholder="{{r.quantity}}" class="form-control" value="{{r.quantity}}" disabled/>
-				</div>
-				<br />
-				<div class="input-group input-group-border-only">
-					<!-- <label for="newText">Text</label> -->
-					<input type="text" placeholder="{{contactToString(selectedResource.Contact)}}" class="form-control" [(ngModel)]="newContact" value="{{contactToString(selectedResource.Contact)}}" />
-					<input type="text" placeholder="{{listToString(selectedResource.Sources)}}" class="form-control" [(ngModel)]="newSources" value="{{listToString(selectedResource.Sources)}}"
-					/>
-				</div>
-			</span>
-		</nb-card>
+						
+					</span>
+				</nb-card>
+			</nb-card-back>
+		</nb-reveal-card>
 		<nb-card size="small" style="padding: 1em;">
-			Map goes here
+			<!-- Map goes here -->
+			<div leaflet [leafletOptions]="mapoptions" style="width: 100%; height: 100%;"></div>
 			<!-- <nb-tabset fullWidth> -->
 				<!-- <nb-tab responsive> -->
 					<!-- <plotly-plot [data]="graph.data" [layout]="graph.layout"></plotly-plot> -->
