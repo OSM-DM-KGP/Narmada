@@ -123,7 +123,28 @@
 			<nb-card-back>
 				<nb-card size="small">
 					<span *ngIf="!showSelected" style="padding: 2rem;">
-						Could utilise this space for something else?
+						<span *ngIf="showCancelSearch" (click)="clearSearch()" class="icon" style="float: right;">
+							<i class="ion-close-round"></i>
+						</span>
+						<div class="input-group">
+							<span type="submit" (click)="filterTweets()" class="input-group-addon success icon">
+								<i class="ion-search"></i>
+							</span>
+							<input type="text" class="form-control" placeholder="Search here" [(ngModel)]="searchString" />
+						</div>
+						<br />
+						<h6>Top Trending</h6>
+						<div class="settings-row">
+							<div class="entry"><a href="#">#Hashtag1</a></div>
+							<div class="entry"><a href="#">#Hashtag2</a></div>
+							<div class="entry"><a href="#">#Hashtag3</a></div>
+							<div class="entry"><a href="#">#Hashtag4</a></div>
+							<div class="entry"><a href="#">#Hashtag5</a></div>
+						</div>
+						<br />
+						<div style="color: #E5E9F1 !important;">
+							<b>Select a tweet to view details</b>
+						</div>
 					</span>
 					<span *ngIf="showSelected" style="padding: 1em;">
 						<div style="float: left;" class="icon" (click)="resetSelect()"><i class="ion-close-round"></i></div>
@@ -159,6 +180,7 @@
 		</nb-reveal-card>
 		<nb-card size="small" style="padding: 1em;">
 			<!-- Map goes here -->
+			<!-- https://github.com/taniarascia/googlemaps -->
 			<div leaflet [leafletOptions]="mapoptions" style="width: 100%; height: 100%;"></div>
 			<!-- <nb-tabset fullWidth> -->
 				<!-- <nb-tab responsive> -->
