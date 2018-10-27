@@ -18,6 +18,14 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/new',
   },
   {
+    title: 'Savitr',
+    icon: 'nb-bar-chart',
+    link: '/savitr',
+  },
+
+];
+
+/*  {
     title: 'Auth',
     icon: 'nb-locked',
     children: [
@@ -39,7 +47,8 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
     ],
   },
-];
+ */
+
 
 // export const MENU_ITEMS: NbMenuItem[] = [
 //   {
