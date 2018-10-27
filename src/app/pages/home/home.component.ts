@@ -15,8 +15,8 @@ export class HomeComponent {
 		layers: [
 		L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' }),
 		],
-		zoom: 5,
-		center: L.latLng({ lat: 38.991709, lng: -76.886109 }),
+		zoom: 3,
+		center: L.latLng({ lat: 34.083656, lng: 74.797371 }),
 	};
 
 	Needs = []; Avails = []; Matches = [];
@@ -81,6 +81,13 @@ export class HomeComponent {
 		this.searchString = '';
 		this.newText = ''; this.newContact = ''; this.newSources ='';
 		this.toEditResource = {};
+		console.log(Resource);
+		var locs = Resource.Locations;
+		for(var location in locs) {
+			this.mapoptions.center = L.latLng({ lat: locs[location].lat, lng: locs[location].long });
+			// var destination = L.marker([ locs[location].lat, locs[location].long]).addTo(L.map('map'));
+		}
+
 	}
 
 	contactToString(contact) {

@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'ngx-footer',
   styleUrls: ['./footer.component.scss'],
   template: `
-    <span class="created-by">NARMADA: Needs and Availability Resource Matching and Allocation during Disasters</span>
+    <span class="created-by">NARMADA: Need and Available Resource Matching Assistant for Disasters and Adversities</span>
     <div class="socials">
       <a href="https://github.com/kaustubhhiware/Narmada" target="_blank" class="ion ion-social-github"></a>
     </div>

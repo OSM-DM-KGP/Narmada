@@ -3,7 +3,7 @@ import { apiUrl } from '../../app.module';
 var axios = require('axios');
 
 @Component({
-	selector: 'ngx-completed',
+	selector: 'ngx-new',
 	templateUrl: './new.component.html',
 	styleUrls: ['./new.component.scss'],
 

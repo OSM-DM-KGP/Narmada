@@ -8,6 +8,7 @@ import { NotFoundComponent } from './miscellaneous/not-found/not-found.component
 import { HomeComponent } from './home/home.component';
 import { CompletedComponent} from './completed/completed.component';
 import { NewComponent } from './new/new.component';
+import { SavitrComponent } from './savitr/savitr.component';
 
 const routes: Routes = [{
   path: '',
@@ -21,7 +22,10 @@ const routes: Routes = [{
   }, {
     path: 'new',
     component: NewComponent,
-  }, {
+    }, {
+      path: 'savitr',
+      component: SavitrComponent,
+    }, {
     path: 'dashboard',
     component: ECommerceComponent,
   }, {
