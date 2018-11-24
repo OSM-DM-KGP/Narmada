@@ -15,6 +15,7 @@
         "IE 11"
     ],
     "scripts": {
+        "ng": "./node_modules/@angular/cli/bin/ng",
         "conventional-changelog": "conventional-changelog",
         "start": "ng serve",
         "build": "ng build",
