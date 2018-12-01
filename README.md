@@ -81,11 +81,11 @@ With Narmada, we hope to make disaster mitigation much easier by assisting volun
 - [ ] Matched tweet UI ?
 - [ ] show matches tickbox on availability and needs based on which is not selected
 - [X] Writeup for codefundo++
-- [X] X matched change from -1 to list Not required
+- [X] XXX matched change from -1 to list Not required
 - [ ] Give user freedom to dictate matching bounds: Recent 15 days, and / or location
-- [ ] status enum - New, verified, assigned, completed (Match only verified needs)
+- [X] XXX status enum - New, verified, assigned, completed (Match only verified needs)
 - [ ] Show tweet url if available, and tweet to button (Separate window for that) 
-- [ ] Savitr tab
+- [X] Savitr tab
 - [ ] 
 narmada db, tweets collection.
 

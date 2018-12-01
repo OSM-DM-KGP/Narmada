@@ -11,7 +11,7 @@ var axios = require('axios');
 export class NewComponent {
 	// Resources dropdown
 	dropdownList = [];	dropdownSettings = {};
-	searchOptions = {};
+	searchOptions = {}; locString = {};
 	autocompleteSettings = {};
 
 	// save status

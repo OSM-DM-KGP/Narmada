@@ -5,7 +5,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ThemeModule } from '../../@theme/theme.module';
 import { HomeComponent } from './home.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { LeafletComponent } from './leaflet/leaflet.component';
+// import { LeafletComponent } from './leaflet/leaflet.component';
 import { PlotlyModule } from 'angular-plotly.js';
 import * as Plotly from 'plotly.js';
 
@@ -15,7 +15,7 @@ import * as Plotly from 'plotly.js';
 	NgxEchartsModule,
 	NgxChartsModule,
 	PlotlyModule,
-	LeafletModule.forRoot(),
+	LeafletModule,
 	],
 	declarations: [
 	HomeComponent,
