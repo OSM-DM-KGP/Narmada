@@ -30,7 +30,6 @@
         "docs": "compodoc -p src/tsconfig.app.json -d docs",
         "docs:serve": "compodoc -p src/tsconfig.app.json -d docs -s",
         "release:changelog": "npm run conventional-changelog -- -p angular -i CHANGELOG.md -s",
-        "postinstall": "ng build --aot --prod",
         "preinstall": "npm install -g @angular/cli @angular/compiler-cli typescript"
     },
     "engines": {
