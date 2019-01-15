@@ -140,11 +140,11 @@ export class NewComponent {
 			var status = true; var msg = '';
 			// console.log(tweet);
 			axios.post(apiUrl + '/new', tweet)
-			.then(function (response) {
+			.then((response) => {
 				status = true; msg = response.data;
 				console.log('New resouce created', response.data);
 			})
-			.catch(function (error) {
+			.catch((error) => {
 				status = false; msg = error;
 				console.log('Error in creating new', error);
 			});

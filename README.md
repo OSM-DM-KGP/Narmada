@@ -54,39 +54,41 @@ With Narmada, we hope to make disaster mitigation much easier by assisting volun
 
 ## ToDo
 
-- [ ] New => better message handling
 - [X] Handle stages in tweet allocation => New key in db
 - [X] Infinite list
-- [ ] Top trending in theme-settings.components.ts 
-- [ ] Fetch asynchronously for home - N, A, M
 - [X] Upload all - data sanitize
-- [ ] Match tweets - frontend (display) and backend // Might consider another classification for this altogether (showMoreMatches) - all functions related to match, like showMatches
-- [ ] Trivially extend completed page once match done
-- [X] What things do I want to edit ?
-- [ ] Api for matched tweet
-- [X] Editing existing resource ?
-- [ ] Add google analytics 
-- [X] Search  - but what options ?
-- [ ] Status of resource (also in edit menu)
-- [ ] Map (focuses on need, and shows nearby - also based on matching)
-- [ ] Edit resources by one off dropdown
-- [ ] Host on cnerg, (contact Rohit, Satadal)
-- [ ] Delete resource
-- [ ] Highlight tweet that has been selected
+- [X] Highlight tweet that has been selected
 - [ ] Automatically parse tweet text in new page => code form Ritam
-- [ ] Ability to reply to original poster that so and so person needs your help (Twitter integration) => Data from SG to Ritam, and then to me
-- [ ] ^^ Needs data re-upload, with script that converts tweets to mongo-pushable json
+- [ ] User Manual, near the new button
+- [ ] Add google analytics 
+- [ ] Delete resource
+- [ ] Map (focuses on need, and shows nearby - also based on matching)
 - [ ] Expand map when needed to occupy left half of screen
-- [ ] Manual, near the new button
-- [ ] Matched tweet UI ?
-- [ ] show matches tickbox on availability and needs based on which is not selected
-- [X] Writeup for codefundo++
-- [X] XXX matched change from -1 to list Not required
+- [ ] Top trending in theme-settings.components.ts 
 - [ ] Give user freedom to dictate matching bounds: Recent 15 days, and / or location
-- [X] XXX status enum - New, verified, assigned, completed (Match only verified needs)
-- [ ] Show tweet url if available, and tweet to button (Separate window for that) 
+- [ ] Trivially extend completed page once match done
+- [ ] Search mein Matches
+- [X] show matches tickbox on availability and needs based on which is not selected
+- [X] Match tweets - frontend (display) and backend // Might consider another classification for this altogether (showMoreMatches) - all functions related to match, like showMatches
+- [X] Matched tweet UI ?
+- [X] Ability to reply to original poster that so and so person needs your help (Twitter integration)
+- [X] Show tweet url if available, and tweet to button (Separate window for that) 
+- [X] Api for matched tweet
+- [X] What things do I want to edit ?
+- [X] Editing existing resource ?
+- [X] Search  - but what options ?
+- [X] ^^ Needs data re-upload, with script that converts tweets to mongo-pushable json
+- [X] Writeup for codefundo++
 - [X] Savitr tab
 - [ ] 
+
+- [X] XX Edit resources by one off dropdown
+- [X] XX New => better message handling
+- [X] XX Status of resource (also in edit menu)
+- [X] XX Host on cnerg, (contact Rohit, Satadal)
+- [X] XX Fetch asynchronously for home - N, A, M
+- [X] XXX matched change from -1 to list Not required
+- [X] XXX status enum - New, verified, assigned, completed (Match only verified needs)
 narmada db, tweets collection.
 
 Refer [References.md](References.md) for references.
