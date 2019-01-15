@@ -8,6 +8,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 // import { LeafletComponent } from './leaflet/leaflet.component';
 import { PlotlyModule } from 'angular-plotly.js';
 import * as Plotly from 'plotly.js';
+import { NbListModule, NbCheckboxModule } from '@nebular/theme';
 
 @NgModule({
 	imports: [
@@ -16,6 +17,8 @@ import * as Plotly from 'plotly.js';
 	NgxChartsModule,
 	PlotlyModule,
 	LeafletModule,
+	NbListModule,
+	NbCheckboxModule,
 	],
 	declarations: [
 	HomeComponent,
