@@ -93,7 +93,7 @@ export class HomeComponent {
 
 	// editable menu for resource
 	display(Resource) {
-		this.showSelected = true; this.showMatches = false;
+		this.showSelected = true;
 		this.selectedResource = Resource; this.resourcesOnly = [];
 		this.searchString = ''; this.showMatches = false;
 		this.newText = ''; this.newContact = ''; this.newSources ='';
@@ -145,7 +145,7 @@ export class HomeComponent {
 	filterTweets() {
 		console.log('Searched for ', this.searchString);
 		if(this.searchString != '') this.showCancelSearch = true;
-		this.Needs = [], this.Avails = [];
+		this.Needs = [], this.Avails = []; this.Matches = [];
 		this.needsSkip = 0; this.availsSkip = 0; this.matchSkip = 0;
 		// one time process to reset original tweets
 		// $text: {$search: "italy"}
@@ -164,8 +164,6 @@ export class HomeComponent {
 		axios.get(apiUrl + '/get', { params: { "text": { "$regex": this.searchString }, isCompleted: false, Matched: true } })
 			.then((response) => { this.Matches = response.data; this.matchSkip += Math.min(this.stepSize, response.data.length); })
 			.catch((error) => { console.log('Matches initial fail', error); })
-
-
 	}
 
 	resetSelect() {
@@ -208,8 +206,14 @@ export class HomeComponent {
 	}
 
 	markCompleted() {
-		var id1 = this.selectedResource['_id'], id2 = this.selectedResource['Matched'];
-		
+		axios.put(apiUrl + '/markCompleted', { id1: this.selectedResource['_id'], id2: this.selectedResource['Matched'] })
+			.then((response) => {
+				console.log('Completed', this.selectedResource['_id'], ' and ', this.selectedResource['Matched']);
+				// push match to Matches
+				this.showSelected = false; this.showMatches = false;
+				this.ngOnInit();
+			})
+			.catch((error) => { console.log('Could not complete', error) });
 	}
 
 	ngOnInit() {

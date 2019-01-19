@@ -58,16 +58,15 @@ With Narmada, we hope to make disaster mitigation much easier by assisting volun
 - [X] Infinite list
 - [X] Upload all - data sanitize
 - [X] Highlight tweet that has been selected
-- [ ] Automatically parse tweet text in new page => code form Ritam
+- [ ] Automatically parse tweet text in new page => flask api
 - [ ] User Manual, near the new button
 - [ ] Add google analytics 
-- [ ] Delete resource
 - [ ] Map (focuses on need, and shows nearby - also based on matching)
 - [ ] Expand map when needed to occupy left half of screen
 - [ ] Top trending in theme-settings.components.ts 
-- [ ] Give user freedom to dictate matching bounds: Recent 15 days, and / or location
-- [ ] Trivially extend completed page once match done
-- [ ] Search mein Matches
+- [X] Trivially extend completed page once match done
+- [X] Completed mein search ?
+- [X] Search mein Matches
 - [X] show matches tickbox on availability and needs based on which is not selected
 - [X] Match tweets - frontend (display) and backend // Might consider another classification for this altogether (showMoreMatches) - all functions related to match, like showMatches
 - [X] Matched tweet UI ?
@@ -82,6 +81,8 @@ With Narmada, we hope to make disaster mitigation much easier by assisting volun
 - [X] Savitr tab
 - [ ] 
 
+- [X] XX Delete resource
+- [X] XX Give user freedom to dictate matching bounds: Recent 15 days, and / or location
 - [X] XX Edit resources by one off dropdown
 - [X] XX New => better message handling
 - [X] XX Status of resource (also in edit menu)
