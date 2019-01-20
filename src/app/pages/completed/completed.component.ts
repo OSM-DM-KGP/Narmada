@@ -96,6 +96,36 @@ export class CompletedComponent {
 		// this.MatchingNeeds = []; this.MatchingAvails = [];
 	}
 
+	showMoreNeeds() {
+		var request = { params: { Classification: 'Need', isCompleted: true, skip: this.needsSkip } };
+		if (this.searchString) {
+			request.params["text"] = { "$regex": this.searchString };
+		}
+		axios.get(apiUrl + '/get', request)
+			.then((response) => { this.CompletedNeeds = this.CompletedNeeds.concat(response.data); this.needsSkip += Math.min(this.stepSize, response.data.length); })
+			.catch((error) => { console.log('Needs subsequent fail', error); })
+	}
+
+	showMoreAvails() {
+		var request = { params: { Classification: 'Availability', isCompleted: true, skip: this.availsSkip } };
+		if (this.searchString) {
+			request.params["text"] = { "$regex": this.searchString };
+		}
+		axios.get(apiUrl + '/get', request)
+			.then((response) => { this.CompletedAvails = this.CompletedAvails.concat(response.data); this.availsSkip += Math.min(this.stepSize, response.data.length); })
+			.catch((error) => { console.log('Avails subsequent fail', error); })
+	}
+
+	showMoreMatches() {
+		var request = { params: { Classification: 'Need', isCompleted: true, skip: this.matchSkip, Matched: true } };
+		if (this.searchString) {
+			request.params["text"] = { "$regex": this.searchString };
+		}
+		axios.get(apiUrl + '/get', request)
+			.then((response) => { this.CompletedMatches = this.CompletedMatches.concat(response.data); this.matchSkip += Math.min(this.stepSize, response.data.length); })
+			.catch((error) => { console.log('Matches subsequent fail', error); })
+	}
+
 	ngOnInit() {
 
 		// 1. fetch 20 needs

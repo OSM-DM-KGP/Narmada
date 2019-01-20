@@ -72,7 +72,7 @@ export class HomeComponent {
 	}
 
 	showMoreAvails() {
-		var request = { params: { Classification: 'Availability', isCompleted: false, skip: this.needsSkip } };
+		var request = { params: { Classification: 'Availability', isCompleted: false, skip: this.availsSkip } };
 		if (this.searchString) {
 			request.params["text"] = { "$regex": this.searchString };
 		}

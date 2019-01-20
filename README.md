@@ -64,6 +64,7 @@ With Narmada, we hope to make disaster mitigation much easier by assisting volun
 - [ ] Map (focuses on need, and shows nearby - also based on matching)
 - [ ] Expand map when needed to occupy left half of screen
 - [ ] Top trending in theme-settings.components.ts 
+- [X] Show more in completed
 - [X] Trivially extend completed page once match done
 - [X] Completed mein search ?
 - [X] Search mein Matches
