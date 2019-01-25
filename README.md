@@ -1,6 +1,9 @@
 # Narmada
 Narmada - Need and Available Resource Matching Assistant for Disasters and Adversities.
 
+Make sure to run `ng build` before you push !
+
+
 ## Description
 
 During a disaster event, two types of information that are especially useful for coordinating relief operations are needs and availability of resources (e.g., food, water, medicines) in the affected region. Information posted on micro-blogging sites such as Twitter is increasingly being used to assist such post-disaster relief operations.  The two major practical challenges faced in this regard are (i) - to identify tweets that inform about resource needs and availabilities (termed as need-tweets and availability-tweets respectively),  and (ii) - to automatically match needs with appropriate availabilities. 
@@ -13,9 +16,6 @@ Similarly, Narmada enables off-site volunteers to verify the information extract
 Narmada has other additional features, such as visualising the relevant information on a map-based interface, searching specific information between the need and available tweets and manually assigning the status of a need or availability (new, verified, assigned or completed). The system is designed to have different authentication levels such as modification and insertion of resources  is permitted by remote offsite-volunteers, matching a relevant need and availability is determined by the administrator, assigning status is governed by on-site volunteers and administrator while the system is view-able by everyone. 
 
 With Narmada, we hope to make disaster mitigation much easier by assisting volunteers in their relief coordination efforts. 
-
-
-
 
 
 
