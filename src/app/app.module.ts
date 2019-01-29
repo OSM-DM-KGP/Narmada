@@ -17,7 +17,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GooglePlacesDirective } from './google-places.directive';
 
 // export const apiUrl = 'http://localhost:3000';
-export const apiUrl = 'http://e84e8151.ngrok.io';
+export const apiUrl = 'https://e84e8151.ngrok.io';
 
 @NgModule({
   declarations: [AppComponent, GooglePlacesDirective],
