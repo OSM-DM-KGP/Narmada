@@ -16,10 +16,8 @@ import { ThemeModule } from './@theme/theme.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GooglePlacesDirective } from './google-places.directive';
 
-export const mongourl = 'mongodb://127.0.0.1:27017';
-export const dbName = 'narmada';
-export const collectionName = 'tweets';
-export const apiUrl = 'http://localhost:3000';
+// export const apiUrl = 'http://localhost:3000';
+export const apiUrl = 'http://e84e8151.ngrok.io';
 
 @NgModule({
   declarations: [AppComponent, GooglePlacesDirective],

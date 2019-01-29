@@ -4464,14 +4464,11 @@ var AppComponent = /** @class */ (function () {
 /*!*******************************!*\
   !*** ./src/app/app.module.ts ***!
   \*******************************/
-/*! exports provided: mongourl, dbName, collectionName, apiUrl, AppModule */
+/*! exports provided: apiUrl, AppModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mongourl", function() { return mongourl; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dbName", function() { return dbName; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "collectionName", function() { return collectionName; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "apiUrl", function() { return apiUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppModule", function() { return AppModule; });
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
@@ -4507,10 +4504,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
-var mongourl = 'mongodb://127.0.0.1:27017';
-var dbName = 'narmada';
-var collectionName = 'tweets';
-var apiUrl = 'http://localhost:3000';
+// export const apiUrl = 'http://localhost:3000';
+var apiUrl = 'http://e84e8151.ngrok.io';
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
