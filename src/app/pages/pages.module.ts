@@ -10,6 +10,7 @@ import { HomeModule } from './home/home.module';
 import { CompletedModule } from './completed/completed.module';
 import { NewModule } from './new/new.module';
 import { SavitrModule } from './savitr/savitr.module';
+import { ManualModule } from './manual/manual.module';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -26,6 +27,7 @@ const PAGES_COMPONENTS = [
     CompletedModule,
     NewModule,
     SavitrModule,
+    ManualModule,
   ],
   declarations: [
     ...PAGES_COMPONENTS,

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { apiUrl } from '../../app.module';
+import { apiUrl, parseApiUrl } from '../../app.module';
+import { ObjectUnsubscribedError } from 'rxjs';
 var axios = require('axios');
 
 @Component({
@@ -15,14 +16,15 @@ export class NewComponent {
 	autocompleteSettings = {};
 
 	// save status
-	invalidText = false; invalidType = false;
+	parseFail = false; invalidText = false; invalidType = false;
 	invalidResources = false; quantityMismatch = false;
 	postError = false; postMsg = '';
 	postSuccess = false;
 	// vars
 	tweetText = ''; resourceType = '';
 	selectedItems = [];
-	tweetSource = ''; tweetContact = ''; tweetQuantity = '';
+	tweetSource = ''; tweetContact = ''; 
+	tweetQuantity = ''; quantityArray = []; bucketMap = {};
 	sourceDesc = ''; sourceLat = 0; sourceLong = 0;
 	// sourceDesc = 'Assam, India'; sourceLat = 26.0737044; sourceLong = 83.18594580000001;
 	
@@ -73,12 +75,62 @@ export class NewComponent {
 	discard() {
 		this.tweetText = ''; this.selectedItems = [];
 		this.tweetContact = ''; this.tweetSource = '';
-		this.tweetQuantity = ''; this.sourceDesc = '';
+		this.tweetQuantity = ''; this.bucketMap = {}; this.sourceDesc = '';
 		this.sourceLat = 0; this.sourceLong = 0;
 	}
 
+	parseText() {
+		this.parseFail = false; this.quantityArray = [];
+		axios.post(parseApiUrl + '/parse', {text: this.tweetText})
+			.then((response) => {
+				this.parseFail = false;
+				if(response.error === 1) {this.parseFail = false; return;}
+				console.log('Parsed response', response.data);
+				var resource = response.data;
+				this.tweetContact = "";
+				if(resource.Contact.Email.length) this.tweetContact = resource.Contact.Email.join();
+				if(resource.Contact.Email.length && resource.Contact['Phone number'].length) this.tweetContact += ',';
+				if(resource.Contact['Phone number'].length) this.tweetContact += resource.Contact['Phone number'].join();
+
+				this.tweetSource = resource.Sources.join();
+
+				if(Object.keys(resource.Locations).length) {
+					var loc = Object.keys(resource.Locations)[0];
+					this.sourceDesc = loc;
+					this.sourceLat = resource.Locations[loc].lat;
+					this.sourceLong = resource.Locations[loc].long;
+				}
+				if(resource.Resources) {
+					var quantities = {};
+					for(var bucket in resource.Resources) {
+						for(var rWord in resource.Resources[bucket]) {
+							this.quantityArray.push({'resource': rWord, 'quantity': resource.Resources[bucket][rWord]});
+							quantities[rWord] = resource.Resources[bucket][rWord];
+							this.bucketMap[rWord] = bucket;
+						}
+					}
+					this.tweetQuantity = JSON.stringify(quantities, null, '\n');
+					console.log(this.tweetQuantity);
+				}
+				else this.tweetQuantity = '';
+			})
+			.catch((error) => {
+				this.parseFail = true;
+				console.log('Error in parsing', error);
+			});
+	}
+
+	IsJsonString(str) {
+		try {
+			JSON.parse(str);
+		} catch (e) {
+			return false;
+		}
+		return true;
+	}
+
 	saveResource() {
-		this.invalidText = false; this.invalidType = false;
+		this.parseFail = false; this.invalidText = false; this.invalidType = false;
 		this.invalidResources = false; this.quantityMismatch = false;
 		this.postError = false; this.postMsg = ''; this.postSuccess = false;
 		// no condition on location, contact, source
@@ -86,20 +138,22 @@ export class NewComponent {
 			this.invalidText = true;
 		} else if(!this.resourceType) {
 			this.invalidType = true;
-		} else if(this.selectedItems.length == 0) {
-			this.invalidResources = true;
-		} else if(!this.tweetQuantity || this.selectedItems.length != this.tweetQuantity.split(',').length) {
+		// } else if(this.selectedItems.length == 0) {
+		// 	this.invalidResources = true;
+		// } else if(!this.tweetQuantity || this.selectedItems.length != this.tweetQuantity.split(',').length) {
+		} else if (!this.tweetQuantity || !this.IsJsonString(this.tweetQuantity)) {
 			this.quantityMismatch = true;
 		} else {
 			console.log('Submit');
 			// console.log(this.sourceDesc, ',', this.sourceLat, 'x', this.sourceLong);
 			
-			var resources = [];
-			for (var i = 0; i < this.selectedItems.length; i++) {
-				resources.push({
-					'quantity': this.tweetQuantity.split(',')[i],
-					'resource': this.selectedItems[i]['item_text'],
-				});
+			var resources = {}, resourceWords = [];
+			var resourceJSON = JSON.parse(this.tweetQuantity);
+			for (var rWord in resourceJSON) {
+				if(!(rWord in this.bucketMap)) continue;
+				if((this.bucketMap[rWord] in resources) == false) resources[this.bucketMap[rWord]] = {};
+				resources[this.bucketMap[rWord]][rWord] = resourceJSON[rWord];
+				resourceWords.push(rWord);
 			}
 			// add id, time also
 			// username not required
@@ -124,6 +178,7 @@ export class NewComponent {
 				Sources: this.tweetSource.split(','),
 				username: 'Naradmin',
 				Resources: resources,
+				ResourceWords: resourceWords,
 				Contact: {
 					Email: mails,
 					"Phone number": numbers,
