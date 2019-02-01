@@ -109,7 +109,7 @@ export class NewComponent {
 							this.bucketMap[rWord] = bucket;
 						}
 					}
-					this.tweetQuantity = JSON.stringify(quantities, null, '\n');
+					this.tweetQuantity = JSON.stringify(quantities, null, 4); //.replace(/"/g, '');
 					console.log(this.tweetQuantity);
 				}
 				else this.tweetQuantity = '';

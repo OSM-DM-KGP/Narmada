@@ -81,10 +81,20 @@
 							<br />
 							<textarea nbInput fullWidth 
 								placeholder="{'food packets': '40'}" 
-								id="tweetQuantity" [(ngModel)]="tweetQuantity" style="height: 180px;"></textarea>
-							<div *ngFor="let eachResource of quantityArray">
+								id="tweetQuantity" [(ngModel)]="tweetQuantity" style="height: 150px;"></textarea>
+							<!-- <div *ngFor="let eachResource of quantityArray">
 								{{eachResource.resource}} {{eachResource.quantity}} <br />
-							</div>
+							</div> -->
+							<!-- <table mat-table class="mat-elevation-z8">
+								<tr>
+									<th>Resource</th>
+									<th>Quantity</th>
+								</tr>
+								<tr mat-row *ngFor="let element of quantityArray">
+									<td>{{element.resource}}</td>
+									<td>{{element.quantity}} </td>
+								</tr>
+							</table> -->
 							<!-- <input type="text" class="form-control" id="tweetQuantity" [(ngModel)]="tweetQuantity" placeholder="2 kg"> -->
 						</div>
 					</div>

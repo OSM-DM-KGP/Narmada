@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 var axios = require('axios');
 
-import * as L from 'leaflet';
+import { icon, latLng, marker, polyline, tileLayer } from 'leaflet';
 import 'style-loader!leaflet/dist/leaflet.css';
 import { apiUrl } from '../../app.module';
 
@@ -11,12 +11,20 @@ import { apiUrl } from '../../app.module';
 	templateUrl: './home.component.html',
 })
 export class HomeComponent {
+	
+	streetMaps = tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' });
+	centralMarker = marker([28.3949, 84.1240], {
+		icon: icon({
+			iconSize: [25, 41],
+			iconAnchor: [13, 41],
+			iconUrl: 'https://raw.githubusercontent.com/Leaflet/Leaflet/master/dist/images/marker-icon.png',
+			shadowUrl: 'https://raw.githubusercontent.com/Leaflet/Leaflet/master/dist/images/marker-shadow.png'
+		})
+	});
 	mapoptions = {
-		layers: [
-		L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' }),
-		],
+		layers: [this.streetMaps, this.centralMarker],
 		zoom: 3,
-		center: L.latLng({ lat: 34.083656, lng: 74.797371 }),
+		center: latLng({ lat: 34.083656, lng: 74.797371 }),
 	};
 
 	Needs = []; Avails = []; Matches = [];
@@ -100,10 +108,19 @@ export class HomeComponent {
 		this.toEditResource = {};
 		// console.log(Resource);
 		var locs = Resource.Locations;
-		for(var location in locs) {
-			this.mapoptions.center = L.latLng({ lat: locs[location].lat, lng: locs[location].long });
-			// var destination = L.marker([ locs[location].lat, locs[location].long]).addTo(L.map('map'));
-		}
+		// for(var location in locs) {
+		// 	// this.mapoptions.center = latLng({ lat: locs[location].lat, lng: locs[location].long });
+		// 	var centralMarker = marker([locs[location].lat, locs[location].long], {
+		// 		icon: icon({
+		// 			iconSize: [25, 41],
+		// 			iconAnchor: [13, 41],
+		// 			iconUrl: 'leaflet/marker-icon.png',
+		// 			shadowUrl: 'leaflet/marker-shadow.png'
+		// 		})
+		// 	});
+		// 	this.mapoptions.layers = [this.streetMaps, centralMarker];
+		// 	// var destination = L.marker([ locs[location].lat, locs[location].long]).addTo(L.map('map'));
+		// }
 
 		for(var category in Resource.Resources) {
 			for(var resourceTweet in Resource.Resources[category]) {
