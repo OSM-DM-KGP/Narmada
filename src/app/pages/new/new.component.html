@@ -79,13 +79,12 @@
 						<div class="form-group">
 							<label for="tweetQuantity">Resources</label>
 							<br />
-							<!-- <textarea nbInput fullWidth  -->
+							<textarea nbInput fullWidth 
 								placeholder="{'food packets': '40'}" 
 								id="tweetQuantity" [(ngModel)]="tweetQuantity" style="height: 180px;"></textarea>
 							<div *ngFor="let eachResource of quantityArray">
 								{{eachResource.resource}} {{eachResource.quantity}} <br />
 							</div>
-							KKK
 							<!-- <input type="text" class="form-control" id="tweetQuantity" [(ngModel)]="tweetQuantity" placeholder="2 kg"> -->
 						</div>
 					</div>
