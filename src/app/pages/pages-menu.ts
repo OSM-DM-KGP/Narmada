@@ -22,6 +22,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'nb-bar-chart',
     link: '/savitr',
   },
+  {
+    title: 'Manual',
+    icon: 'nb-lightbulb',
+    link: '/manual',
+  },
 
 ];
 

@@ -58,12 +58,12 @@ With Narmada, we hope to make disaster mitigation much easier by assisting volun
 - [X] Infinite list
 - [X] Upload all - data sanitize
 - [X] Highlight tweet that has been selected
-- [ ] Automatically parse tweet text in new page => flask api
+- [X] Automatically parse tweet text in new page => flask api
+- [ ] Track searches, and show most popular ones : Top trending in theme-settings.components.ts
 - [ ] User Manual, near the new button
-- [ ] Add google analytics 
 - [ ] Map (focuses on need, and shows nearby - also based on matching)
 - [ ] Expand map when needed to occupy left half of screen
-- [ ] Top trending in theme-settings.components.ts 
+- [X] Add google analytics 
 - [X] Show more in completed
 - [X] Trivially extend completed page once match done
 - [X] Completed mein search ?

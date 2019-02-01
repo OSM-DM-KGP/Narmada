@@ -48,6 +48,10 @@ export class HeaderComponent implements OnInit {
   newResource() {
     this.router.navigate(['/new'], { queryParams: { } });
   }
+  
+  manual() {
+    this.router.navigate(['/manual'], { queryParams: {} });
+  }
 
   goToHome() {
     this.menuService.navigateHome();

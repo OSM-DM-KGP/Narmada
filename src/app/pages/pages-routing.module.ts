@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { CompletedComponent} from './completed/completed.component';
 import { NewComponent } from './new/new.component';
 import { SavitrComponent } from './savitr/savitr.component';
+import { ManualComponent } from './manual/manual.component';
 
 const routes: Routes = [{
   path: '',
@@ -25,6 +26,9 @@ const routes: Routes = [{
     }, {
       path: 'savitr',
       component: SavitrComponent,
+    }, {
+      path: 'manual',
+      component: ManualComponent,
     }, {
     path: 'dashboard',
     component: ECommerceComponent,
