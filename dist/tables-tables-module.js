@@ -23688,6 +23688,7 @@ var SmartTableComponent = /** @class */ (function () {
         };
         this.source = new ng2_smart_table__WEBPACK_IMPORTED_MODULE_1__["LocalDataSource"]();
         var data = this.service.getData();
+        console.log(data);
         this.source.load(data);
     }
     SmartTableComponent.prototype.onDeleteConfirm = function (event) {

@@ -2174,7 +2174,7 @@ var FooterComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"header-container\"\n[class.left]=\"position === 'normal'\"\n[class.right]=\"position === 'inverse'\">\n<div class=\"logo-containter\">\n\t<a (click)=\"toggleSidebar()\" href=\"#\" class=\"navigation\"><i class=\"nb-menu\"></i></a>\n\t<div class=\"logo\" (click)=\"goToHome()\">NARMADA</div>\n</div>\n<ngx-theme-switcher></ngx-theme-switcher>\n</div>\n\n<div class=\"header-container\">\n\t<ngx-layout-direction-switcher></ngx-layout-direction-switcher>\n\t<nb-actions\n\tsize=\"medium\"\n\t[class.right]=\"position === 'normal'\"\n\t[class.left]=\"position === 'inverse'\">\n\t<nb-action badgeText=\"Top Trends\" badgePosition=\"bottom end\" badgeStatus=\"success\"></nb-action>\n\t<nb-action icon=\"fas fa-bolt\" class=\"toggle-layout\" (click)=\"toggleSettings()\"></nb-action>\n\t<nb-action *nbIsGranted=\"['view', 'user']\" >\n\t\t<nb-user [nbContextMenu]=\"userMenu\" [name]=\"user?.name\" [picture]=\"user?.picture\"></nb-user>\n\t</nb-action>\n\t<nb-action class=\"control-item\" icon=\"nb-plus\" (click)=\"newResource()\"></nb-action>\n\t<!-- <nb-action class=\"control-item\" disabled icon=\"nb-notifications\"></nb-action> -->\n\t<!-- <nb-action class=\"control-item\" icon=\"nb-email\"></nb-action> -->\n\t<!-- <nb-action class=\"control-item\">\n\t\t<nb-search type=\"column-curtain\" (click)=\"startSearch($event)\"></nb-search>\n\t</nb-action> -->\n</nb-actions>\n</div>\n"
+module.exports = "<div class=\"header-container\"\n[class.left]=\"position === 'normal'\"\n[class.right]=\"position === 'inverse'\">\n<div class=\"logo-containter\">\n\t<a (click)=\"toggleSidebar()\" href=\"#\" class=\"navigation\"><i class=\"nb-menu\"></i></a>\n\t<div class=\"logo\" (click)=\"goToHome()\">NARMADA</div>\n</div>\n<ngx-theme-switcher></ngx-theme-switcher>\n</div>\n\n<div class=\"header-container\">\n\t<ngx-layout-direction-switcher></ngx-layout-direction-switcher>\n\t<nb-actions\n\tsize=\"medium\"\n\t[class.right]=\"position === 'normal'\"\n\t[class.left]=\"position === 'inverse'\">\n\t<nb-action badgeText=\"Top Trends\" badgePosition=\"bottom end\" badgeStatus=\"success\"></nb-action>\n\t<nb-action icon=\"fas fa-bolt\" class=\"toggle-layout\" (click)=\"toggleSettings()\"></nb-action>\n\t<nb-action *nbIsGranted=\"['view', 'user']\" >\n\t\t<nb-user [nbContextMenu]=\"userMenu\" [name]=\"user?.name\" [picture]=\"user?.picture\"></nb-user>\n\t</nb-action>\n\t<nb-action class=\"control-item\" icon=\"nb-lightbulb\" (click)=\"manual()\"></nb-action>\n\t<nb-action class=\"control-item\" icon=\"nb-plus\" (click)=\"newResource()\"></nb-action>\n\t<!-- <nb-action class=\"control-item\" disabled icon=\"nb-notifications\"></nb-action> -->\n\t<!-- <nb-action class=\"control-item\" icon=\"nb-email\"></nb-action> -->\n\t<!-- <nb-action class=\"control-item\">\n\t\t<nb-search type=\"column-curtain\" (click)=\"startSearch($event)\"></nb-search>\n\t</nb-action> -->\n</nb-actions>\n</div>\n"
 
 /***/ }),
 
@@ -2247,6 +2247,9 @@ var HeaderComponent = /** @class */ (function () {
     };
     HeaderComponent.prototype.newResource = function () {
         this.router.navigate(['/new'], { queryParams: {} });
+    };
+    HeaderComponent.prototype.manual = function () {
+        this.router.navigate(['/manual'], { queryParams: {} });
     };
     HeaderComponent.prototype.goToHome = function () {
         this.menuService.navigateHome();
@@ -4464,12 +4467,13 @@ var AppComponent = /** @class */ (function () {
 /*!*******************************!*\
   !*** ./src/app/app.module.ts ***!
   \*******************************/
-/*! exports provided: apiUrl, AppModule */
+/*! exports provided: apiUrl, parseApiUrl, AppModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "apiUrl", function() { return apiUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseApiUrl", function() { return parseApiUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppModule", function() { return AppModule; });
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
@@ -4505,7 +4509,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 // export const apiUrl = 'http://localhost:3000';
-var apiUrl = 'http://e84e8151.ngrok.io';
+// export const parseApiUrl = 'http://localhost:5000'
+var apiUrl = 'https://e84e8151.ngrok.io', parseApiUrl = '';
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
