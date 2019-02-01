@@ -26,7 +26,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'Manual',
     icon: 'nb-lightbulb',
     link: '/manual',
-  },
+  }
 
 ];
 
