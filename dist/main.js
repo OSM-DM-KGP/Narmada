@@ -4509,8 +4509,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 // export const apiUrl = 'http://localhost:3000';
+var apiUrl = 'https://e84e8151.ngrok.io';
 // export const parseApiUrl = 'http://localhost:5000'
-var apiUrl = 'https://e84e8151.ngrok.io', parseApiUrl = '';
+var parseApiUrl = apiUrl;
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
