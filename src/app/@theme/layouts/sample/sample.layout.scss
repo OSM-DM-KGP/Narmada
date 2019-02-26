@@ -43,9 +43,14 @@
     }
   }
 
+  .menu-title {
+    width: 5rem;
+  }
+
   nb-sidebar.menu-sidebar {
 
     margin-top: nb-theme(sidebar-header-gap);
+    width: 8rem;
 
     @include nb-for-theme(corporate) {
       margin-top: 0;

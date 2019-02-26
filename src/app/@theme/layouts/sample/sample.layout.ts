@@ -24,12 +24,7 @@ import { StateService } from '../../../@core/data/state.service';
       <nb-sidebar class="menu-sidebar"
                    tag="menu-sidebar"
                    responsive
-                   [end]="sidebar.id === 'end'" state="compacted">
-        <nb-sidebar-header *ngIf="currentTheme !== 'corporate'">
-          <a href="#" class="btn btn-hero-success main-btn">
-            <i class="ion ion-social-github"></i> <span (click)="toggleSidebar()">Narmada</span>
-          </a>
-        </nb-sidebar-header>
+                   [end]="sidebar.id === 'end'" state="compacted" style="width: 8rem !important;">
         <ng-content select="nb-menu"></ng-content>
       </nb-sidebar>
 

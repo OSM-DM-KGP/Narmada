@@ -16,8 +16,8 @@ import { ThemeModule } from './@theme/theme.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GooglePlacesDirective } from './google-places.directive';
 
-// export const apiUrl = 'http://localhost:3000';
-export const apiUrl = 'https://e84e8151.ngrok.io';
+export const apiUrl = 'http://localhost:3000';
+// export const apiUrl = 'https://e84e8151.ngrok.io';
 // export const parseApiUrl = 'http://localhost:5000'
 export const parseApiUrl = apiUrl;
 
