@@ -129,7 +129,8 @@ export class HomeComponent {
 			}
 		}
 		// console.log(this.resourcesOnly);
-
+		// if this is not a match, show matches as well
+		this.suggestMatches(Resource);
 	}
 
 	contactToString(contact) {
@@ -195,7 +196,11 @@ export class HomeComponent {
 		if(!this.showMatches) {
 			return;
 		}
-
+		console.log('Matches');
+		if(Resource.Matched !== '-1') {
+			// do not update MatchingNeeds or MatchingAvails
+			return;
+		}
 		axios.get(apiUrl + '/match?id=' + Resource._id + '&type=' + Resource.Classification)
 			.then((response) => { 
 				if(Resource.Classification==="Need") { this.MatchingAvails = response.data; this.MatchingNeeds = [];}
