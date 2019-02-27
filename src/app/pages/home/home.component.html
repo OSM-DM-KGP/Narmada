@@ -14,11 +14,11 @@
 				<!-- List of cards -->
 				<span *ngIf="showMatches && selectedResource.Matched==='-1' && selectedResource.Classification==='Availability'; else DefaultNeeds">
 					<nb-reveal-card *ngFor="let Need of MatchingNeeds">
-						<nb-card-front [ngStyle]="{'background-color': Need._id===selectedResource._id ? '#bdf0ff': '#E5E9F1'}">
+						<nb-card-front (click)="makeMatch(Need)" [ngStyle]="{'background-color': Need._id===selectedResource._id ? '#bdf0ff': '#E5E9F1'}">
 							<nb-card size="xxsmall" status="info" accent="danger">
 								<nb-card-body>
 									<div style="float: right;" class="icon" (click)="makeMatch(Need)"> <i class="ion-checkmark"></i> </div>
-									<b><span (click)="display(Need)">
+									<b><span>
 											<span>{{Need.text}}</span>
 										</span></b> @ {{Need.username}} <br>
 									{{humanReadableDate(Need.created)}}
@@ -43,12 +43,12 @@
 				<ng-template #DefaultNeeds>
 					<nb-reveal-card *ngFor="let Need of Needs">
 						<nb-card-front>
-							<nb-card size="xxsmall" status="info" accent="warning" [ngStyle]="{'background-color': Need._id===selectedResource._id ? '#bdf0ff': 'white'}">
+							<nb-card size="xxsmall" status="info" accent="warning" (click)="display(Need)" [ngStyle]="{'background-color': Need._id===selectedResource._id ? '#bdf0ff': 'white'}">
 								<nb-card-body>
 									<span *ngIf="Need.url!==''">
 										<a href={{Need.url}} target="_blank"><div style="float: right;" class="icon"><i class="fab fa-twitter"></i></div></a>
 									</span>
-										<b><span (click)="display(Need)" [ngStyle]="{'color': Need.Matched==='-1' ? 'black': 'grey'}">
+										<b><span [ngStyle]="{'color': Need.Matched==='-1' ? 'black': 'grey'}">
 										<span>{{Need.text}}</span>
 									</span> @ {{Need.username}} </b><br>
 									{{humanReadableDate(Need.created)}}
@@ -90,10 +90,10 @@
 				<span *ngIf="showMatches && selectedResource.Matched==='-1'&& selectedResource.Classification==='Need'; else DefaultAvails">
 					<nb-reveal-card *ngFor="let Avail of MatchingAvails">
 						<nb-card-front>
-							<nb-card size="xxsmall" status="info" accent="danger">
+							<nb-card size="xxsmall" status="info" accent="danger" (click)="makeMatch(Avail)">
 								<nb-card-body>
 									<div style="float: right;" class="icon" (click)="makeMatch(Avail)"> <i class="ion-checkmark"></i> </div>
-									<b><span (click)="display(Avail)">
+									<b><span>
 											<span [ngStyle]="{'background-color': Avail._id===selectedResource._id ? '#bdf0ff': 'white'}">{{Avail.text}}</span>
 										</span></b> @ {{Avail.username}} <br>
 									{{humanReadableDate(Avail.created)}}
@@ -113,17 +113,17 @@
 							</nb-card>
 						</nb-card-back>
 					</nb-reveal-card>
-				</span>				
+				</span>
 				<ng-template #DefaultAvails>
 					<nb-reveal-card *ngFor="let Avail of Avails">
 						<nb-card-front>
-							<nb-card size="xxsmall" status="info" accent="info" [ngStyle]="{'background-color': Avail._id===selectedResource._id ? '#bdf0ff': 'white'}">
+							<nb-card size="xxsmall" status="info" accent="info" (click)="display(Avail)" [ngStyle]="{'background-color': Avail._id===selectedResource._id ? '#bdf0ff': 'white'}">
 								<!-- <nb-card-header>Tweet text @user </nb-card-header> -->
 								<nb-card-body>
 									<span *ngIf="Avail.url!==''">
 										<a href={{Avail.url}} target="_blank"><div style="float: right;" class="icon"><i class="fab fa-twitter"></i></div></a>
 									</span>
-									<b><span (click)="display(Avail)" [ngStyle]="{'color': Avail.Matched==='-1' ? 'black': 'grey'}">
+									<b><span [ngStyle]="{'color': Avail.Matched==='-1' ? 'black': 'grey'}">
 										<span>{{Avail.text}}</span>
 										<!-- <span *ngIf="Avail._id===selectedResource._id" style="background-color: #bdf0ff;">{{Avail.text}}</span><span *ngIf="Avail._id!==selectedResource._id">{{Avail.text}}</span> -->
 									</span></b> @ {{Avail.username}}
@@ -316,8 +316,8 @@
 										<div style="float: right;" class="icon"><i class="fab fa-twitter"></i></div>
 									</a>
 								</span>
-								<b><span (click)="display(Match)">
-										<span>{{Match.text}}</span>
+								<b><span>
+										<span (click)="display(Match)">{{Match.text}}</span>
 									</span> @ {{Match.username}} </b>
 								<br> {{humanReadableDate(Match.created)}}
 								<hr />

@@ -54,7 +54,8 @@ With Narmada, we hope to make disaster mitigation much easier by assisting volun
 
 ## ToDo
 - [ ] Matched, unmatched tabs
-
+- [ ] Update video, a href in footer
+- [ ] 
 - [X] Handle stages in tweet allocation => New key in db
 - [X] Infinite list
 - [X] Upload all - data sanitize

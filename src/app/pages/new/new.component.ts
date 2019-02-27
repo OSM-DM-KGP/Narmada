@@ -81,6 +81,7 @@ export class NewComponent {
 
 	parseText() {
 		this.parseFail = false; this.quantityArray = [];
+		this.sourceDesc = '';
 		axios.post(parseApiUrl + '/parse', {text: this.tweetText})
 			.then((response) => {
 				this.parseFail = false;
