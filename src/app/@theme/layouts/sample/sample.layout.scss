@@ -125,6 +125,12 @@
             }
           }
         }
+
+        & > .menu-item {
+          .active {
+            background-color: #ffeebc !important;
+          }
+        }
       }
 
       .nb-e-commerce {

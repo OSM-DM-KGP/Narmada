@@ -24,7 +24,7 @@ import { StateService } from '../../../@core/data/state.service';
       <nb-sidebar class="menu-sidebar"
                    tag="menu-sidebar"
                    responsive
-                   [end]="sidebar.id === 'end'" state="compacted" style="width: 8rem !important;">
+                   [end]="sidebar.id === 'end'" style="width: 8rem !important;">
         <ng-content select="nb-menu"></ng-content>
       </nb-sidebar>
 
