@@ -4509,7 +4509,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 // export const apiUrl = 'http://localhost:3000';
-var apiUrl = 'https://1d3b91ad.ngrok.io';
+var apiUrl = 'https://f2e387e6.ngrok.io/';
 // export const parseApiUrl = 'http://localhost:5000'
 var parseApiUrl = apiUrl;
 var AppModule = /** @class */ (function () {
@@ -4650,7 +4650,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/kaustubh/Acads/DM:OSM/Narmada/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /run/media/kaustubh/Respects/Acads/DM_OSM/Narmada/src/main.ts */"./src/main.ts");
 
 
 /***/ })
