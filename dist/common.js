@@ -243,7 +243,7 @@ module.exports = "<div class=\"row\">\n  <div class=\"col-md-12\">\n    <nb-card
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".flex-centered {\n  margin: auto; }\n\nnb-card-body {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex; }\n\n.title {\n  text-align: center; }\n\n.sub-title {\n  text-align: center;\n  display: block;\n  margin-bottom: 3rem; }\n\n.btn {\n  margin-bottom: 2rem; }\n"
+module.exports = ".flex-centered{margin:auto}nb-card-body{display:-webkit-box;display:-ms-flexbox;display:flex}.title{text-align:center}.sub-title{text-align:center;display:block;margin-bottom:3rem}.btn{margin-bottom:2rem}\n"
 
 /***/ }),
 
