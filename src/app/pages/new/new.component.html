@@ -6,8 +6,9 @@
 			<nb-card-header>
 				New Resource <div style="float: right;">
 								<label *ngIf="parseFail" ngButtonLabel class="btn-sm btn-danger">Failed to parse text! Try again or enter manually</label>
+								<label *ngIf="parseTypeFail" ngButtonLabel class="btn-sm btn-danger">Tweet is neither a need nor a availability</label>
 								<label *ngIf="invalidText" ngbButtonLabel class="btn-sm btn-danger">Tweet text is required.</label>
-								<label *ngIf="invalidType" ngbButtonLabel class="btn-sm btn-danger">Resource type is required.</label>
+								<label *ngIf="invalidType" ngbButtonLabel class="btn-sm btn-danger">Resource type is required/invalid.</label>
 								<label *ngIf="invalidResources" ngbButtonLabel class="btn-sm btn-danger">Need to select resources.</label>
 								<label *ngIf="quantityMismatch" ngbButtonLabel class="btn-sm btn-warning">Quantity and resource items do not match.</label>
 								<label *ngIf="postError" ngbButtonLabel class="btn-sm btn-daner">Error in creating resource</label>
@@ -37,6 +38,9 @@
 								</label>
 								<label ngbButtonLabel class="btn btn-outline-success">
 									<input ngbButton type="radio" value="Availability"> Availability
+								</label>
+								<label ngbButtonLabel class="btn btn-outline-success">
+									<input ngbButton type="radio" value="Other"> Other
 								</label>
 							</div>
 						<!-- <input type="text" class="form-control" id="tweetCategory" placeholder="First Name"> -->

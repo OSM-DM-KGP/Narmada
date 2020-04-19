@@ -16,12 +16,12 @@ export class NewComponent {
 	autocompleteSettings = {};
 
 	// save status
-	parseFail = false; invalidText = false; invalidType = false;
+	parseFail = false; parseTypeFail = false; invalidText = false; invalidType = false;
 	invalidResources = false; quantityMismatch = false;
 	postError = false; postMsg = '';
 	postSuccess = false;
 	// vars
-	tweetText = ''; resourceType = '';
+	tweetText = ''; resourceType = 'Other';
 	selectedItems = [];
 	tweetSource = ''; tweetContact = ''; 
 	tweetQuantity = ''; quantityArray = []; bucketMap = {};
@@ -74,14 +74,20 @@ export class NewComponent {
 
 	discard() {
 		this.tweetText = ''; this.selectedItems = [];
-		this.tweetContact = ''; this.tweetSource = '';
+		this.tweetContact = ''; this.tweetSource = ''; this.resourceType = 'Other';
 		this.tweetQuantity = ''; this.bucketMap = {}; this.sourceDesc = '';
 		this.sourceLat = 0; this.sourceLong = 0;
+
+		// reset fail texts
+		this.parseFail = false; this.parseTypeFail = false; this.invalidText = false; 
+		this.invalidType = false; this.invalidResources = false; this.quantityMismatch = false;
+		this.postError = false; this.postMsg = ''; this.postSuccess = false;
 	}
 
 	parseText() {
-		this.parseFail = false; this.quantityArray = [];
-		this.sourceDesc = '';
+		this.parseFail = false; this.parseTypeFail = false;
+		this.quantityArray = [];
+		this.sourceDesc = ''; this.resourceType = 'Other';
 		axios.post(parseApiUrl + '/parse', {text: this.tweetText})
 			.then((response) => {
 				this.parseFail = false;
@@ -100,6 +106,16 @@ export class NewComponent {
 					this.sourceDesc = loc;
 					this.sourceLat = resource.Locations[loc].lat;
 					this.sourceLong = resource.Locations[loc].long;
+				}
+
+				if(resource.Classification == 0) {
+					this.resourceType = 'Need'
+				} else if (resource.Classification == 1) {
+					this.resourceType = 'Availability'
+				}
+
+				if(this.resourceType === 'Other') {
+					this.parseTypeFail = true;
 				}
 				if(resource.Resources) {
 					var quantities = {};
@@ -131,13 +147,14 @@ export class NewComponent {
 	}
 
 	saveResource() {
-		this.parseFail = false; this.invalidText = false; this.invalidType = false;
+		this.parseFail = false; this.parseTypeFail = false;
+		this.invalidText = false; this.invalidType = false;
 		this.invalidResources = false; this.quantityMismatch = false;
 		this.postError = false; this.postMsg = ''; this.postSuccess = false;
 		// no condition on location, contact, source
 		if(!this.tweetText) {
 			this.invalidText = true;
-		} else if(!this.resourceType) {
+		} else if(!this.resourceType || this.resourceType === 'Other') {
 			this.invalidType = true;
 		// } else if(this.selectedItems.length == 0) {
 		// 	this.invalidResources = true;

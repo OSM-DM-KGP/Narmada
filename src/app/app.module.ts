@@ -17,7 +17,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GooglePlacesDirective } from './google-places.directive';
 
 // no trailing slashes
-// export const apiUrl = 'http://localhost:3000';
+// export const apiUrl = 'http://localhost:5000';
 export const apiUrl = 'https://2be950e3.ngrok.io';
 // export const parseApiUrl = 'http://localhost:5000'
 export const parseApiUrl = apiUrl;

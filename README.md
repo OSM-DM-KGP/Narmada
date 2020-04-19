@@ -95,7 +95,7 @@ With Narmada, we hope to make disaster mitigation much easier by assisting volun
 - [X] XXX status enum - New, verified, assigned, completed (Match only verified needs)
 narmada db, tweets collection.
 
-Refer [References.md](References.md) for references.
+Refer [src/References.md](src/References.md) for references.
 
 ## License
 
