@@ -1,0 +1,39 @@
+## ToDo
+- [ ] Matched, unmatched tabs
+- [X] Update video, a href in footer
+- [X] Handle stages in tweet allocation => New key in db
+- [X] Infinite list
+- [X] Upload all - data sanitize
+- [X] Highlight tweet that has been selected
+- [X] Automatically parse tweet text in new page => flask api
+- [ ] Track searches, and show most popular ones : Top trending in theme-settings.components.ts
+- [ ] User Manual, near the new button
+- [ ] Map (focuses on need, and shows nearby - also based on matching)
+- [ ] Expand map when needed to occupy left half of screen
+- [X] Add google analytics 
+- [X] Show more in completed
+- [X] Trivially extend completed page once match done
+- [X] Completed mein search ?
+- [X] Search mein Matches
+- [X] show matches tickbox on availability and needs based on which is not selected
+- [X] Match tweets - frontend (display) and backend // Might consider another classification for this altogether (showMoreMatches) - all functions related to match, like showMatches
+- [X] Matched tweet UI ?
+- [X] Ability to reply to original poster that so and so person needs your help (Twitter integration)
+- [X] Show tweet url if available, and tweet to button (Separate window for that) 
+- [X] Api for matched tweet
+- [X] What things do I want to edit ?
+- [X] Editing existing resource ?
+- [X] Search  - but what options ?
+- [X] ^^ Needs data re-upload, with script that converts tweets to mongo-pushable json
+- [X] Writeup for codefundo++
+- [X] Savitr tab
+- [X] XX Delete resource
+- [X] XX Give user freedom to dictate matching bounds: Recent 15 days, and / or location
+- [X] XX Edit resources by one off dropdown
+- [X] XX New => better message handling
+- [X] XX Status of resource (also in edit menu)
+- [X] XX Host on cnerg, (contact Rohit, Satadal)
+- [X] XX Fetch asynchronously for home - N, A, M
+- [X] XXX matched change from -1 to list Not required
+- [X] XXX status enum - New, verified, assigned, completed (Match only verified needs)
+narmada db, tweets collection.
