@@ -40,8 +40,8 @@ If you use the codes, please cite the following paper:
 ```
  @inproceedings{hiware-socialnlp20,
    author = {Hiware, Kaustubh and Dutt, Ritam and Sinha, Sayan and Patro, Sohan and Ghosh, Kripabandhu and Ghosh, Saptarshi},
-   title = {{NARMADA: Need and Available Resource Managing Assistant for Disasters and Adversities}},
-   booktitle = {{Proceedings of ACL Workshop on Natural Language Processing for Social Media (SocialNLP)}},
+   title = {NARMADA: Need and Available Resource Managing Assistant for Disasters and Adversities},
+   booktitle = {Proceedings of ACL Workshop on Natural Language Processing for Social Media (SocialNLP)},
    year = {2020}
   }
 ```
