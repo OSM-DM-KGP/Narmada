@@ -1,7 +1,16 @@
-# Narmada
-# Current website - http://165.227.12.176/
+# Contents
+- [Project Description](#project-description)
+- [Citation](#citation)
+- [System Description](#system-description)
+  - [Dashboard](#dashboard)
+  - [Completed matches](#completed-matches)
+  - [New information](#new-information)
+  - [Tweet traffic](#tweet-traffic)
+  - [Manual](#manual)
+- [API Description](#api-description)
+- [Contact information](#contact-information)
 
-## Project Description
+# Project Description
 
 During a disaster event, two types of information that are especially useful for coordinating relief operations are needs and availability of resources (e.g., food, water, medicines) in the affected region. Information posted on micro-blogging sites such as Twitter is increasingly being used to assist such post-disaster relief operations. The two major practical challenges faced in this regard are 
 
@@ -25,13 +34,25 @@ Narmada has other additional features, such as visualising the relevant informat
 
 With Narmada, we hope to make disaster mitigation much easier by assisting volunteers in their relief coordination efforts. 
 
-## System Description
+# Citation
+
+If you use the codes, please cite the following paper:
+```
+ @inproceedings{hiware-socialnlp20,
+   author = {Hiware, Kaustubh and Dutt, Ritam and Sinha, Sayan and Patro, Sohan and Ghosh, Kripabandhu and Ghosh, Saptarshi},
+   title = {{NARMADA: Need and Available Resource Managing Assistant for Disasters and Adversities}},
+   booktitle = {{Proceedings of ACL Workshop on Natural Language Processing for Social Media (SocialNLP)}},
+   year = {2020}
+  }
+```
+
+# System Description
 
 The user interface has been designed in Typescript using Angular. [ngx-admin](https://github.com/akveo/ngx-admin) was used as a boilerplate forfront-end components. The interface has been designed to be intuitive, yet presenting as much information as possible without overcrowding.
 
 The userinterface has five components:
 
-### Dashboard
+## Dashboard
 
 ![](images/dashboard.png)
 
@@ -47,28 +68,100 @@ The dashboard provides a preliminary view of unmatched needs and availabilities.
 
 * A map is provided right below the searchtab, that highlights the location the resource hasbeen reported from, which assists ingeolocatingresources. However, due to proprietary third-party services being rate limited, this might not always yield accurate locations.
 
-### Completed matches
+## Completed matches
 
 ![](images/completed-matches.png)
 
 This section of the interface acts as a logger to track completed or exhausted matches. It shares the same layout as the dashboard, apart from the presence of a search feature.
 
-### New information
+## New information
 
 ![](images/new.png)
 
 This view allows manual entry of details for a new need or availability. The information is automatically extracted but can be edited if required. The user is expected to enter text and click the parse button. The system attempts to identify relevant attributes from the text provided automatically. It is possible that the text is detected as neither a resource nor an availability, in the event of which manually a classification assignment must be made. If the information parsed (and edited as deemed required) seems accurate, the new resource can be saved. The newly added tweet then shows up in the dashboard.
 
-### Tweet traffic
+## Tweet traffic
 
 ![](images/savitr.png)
 
 Apart from actionable items, users may be interested in the overall tweet activity about a particular disaster / word / phrase. For this, we integrate the view of Savitr [citation](https://dl.acm.org/doi/abs/10.1145/3184558.3191623), which tracks Twitter activity related to any disasters on a day-to-day basis.
 
-### Manual
+## Manual
 
 ![](images/manual.png)
 
 To allow users to view a sizeable amount of information at once, we understand it is possible to find the system complicated. Short, handy videos are available in order to explain the functionality for each of the prior components, along with a mission statement for the project.
 
-This section concludes the user interface aspect for the system, to view more technical details, please refer to [OSM-DM-KGP/Narmada-server](https://github.com/OSM-DM-KGP/Narmada-server)
+# API Description
+
+The server side uses NodeJS framework and is written in Javascript. Nginx is used as an HTTP server to make the frontend accessible to the public. However, the NLP-related extraction tasks are handled better in Python. So a part of the server-side has been hosted with Flask, a micro web framework in Python. The Flask server makes API calls to the deep learning classifiers, featuring BERT, which returns the output. The output is further reflected in the frontend. The server sends information requested by the user interface via _RESTful API_, which supports cached responses on the frontend and enables the system to be scalable, thus allowing more users to use this service.
+
+API endpoints are publicly available, which would allow programmatic access to the server's functionalities. The code repository for this can be found at https://github.com/OSM-DM-KGP/Narmada-server. The major endpoints provided are:
+
+* **Fetching information** i.e. needs, availabilites and matches. Filtering by multiple conditions (such as matched or not, containing a particular resource) is also possible.
+
+    ```
+    GET /get?type=Need&isCompleted=false
+
+    isCompleted: false / true {Completed already or not}
+    skip: Skips first x results (int, default=0)
+    text: Resource must contain this text (default absent)
+    type: Need / Availability
+
+    Response: array of jsons
+    ```
+
+* **Matching needs and availabilities** For a provided need / availability, top 20 matches are suggested based on resource similarity.
+
+    ```
+    GET /match?type=Need&id=591987020924260354
+
+    id: id of resource that needs to be matched
+    type: type of current resource that seeks matches
+
+    Response: array of jsons
+    ```
+
+* **Elevating matched status** -- Whenever a suitable match is found for a need/ availability, the corresponding pair is marked as _Matched_, implying these cannot be matched again. Once the Match has been assigned to a volunteer, and is completed, the sys-admin can mark this match as _Completed_, which moves both these resources from the dashboard to the Completed Resources view.
+
+    ```
+    PUT /makeMatch?id1=X&id2=Y
+    id1, id2: ids of two items that should be matched
+    Currently does not have server side validation
+
+    PUT /markCompleted?id1=X&id2=Y
+    id1, id2: ids of two items that should be matched
+    Currently does not have server side validation
+
+    Response: Status code 201
+    ```
+
+* **Parsing and adding new information** -- The system allows creation of new need/availability for a provided text. This is achieved by parsing all information - resources, contact, location, quantity and source from the said text and returning these fields.
+
+    ```
+    POST /parse?text=This is some text
+    text: Tweet text that should be parsed
+
+    Response: See request params for next call
+    ```
+
+    ```
+    POST /new
+    Params:
+    { "lang": "en",
+    "text": "Food as rice service",
+    "Classification": "Need",
+    "isCompleted": false,
+    "Matched": -1,
+    "Locations":
+    { "Assam, India": { "lat": 26.0737044, "long": 83.18594580000001 } },
+    "Resources": { "Food": "rice"},
+    "Contact": { "Email": [], "Phone number": [] }
+    }
+
+    Response: Status code 201
+    ```
+
+# Contact information
+
+If you wish to get in touch with the authors, please write to us at `hiwarekaustubh@gmail.com` & `ritam.dutt@gmail.com`.

@@ -1,6 +1,8 @@
 # Narmada
 Narmada - Need and Available Resource Matching Assistant for Disasters and Adversities.
 
+This is the repository for the paper titled "NARMADA: Need and Available Resource Managing Assistant for Disasters and Adversities" which is to be presented at the [ACL Workshop on Natural Language Processing for Social Media (SocialNLP)](https://sites.google.com/site/socialnlp2020/) 2020.
+
 Other repositories associated with this project
 * [OSM-DM-KGP/Narmada-server](https://github.com/OSM-DM-KGP/Narmada-server)
 
@@ -27,6 +29,18 @@ Similarly, Narmada enables off-site volunteers to verify the information extract
 Narmada has other additional features, such as visualising the relevant information on a map-based interface, searching specific information between the need and available tweets and manually assigning the status of a need or availability (new, verified, assigned or completed). The system is designed to have different authentication levels such as modification and insertion of resources  is permitted by remote offsite-volunteers, matching a relevant need and availability is determined by the administrator, assigning status is governed by on-site volunteers and administrator while the system is view-able by everyone. 
 
 With Narmada, we hope to make disaster mitigation much easier by assisting volunteers in their relief coordination efforts. 
+
+## Citation
+
+If you use the codes, please cite the following paper:
+```
+ @inproceedings{hiware-socialnlp20,
+   author = {Hiware, Kaustubh and Dutt, Ritam and Sinha, Sayan and Patro, Sohan and Ghosh, Kripabandhu and Ghosh, Saptarshi},
+   title = {{NARMADA: Need and Available Resource Managing Assistant for Disasters and Adversities}},
+   booktitle = {{Proceedings of ACL Workshop on Natural Language Processing for Social Media (SocialNLP)}},
+   year = {2020}
+  }
+```
 
 ## Usage
 
