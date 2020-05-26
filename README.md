@@ -3,7 +3,9 @@ Narmada - Need and Available Resource Matching Assistant for Disasters and Adver
 
 This is the repository for the paper titled "NARMADA: Need and Available Resource Managing Assistant for Disasters and Adversities" which is to be presented at the [ACL Workshop on Natural Language Processing for Social Media (SocialNLP)](https://sites.google.com/site/socialnlp2020/) 2020.
 
-Please refer to our website https://osm-dm-kgp.github.io/Narmada/ for up-to-date information. Other repositories associated with this project
+Please refer to our website https://osm-dm-kgp.github.io/Narmada/ for up-to-date information.
+
+Other repositories associated with this project:
 * [OSM-DM-KGP/Narmada-server](https://github.com/OSM-DM-KGP/Narmada-server)
 
 ## Description

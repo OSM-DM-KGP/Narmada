@@ -1,5 +1,3 @@
-# Narmada
-
 # Contents
 - [Project Description](#project-description)
 - [Citation](#citation)
