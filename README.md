@@ -1,5 +1,5 @@
 # Narmada
-Narmada - Need and Available Resource Matching Assistant for Disasters and Adversities.
+Narmada - Need and Available Resource Managing Assistant for Disasters and Adversities.
 
 This is the repository for the paper titled "NARMADA: Need and Available Resource Managing Assistant for Disasters and Adversities" which is to be presented at the [ACL Workshop on Natural Language Processing for Social Media (SocialNLP)](https://sites.google.com/site/socialnlp2020/) 2020.
 
