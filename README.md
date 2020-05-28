@@ -43,6 +43,7 @@ If you use the codes, please cite the following paper:
    year = {2020}
   }
 ```
+arXiv paper: https://arxiv.org/abs/2005.13524
 
 ## Usage
 

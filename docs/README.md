@@ -96,7 +96,7 @@ To allow users to view a sizeable amount of information at once, we understand i
 
 The server side uses NodeJS framework and is written in Javascript. Nginx is used as an HTTP server to make the frontend accessible to the public. However, the NLP-related extraction tasks are handled better in Python. So a part of the server-side has been hosted with Flask, a micro web framework in Python. The Flask server makes API calls to the deep learning classifiers, featuring BERT, which returns the output. The output is further reflected in the frontend. The server sends information requested by the user interface via _RESTful API_, which supports cached responses on the frontend and enables the system to be scalable, thus allowing more users to use this service.
 
-API endpoints are publicly available, which would allow programmatic access to the server's functionalities. The code repository for this can be found at https://github.com/OSM-DM-KGP/Narmada-server. The major endpoints provided are:
+API endpoints are publicly available, which would allow programmatic access to the server's functionalities. The code repository for this can be found at [https://github.com/OSM-DM-KGP/Narmada-server](https://github.com/OSM-DM-KGP/Narmada-server). The major endpoints provided are:
 
 * **Fetching information** i.e. needs, availabilites and matches. Filtering by multiple conditions (such as matched or not, containing a particular resource) is also possible.
 
