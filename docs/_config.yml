@@ -2,6 +2,7 @@ theme: jekyll-theme-cayman
 title: Narmada
 description: Needs and Available Resource Managing Assistant for Disasters and Adversities
 google_analytics: UA-98481315-13
-website: http://165.227.12.176/
+website: https://osm-dm-kgp.github.io/Narmada-server/
 demo_video: http://tinyurl.com/Narmada-demo
 arxiv: https://arxiv.org/abs/2005.13524
+acl_talk: https://slideslive.com/38929903/
