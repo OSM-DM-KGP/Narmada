@@ -4,7 +4,7 @@
 	<div class="col-xl-8 col-lg-8 col-md-8">
 		<nb-card size="large">
 			<nb-card-header>
-				New Resource <div style="float: right;">
+				New Resources <div style="float: right;">
 								<label *ngIf="parseFail" ngButtonLabel class="btn-sm btn-danger">Failed to parse text! Try again or enter manually</label>
 								<label *ngIf="parseTypeFail" ngButtonLabel class="btn-sm btn-danger">Tweet is neither a need nor a availability</label>
 								<label *ngIf="invalidText" ngbButtonLabel class="btn-sm btn-danger">Tweet text is required.</label>
@@ -56,30 +56,34 @@
 						<!-- <input type="text" class="form-control" id="tweetResource" placeholder="Multiple select of 5"> -->
 
 						<!-- contact -->
-						<div class="form-group">
+						<!-- <div class="form-group">
 							<label for="tweetContact">Contact</label>
 							<input type="text" class="form-control" id="tweetContact" [(ngModel)]="tweetContact" placeholder="+91 1234567890">
-						</div>
+						</div> -->
 						
 						<!-- quantity -->
-						<div class="form-group">
+						<!-- <div class="form-group">
 							<label for="tweetSource">Source</label>
 							<input type="text" class="form-control" id="tweetSource" [(ngModel)]="tweetSource" placeholder="Haryana">
-						</div>
+						</div> -->
 					</div>
 					
-					<div class="col-sm-6">			
-						<!-- location -->
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
 						<div class="form-group">
 							<label for="tweetLocation">Location</label>
 							<ng4geo-autocomplete [userSettings]="autocompleteSettings" id="tweetLocation"
-							 (componentCallback)="selectedLocation($event)" [(ngModel)]="locString"></ng4geo-autocomplete>
+							(componentCallback)="selectedLocation($event)" [(ngModel)]="locString"></ng4geo-autocomplete>
 							<!-- <ng4geo-autocomplete [userSettings]="userSettings" (componentCallback)="autoCompleteCallback1($event)"></ng4geo-autocomplete> -->
 							<!-- <input google-place type="text" class="form-control google-place-input" id="tweetLocation" placeholder="Type to search.."> -->
 							<!-- <input type="text" google-place class="google-place-input" id="tweetLocation" [(ngModel)]="locString" placeholder="Search bar in google maps"> -->
 						</div>
+					</div>
+				</div>
 
-						<!-- Resources -->
+				<div class="row">
+					<div class="col-sm-12">
 						<div class="form-group">
 							<label for="tweetQuantity">Resources</label>
 							<br />
