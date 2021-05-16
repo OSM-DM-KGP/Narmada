@@ -95,11 +95,11 @@ export class NewComponent {
 				console.log('Parsed response', response.data);
 				var resource = response.data;
 				this.tweetContact = "";
-				if(resource.Contact.Email.length) this.tweetContact = resource.Contact.Email.join();
-				if(resource.Contact.Email.length && resource.Contact['Phone number'].length) this.tweetContact += ',';
-				if(resource.Contact['Phone number'].length) this.tweetContact += resource.Contact['Phone number'].join();
+				// if(resource.Contact.Email.length) this.tweetContact = resource.Contact.Email.join();
+				// if(resource.Contact.Email.length && resource.Contact['Phone number'].length) this.tweetContact += ',';
+				// if(resource.Contact['Phone number'].length) this.tweetContact += resource.Contact['Phone number'].join();
 
-				this.tweetSource = resource.Sources.join();
+				// this.tweetSource = resource.Sources.join();
 
 				if(Object.keys(resource.Locations).length) {
 					var loc = Object.keys(resource.Locations)[0];
@@ -109,7 +109,7 @@ export class NewComponent {
 				}
 
 				if(resource.Classification == 0) {
-					this.resourceType = 'Need'
+					this.resourceType = 'Need';
 				} else if (resource.Classification == 1) {
 					this.resourceType = 'Availability'
 				}
