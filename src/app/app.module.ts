@@ -18,7 +18,7 @@ import { GooglePlacesDirective } from './google-places.directive';
 
 // no trailing slashes
 // export const apiUrl = 'http://localhost:5000';
-export const apiUrl = 'https://2be950e3.ngrok.io';
+export const apiUrl = 'http://206.189.133.117:3000';
 // export const parseApiUrl = 'http://localhost:5000'
 export const parseApiUrl = apiUrl;
 
