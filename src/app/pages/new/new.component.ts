@@ -101,11 +101,14 @@ export class NewComponent {
 
 				// this.tweetSource = resource.Sources.join();
 
-				if(Object.keys(resource.Locations).length) {
-					var loc = Object.keys(resource.Locations)[0];
-					this.sourceDesc = loc;
-					this.sourceLat = resource.Locations[loc].lat;
-					this.sourceLong = resource.Locations[loc].long;
+				// if(Object.keys(resource.Locations).length) {
+				// 	var loc = Object.keys(resource.Locations)[0];
+				// 	this.sourceDesc = loc;
+				// 	this.sourceLat = resource.Locations[loc].lat;
+				// 	this.sourceLong = resource.Locations[loc].long;
+				// }
+				if(resource.Locations.length) {
+					this.sourceDesc = resource.Locations[0][0];
 				}
 
 				if(resource.Classification == 0) {
