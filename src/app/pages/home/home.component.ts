@@ -40,7 +40,8 @@ export class HomeComponent {
 	newContact = ''; newSources = ''; updatedQuantity = ''; toEditResource = {};
 
 	humanReadableDate(created) {
-		return created.split('T')[0];
+		// return created.split('T')[0];
+		return ""
 	}
 
 	parseResources(resources) {
@@ -64,19 +65,21 @@ export class HomeComponent {
 	parseContact(contacts) {
 		var contactString = "";
 		// console.log(contacts);
-		contactString  = contacts['Phone number'].toString();
-		contactString += contacts['Email'].toString();
+		// contactString  = contacts['Phone number'].toString();
+		contactString = "new"
+		// contactString += contacts['Email'].toString();
 		return contactString;
 	}
 
 	showMoreNeeds() {
-		var request = { params: { Classification: 'Need', isCompleted: false, skip: this.needsSkip }};
-		if (this.searchString) {
-			request.params["text"] = { "$regex": this.searchString };
-		}
-		axios.get(apiUrl + '/get',  request)
-			.then((response) => { this.Needs = this.Needs.concat(response.data); this.needsSkip += Math.min(this.stepSize, response.data.length); })
-			.catch((error) => { console.log('Needs subsequent fail', error); })
+		// var request = { params: { Classification: 'Need', isCompleted: false, skip: this.needsSkip }};
+		// if (this.searchString) {
+		// 	request.params["text"] = { "$regex": this.searchString };
+		// }
+		// axios.get(apiUrl + '/get',  request)
+		// 	.then((response) => { this.Needs = this.Needs.concat(response.data); this.needsSkip += Math.min(this.stepSize, response.data.length); console.log('needs ',response.data) })
+		// 	.catch((error) => { console.log('Needs subsequent fail', error); })
+		console.log('mmmmmmm')
 	}
 
 	showMoreAvails() {
@@ -101,6 +104,7 @@ export class HomeComponent {
 
 	// editable menu for resource
 	display(Resource) {
+		console.log('In display ', Resource)
 		this.showSelected = true;
 		this.selectedResource = Resource; this.resourcesOnly = [];
 		this.searchString = ''; this.showMatches = false;
@@ -134,7 +138,8 @@ export class HomeComponent {
 	}
 
 	contactToString(contact) {
-		return contact.Email.join() + ',' + contact['Phone number'].join();
+		// return contact.Email.join() + ',' + contact['Phone number'].join();
+		return "ddd"
 	}
 	listToString(sources) {
 		return sources.join();
@@ -162,26 +167,27 @@ export class HomeComponent {
 
 	filterTweets() {
 		console.log('Searched for ', this.searchString);
-		if(this.searchString != '') this.showCancelSearch = true;
-		this.Needs = [], this.Avails = []; this.Matches = [];
-		this.needsSkip = 0; this.availsSkip = 0; this.matchSkip = 0;
-		// one time process to reset original tweets
-		// $text: {$search: "italy"}
+		// if(this.searchString != '') this.showCancelSearch = true;
+		// this.Needs = [], this.Avails = []; this.Matches = [];
+		// this.needsSkip = 0; this.availsSkip = 0; this.matchSkip = 0;
+		// // one time process to reset original tweets
+		// // $text: {$search: "italy"}
 		
-		// 1. fetch 20 needs
-		axios.get(apiUrl + '/get', { params: { "text": { "$regex": this.searchString}, Classification: "Need", isCompleted: false } })
-			.then((response) => { this.Needs = response.data; this.needsSkip += Math.min(this.stepSize, response.data.length); })
-			.catch((error) => { console.log('Needs initial fail', error); });
+		
+		// // 1. fetch 20 needs
+		// axios.get(apiUrl + '/get', { params: { "text": { "$regex": this.searchString}, Classification: "Need", isCompleted: false } })
+		// 	.then((response) => { this.Needs = response.data; this.needsSkip += Math.min(this.stepSize, response.data.length); })
+		// 	.catch((error) => { console.log('Needs initial fail', error); });
 
-		// 2. fetch 20 avails
-		axios.get(apiUrl + '/get', { params: { "text": { "$regex": this.searchString }, Classification: "Availability", isCompleted: false } })
-			.then((response) => { this.Avails = response.data; this.availsSkip += Math.min(this.stepSize, response.data.length); })
-			.catch((error) => { console.log('Avails initial fail', error); });
+		// // 2. fetch 20 avails
+		// axios.get(apiUrl + '/get', { params: { "text": { "$regex": this.searchString }, Classification: "Availability", isCompleted: false } })
+		// 	.then((response) => { this.Avails = response.data; this.availsSkip += Math.min(this.stepSize, response.data.length); })
+		// 	.catch((error) => { console.log('Avails initial fail', error); });
 
-		// 3. fetch 20 matches
-		axios.get(apiUrl + '/get', { params: { "text": { "$regex": this.searchString }, isCompleted: false, Matched: true } })
-			.then((response) => { this.Matches = response.data; this.matchSkip += Math.min(this.stepSize, response.data.length); })
-			.catch((error) => { console.log('Matches initial fail', error); })
+		// // 3. fetch 20 matches
+		// axios.get(apiUrl + '/get', { params: { "text": { "$regex": this.searchString }, isCompleted: false, Matched: true } })
+		// 	.then((response) => { this.Matches = response.data; this.matchSkip += Math.min(this.stepSize, response.data.length); })
+		// 	.catch((error) => { console.log('Matches initial fail', error); })
 	}
 
 	resetSelect() {
@@ -192,23 +198,31 @@ export class HomeComponent {
 	}
 
 	suggestMatches(Resource) {
+		console.log("in suggestMatches hereerere")
 		this.showMatches = !this.showMatches;
 		if(!this.showMatches) {
 			return;
 		}
 		console.log('Matches');
-		if(Resource.Matched !== '-1') {
-			// do not update MatchingNeeds or MatchingAvails
-			return;
-		}
+		// if(Resource.Matched !== '-1') {
+		// 	// do not update MatchingNeeds or MatchingAvails
+		// 	return;
+		// }
 		axios.get(apiUrl + '/match?id=' + Resource._id + '&type=' + Resource.Classification)
 			.then((response) => { 
-				if(Resource.Classification==="Need") { this.MatchingAvails = response.data; this.MatchingNeeds = [];}
-				else {this.MatchingNeeds = response.data; this.MatchingAvails = [];}
+				if(Resource.Classification==="Need") { 
+					this.MatchingAvails = response.data; 
+					console.log("matching avails ", response.data)
+					this.MatchingNeeds = [];
+				}
+				else {
+					this.MatchingNeeds = response.data; 
+					this.MatchingAvails = [];
+				}
 			})
 			.catch((error) => { console.log('Failed to fetch matches!', error); });
 		
-		console.log('Found matches', this.MatchingNeeds);
+		
 	}
 
 	cancelMatches() {
@@ -243,12 +257,24 @@ export class HomeComponent {
 		
 		// 1. fetch 20 needs
 		axios.get(apiUrl + '/get', { params: { Classification: "Need", isCompleted: false } })
-			.then( (response) => {this.Needs = response.data; this.needsSkip += this.stepSize;})
+			.then( 
+				(response) => {
+					let non_emptyRes_tweets:any;
+					non_emptyRes_tweets = response.data.filter(item => !(item["ResourceWords"].includes("") && item["ResourceWords"].length == 1) )
+					this.Needs = non_emptyRes_tweets
+					this.needsSkip += this.stepSize; 
+					console.log('first 20 ', response.data)
+				})
 			.catch ( (error) => {console.log('Needs initial fail', error);})
-
+		
 		// 2. fetch 20 avails
 		axios.get(apiUrl + '/get', { params: { Classification: "Availability", isCompleted: false } })
-			.then((response) => { this.Avails = response.data; this.availsSkip += this.stepSize; })
+			.then((response) => {
+				let non_emptyRes_tweets:any;
+				non_emptyRes_tweets = response.data.filter(item => !(item["ResourceWords"].includes("") && item["ResourceWords"].length == 1) )
+				this.Avails = non_emptyRes_tweets
+				this.availsSkip += this.stepSize; 
+				})
 			.catch((error) => { console.log('Avails initial fail', error); })
 		
 		// 3. fetch 20 matches
