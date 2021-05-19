@@ -82,12 +82,13 @@
 	<div class="col-xl-3 col-lg-3 col-md-6">
 		<nb-card size="xlarge">
 			<nb-card-header>
-				<span *ngIf="showMatches && selectedResource.Matched==='-1' && selectedResource.Classification==='Need'; else DefaultAvailText">
-					Matching Availabilites
+				<!-- <span *ngIf="showMatches && selectedResource.Matched==='-1' && selectedResource.Classification==='Need'; else DefaultAvailText">
+					Matching AvailabilitesS
 				</span>
 				<ng-template #DefaultAvailText>
-					Matching Availabilites
-				</ng-template>
+					Matching AvailabilitesS
+				</ng-template> -->
+				<span>Matching Availiablities</span>
 			</nb-card-header>			<nb-card-body style="background-color: #E5E9F1 !important;">
 				<!-- List of cards -->
 				<span
@@ -119,41 +120,7 @@
 						</nb-card-back>
 					</nb-reveal-card>
 				</span>
-				<ng-template #DefaultAvails>
-					<nb-reveal-card *ngFor="let Avail of Avails">
-						<nb-card-front>
-							<nb-card size="xxsmall" status="info" accent="info" (click)="display(Avail)" [ngStyle]="{'background-color': Avail._id===selectedResource._id ? '#bdf0ff': 'white'}">
-								<!-- <nb-card-header>Tweet text @user </nb-card-header> -->
-								<nb-card-body>
-									<span *ngIf="Avail.url!==''">
-										<a href={{Avail.url}} target="_blank"><div style="float: right;" class="icon"><i class="fab fa-twitter"></i></div></a>
-									</span>
-									<b><span [ngStyle]="{'color': Avail.Matched==='-1' ? 'black': 'grey'}">
-										<span>{{Avail.text}}</span>
-										<!-- <span *ngIf="Avail._id===selectedResource._id" style="background-color: #bdf0ff;">{{Avail.text}}</span><span *ngIf="Avail._id!==selectedResource._id">{{Avail.text}}</span> -->
-									</span></b> @ {{Avail.username}}
-									<br> {{humanReadableDate(Avail.created)}}
-									<br /> {{Avail.contact}}
-								</nb-card-body>
-								<!-- <nb-card-footer>By Wikipedia</nb-card-footer> -->
-							</nb-card>
-						</nb-card-front>
-						<nb-card-back>
-							<nb-card size="xxsmall" status="primary" accent="primary">
-								<!-- <nb-card-header>Details</nb-card-header> -->
-								<nb-card-body>
-									<!-- Resource: {{parseResources(Avail.Resources)}} -->
-									Contact: {{parseContact(Avail.Contact)}}
-									<br /> Loc: {{parseLoc(Avail.Locations)}}
-									<br /> Source: {{Avail.Sources}}
-									<br />
-								</nb-card-body>
-								<!-- <nb-card-footer> Save </nb-card-footer> -->
-							</nb-card>
-						</nb-card-back>
-					</nb-reveal-card>
-				</ng-template>
-				
+						
 				<div style="text-align: center;"> <a href="javascript:;" (click)="showMoreAvails()">Show More</a></div>
 			</nb-card-body>
 		</nb-card>
@@ -245,10 +212,10 @@
 		<nb-card size="xlarge">
 			<nb-card-header>
 				<span *ngIf="showMatches && selectedResource.Matched==='-1' && selectedResource.Classification==='Need'; else DefaultAvailText">
-					Matching Availabilites
+					Availabilites
 				</span>
 				<ng-template #DefaultAvailText>
-					Matching Availabilites
+					Availabilites
 				</ng-template>
 			</nb-card-header>			<nb-card-body style="background-color: #E5E9F1 !important;">
 				<!-- List of cards -->
