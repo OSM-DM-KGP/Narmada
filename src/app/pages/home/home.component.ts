@@ -278,9 +278,9 @@ export class HomeComponent {
 			.catch((error) => { console.log('Avails initial fail', error); })
 		
 		// 3. fetch 20 matches
-		axios.get(apiUrl + '/get', { params: { Classification: "Need", isCompleted: false, Matched: true }})
-			.then((response) => { this.Matches = response.data; this.matchSkip += this.stepSize;})
-			.catch((error) => { console.log('Matches initial fail', error); })
+		// axios.get(apiUrl + '/get', { params: { Classification: "Need", isCompleted: false, Matched: true }})
+		// 	.then((response) => { this.Matches = response.data; this.matchSkip += this.stepSize;})
+		// 	.catch((error) => { console.log('Matches initial fail', error); })
 		
 			// attempt at async
 		// const getResources = async (url, query) => {
