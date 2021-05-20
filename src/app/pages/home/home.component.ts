@@ -72,13 +72,13 @@ export class HomeComponent {
 	}
 
 	showMoreNeeds() {
-		// var request = { params: { Classification: 'Need', isCompleted: false, skip: this.needsSkip }};
-		// if (this.searchString) {
-		// 	request.params["text"] = { "$regex": this.searchString };
-		// }
-		// axios.get(apiUrl + '/get',  request)
-		// 	.then((response) => { this.Needs = this.Needs.concat(response.data); this.needsSkip += Math.min(this.stepSize, response.data.length); console.log('needs ',response.data) })
-		// 	.catch((error) => { console.log('Needs subsequent fail', error); })
+		var request = { params: { Classification: 'Need', isCompleted: false, skip: this.needsSkip }};
+		if (this.searchString) {
+			request.params["text"] = { "$regex": this.searchString };
+		}
+		axios.get(apiUrl + '/get',  request)
+			.then((response) => { this.Needs = this.Needs.concat(response.data); this.needsSkip += Math.min(this.stepSize, response.data.length); console.log('needs ',response.data) })
+			.catch((error) => { console.log('Needs subsequent fail', error); })
 		console.log('mmmmmmm')
 	}
 
