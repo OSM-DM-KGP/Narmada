@@ -23,6 +23,8 @@ export class NewComponent {
 	// vars
 	tweetText = ''; resourceType = 'Other';
 	selectedItems = [];
+	resourceWords = [];
+	locations = [];
 	tweetSource = ''; tweetContact = ''; 
 	tweetQuantity = ''; quantityArray = []; bucketMap = {};
 	sourceDesc = ''; sourceLat = 0; sourceLong = 0;
@@ -94,7 +96,10 @@ export class NewComponent {
 				if(response.error === 1) {this.parseFail = false; return;}
 				console.log('Parsed response', response.data);
 				var resource = response.data;
+				console.log("res")
 				this.tweetContact = "";
+				this.resourceWords = response.data["ResourceWords"].split(',')
+				this.locations = response.data["Locations"]
 				// if(resource.Contact.Email.length) this.tweetContact = resource.Contact.Email.join();
 				// if(resource.Contact.Email.length && resource.Contact['Phone number'].length) this.tweetContact += ',';
 				// if(resource.Contact['Phone number'].length) this.tweetContact += resource.Contact['Phone number'].join();
@@ -111,9 +116,9 @@ export class NewComponent {
 					this.sourceDesc = resource.Locations[0][0];
 				}
 
-				if(resource.Classification == 0) {
+				if(resource.Classification == 'Need') {
 					this.resourceType = 'Need';
-				} else if (resource.Classification == 1) {
+				} else if (resource.Classification == 'Availability') {
 					this.resourceType = 'Availability'
 				}
 
@@ -155,62 +160,68 @@ export class NewComponent {
 		this.invalidResources = false; this.quantityMismatch = false;
 		this.postError = false; this.postMsg = ''; this.postSuccess = false;
 		// no condition on location, contact, source
-		if(!this.tweetText) {
-			this.invalidText = true;
-		} else if(!this.resourceType || this.resourceType === 'Other') {
-			this.invalidType = true;
-		// } else if(this.selectedItems.length == 0) {
-		// 	this.invalidResources = true;
-		// } else if(!this.tweetQuantity || this.selectedItems.length != this.tweetQuantity.split(',').length) {
-		} else if (!this.tweetQuantity || !this.IsJsonString(this.tweetQuantity)) {
-			this.quantityMismatch = true;
-		} else {
-			console.log('Submit');
+		// if(!this.tweetText) {
+		// 	this.invalidText = true;
+		// } else if(!this.resourceType || this.resourceType === 'Other') {
+		// 	this.invalidType = true;
+		// // } else if(this.selectedItems.length == 0) {
+		// // 	this.invalidResources = true;
+		// // } else if(!this.tweetQuantity || this.selectedItems.length != this.tweetQuantity.split(',').length) {
+		// } else if (!this.tweetQuantity || !this.IsJsonString(this.tweetQuantity)) {
+		// 	this.quantityMismatch = true;
+		// } else {
+		// 	console.log('Submit');
 			// console.log(this.sourceDesc, ',', this.sourceLat, 'x', this.sourceLong);
 			
-			var resources = {}, resourceWords = [];
-			var resourceJSON = JSON.parse(this.tweetQuantity);
-			for (var rWord in resourceJSON) {
-				if(!(rWord in this.bucketMap)) continue;
-				if((this.bucketMap[rWord] in resources) == false) resources[this.bucketMap[rWord]] = {};
-				resources[this.bucketMap[rWord]][rWord] = resourceJSON[rWord];
-				resourceWords.push(rWord);
-			}
-			// add id, time also
-			// username not required
-			var loc = {};
-			loc[this.sourceDesc] = {lat: this.sourceLat, long: this.sourceLong};
+			// var resources = {}, resourceWords = [];
+			// var resourceJSON = JSON.parse(this.tweetQuantity);
+			// for (var rWord in resourceJSON) {
+			// 	if(!(rWord in this.bucketMap)) continue;
+			// 	if((this.bucketMap[rWord] in resources) == false) resources[this.bucketMap[rWord]] = {};
+			// 	resources[this.bucketMap[rWord]][rWord] = resourceJSON[rWord];
+			// 	resourceWords.push(rWord);
+			// }
+			// // add id, time also
+			// // username not required
+			// var loc = {};
+			// loc[this.sourceDesc] = {lat: this.sourceLat, long: this.sourceLong};
 			
-			var contacts = this.tweetContact.split(',');
-			var mails = []; var numbers = [];
-			for(var i = 0; i < contacts.length; i++) {
-				if(contacts[i] == '') continue;
-				if(contacts[i].includes('@')) mails.push(contacts[i]);
-				else numbers.push(contacts[i]);
-			}
+			// var contacts = this.tweetContact.split(',');
+			// var mails = []; var numbers = [];
+			// for(var i = 0; i < contacts.length; i++) {
+			// 	if(contacts[i] == '') continue;
+			// 	if(contacts[i].includes('@')) mails.push(contacts[i]);
+			// 	else numbers.push(contacts[i]);
+			// }
 
+			// let tweet = {
+			// 	lang: 'en',
+			// 	text: this.tweetText,
+			// 	Classification: this.resourceType,
+			// 	isCompleted: false,
+			// 	Matched: -1,
+			// 	Locations: loc,
+			// 	Sources: this.tweetSource.split(','),
+			// 	username: 'Naradmin',
+			// 	Resources: resources,
+			// 	ResourceWords: this.resourceWords,
+			// 	Contact: {
+			// 		Email: mails,
+			// 		"Phone number": numbers,
+			// 	}
+			// };
+
+			// if(!this.sourceDesc) { // delete if there's no real location
+			// 	delete tweet.Locations;
+			// }
+			// if (!this.tweetSource) {
+			// 	delete tweet.Sources;
+			// }
+			
 			let tweet = {
-				lang: 'en',
-				text: this.tweetText,
-				Classification: this.resourceType,
-				isCompleted: false,
-				Matched: -1,
-				Locations: loc,
-				Sources: this.tweetSource.split(','),
-				username: 'Naradmin',
-				Resources: resources,
-				ResourceWords: resourceWords,
-				Contact: {
-					Email: mails,
-					"Phone number": numbers,
-				}
-			};
-
-			if(!this.sourceDesc) { // delete if there's no real location
-				delete tweet.Locations;
-			}
-			if (!this.tweetSource) {
-				delete tweet.Sources;
+				'Classification': this.resourceType,
+				'ResourceWords': this.resourceWords,
+				'Locations': this.locations
 			}
 
 			var status = true; var msg = '';
@@ -226,7 +237,13 @@ export class NewComponent {
 			});
 			if(status) this.postSuccess = true;
 			this.postError = !this.postSuccess;
-			this.postMsg = msg;
-		}
+			this.postMsg = msg['msg'];
+			console.log('id of inseted item is ', msg['_id'])
+
+			// DASGUPTA - HELP HERE!!!
+			// Use that above msg['_id'] to make request to /match endpoint, just like suggestMatches function in home.component.ts
+			// u get a array of cards, like in homepage
+			// display them in the way u like it!
+		
 	}
 }
