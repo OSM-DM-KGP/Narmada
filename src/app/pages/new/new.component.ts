@@ -11,7 +11,7 @@ var axios = require('axios');
 })
 export class NewComponent {
 	// Resources dropdown
-	dropdownList = [];	dropdownSettings = {};
+	dropdownList = []; dropdownSettings = {};
 	searchOptions = {}; locString = {};
 	autocompleteSettings = {};
 
@@ -25,11 +25,12 @@ export class NewComponent {
 	selectedItems = [];
 	resourceWords = [];
 	locations = [];
-	tweetSource = ''; tweetContact = ''; 
+	tweetSource = ''; tweetContact = '';
 	tweetQuantity = ''; quantityArray = []; bucketMap = {};
 	sourceDesc = ''; sourceLat = 0; sourceLong = 0;
+	matchCards = []
 	// sourceDesc = 'Assam, India'; sourceLat = 26.0737044; sourceLong = 83.18594580000001;
-	
+
 	ngOnInit() {
 		this.dropdownList = [
 			{ item_id: 1, item_text: 'Food' },
@@ -49,7 +50,7 @@ export class NewComponent {
 			itemsShowLimit: this.dropdownList.length,
 			allowSearchFilter: false
 		};
-		
+
 		this.autocompleteSettings = {
 			"showRecentSearch": false,
 			"showSearchButton": false,
@@ -81,7 +82,7 @@ export class NewComponent {
 		this.sourceLat = 0; this.sourceLong = 0;
 
 		// reset fail texts
-		this.parseFail = false; this.parseTypeFail = false; this.invalidText = false; 
+		this.parseFail = false; this.parseTypeFail = false; this.invalidText = false;
 		this.invalidType = false; this.invalidResources = false; this.quantityMismatch = false;
 		this.postError = false; this.postMsg = ''; this.postSuccess = false;
 	}
@@ -90,10 +91,10 @@ export class NewComponent {
 		this.parseFail = false; this.parseTypeFail = false;
 		this.quantityArray = [];
 		this.sourceDesc = ''; this.resourceType = 'Other';
-		axios.post(parseApiUrl + '/parse', {text: this.tweetText})
+		axios.post(parseApiUrl + '/parse', { text: this.tweetText })
 			.then((response) => {
 				this.parseFail = false;
-				if(response.error === 1) {this.parseFail = false; return;}
+				if (response.error === 1) { this.parseFail = false; return; }
 				console.log('Parsed response', response.data);
 				var resource = response.data;
 				console.log("res")
@@ -112,24 +113,24 @@ export class NewComponent {
 				// 	this.sourceLat = resource.Locations[loc].lat;
 				// 	this.sourceLong = resource.Locations[loc].long;
 				// }
-				if(resource.Locations.length) {
+				if (resource.Locations.length) {
 					this.sourceDesc = resource.Locations[0][0];
 				}
 
-				if(resource.Classification == 'Need') {
+				if (resource.Classification == 'Need') {
 					this.resourceType = 'Need';
 				} else if (resource.Classification == 'Availability') {
 					this.resourceType = 'Availability'
 				}
 
-				if(this.resourceType === 'Other') {
+				if (this.resourceType === 'Other') {
 					this.parseTypeFail = true;
 				}
-				if(resource.Resources) {
+				if (resource.Resources) {
 					var quantities = {};
-					for(var bucket in resource.Resources) {
-						for(var rWord in resource.Resources[bucket]) {
-							this.quantityArray.push({'resource': rWord, 'quantity': resource.Resources[bucket][rWord]});
+					for (var bucket in resource.Resources) {
+						for (var rWord in resource.Resources[bucket]) {
+							this.quantityArray.push({ 'resource': rWord, 'quantity': resource.Resources[bucket][rWord] });
 							quantities[rWord] = resource.Resources[bucket][rWord];
 							this.bucketMap[rWord] = bucket;
 						}
@@ -154,7 +155,7 @@ export class NewComponent {
 		return true;
 	}
 
-	saveResource() {
+	async saveResource() {
 		this.parseFail = false; this.parseTypeFail = false;
 		this.invalidText = false; this.invalidType = false;
 		this.invalidResources = false; this.quantityMismatch = false;
@@ -171,62 +172,64 @@ export class NewComponent {
 		// 	this.quantityMismatch = true;
 		// } else {
 		// 	console.log('Submit');
-			// console.log(this.sourceDesc, ',', this.sourceLat, 'x', this.sourceLong);
-			
-			// var resources = {}, resourceWords = [];
-			// var resourceJSON = JSON.parse(this.tweetQuantity);
-			// for (var rWord in resourceJSON) {
-			// 	if(!(rWord in this.bucketMap)) continue;
-			// 	if((this.bucketMap[rWord] in resources) == false) resources[this.bucketMap[rWord]] = {};
-			// 	resources[this.bucketMap[rWord]][rWord] = resourceJSON[rWord];
-			// 	resourceWords.push(rWord);
-			// }
-			// // add id, time also
-			// // username not required
-			// var loc = {};
-			// loc[this.sourceDesc] = {lat: this.sourceLat, long: this.sourceLong};
-			
-			// var contacts = this.tweetContact.split(',');
-			// var mails = []; var numbers = [];
-			// for(var i = 0; i < contacts.length; i++) {
-			// 	if(contacts[i] == '') continue;
-			// 	if(contacts[i].includes('@')) mails.push(contacts[i]);
-			// 	else numbers.push(contacts[i]);
-			// }
+		// console.log(this.sourceDesc, ',', this.sourceLat, 'x', this.sourceLong);
 
-			// let tweet = {
-			// 	lang: 'en',
-			// 	text: this.tweetText,
-			// 	Classification: this.resourceType,
-			// 	isCompleted: false,
-			// 	Matched: -1,
-			// 	Locations: loc,
-			// 	Sources: this.tweetSource.split(','),
-			// 	username: 'Naradmin',
-			// 	Resources: resources,
-			// 	ResourceWords: this.resourceWords,
-			// 	Contact: {
-			// 		Email: mails,
-			// 		"Phone number": numbers,
-			// 	}
-			// };
+		// var resources = {}, resourceWords = [];
+		// var resourceJSON = JSON.parse(this.tweetQuantity);
+		// for (var rWord in resourceJSON) {
+		// 	if(!(rWord in this.bucketMap)) continue;
+		// 	if((this.bucketMap[rWord] in resources) == false) resources[this.bucketMap[rWord]] = {};
+		// 	resources[this.bucketMap[rWord]][rWord] = resourceJSON[rWord];
+		// 	resourceWords.push(rWord);
+		// }
+		// // add id, time also
+		// // username not required
+		// var loc = {};
+		// loc[this.sourceDesc] = {lat: this.sourceLat, long: this.sourceLong};
 
-			// if(!this.sourceDesc) { // delete if there's no real location
-			// 	delete tweet.Locations;
-			// }
-			// if (!this.tweetSource) {
-			// 	delete tweet.Sources;
-			// }
-			
-			let tweet = {
-				'Classification': this.resourceType,
-				'ResourceWords': this.resourceWords,
-				'Locations': this.locations
-			}
+		// var contacts = this.tweetContact.split(',');
+		// var mails = []; var numbers = [];
+		// for(var i = 0; i < contacts.length; i++) {
+		// 	if(contacts[i] == '') continue;
+		// 	if(contacts[i].includes('@')) mails.push(contacts[i]);
+		// 	else numbers.push(contacts[i]);
+		// }
 
-			var status = true; var msg = '';
-			// console.log(tweet);
-			axios.post(apiUrl + '/new', tweet)
+		// let tweet = {
+		// 	lang: 'en',
+		// 	text: this.tweetText,
+		// 	Classification: this.resourceType,
+		// 	isCompleted: false,
+		// 	Matched: -1,
+		// 	Locations: loc,
+		// 	Sources: this.tweetSource.split(','),
+		// 	username: 'Naradmin',
+		// 	Resources: resources,
+		// 	ResourceWords: this.resourceWords,
+		// 	Contact: {
+		// 		Email: mails,
+		// 		"Phone number": numbers,
+		// 	}
+		// };
+
+		// if(!this.sourceDesc) { // delete if there's no real location
+		// 	delete tweet.Locations;
+		// }
+		// if (!this.tweetSource) {
+		// 	delete tweet.Sources;
+		// }
+
+		let tweet = {
+			'Classification': this.resourceType,
+			'ResourceWords': this.resourceWords,
+			'Locations': this.locations
+		}
+
+		console.log(tweet);
+
+		var status = true; var msg = '';
+		// console.log(tweet);
+		await axios.post(apiUrl + '/new', tweet)
 			.then((response) => {
 				status = true; msg = response.data;
 				console.log('New resouce created', response.data);
@@ -235,15 +238,22 @@ export class NewComponent {
 				status = false; msg = error;
 				console.log('Error in creating new', error);
 			});
-			if(status) this.postSuccess = true;
-			this.postError = !this.postSuccess;
-			this.postMsg = msg['msg'];
-			console.log('id of inseted item is ', msg['_id'])
+		if (status) this.postSuccess = true;
+		this.postError = !this.postSuccess;
+		this.postMsg = msg['msg'];
+		console.log('id of inseted item is ', msg['_id'], this.resourceType)
 
-			// DASGUPTA - HELP HERE!!!
-			// Use that above msg['_id'] to make request to /match endpoint, just like suggestMatches function in home.component.ts
-			// u get a array of cards, like in homepage
-			// display them in the way u like it!
-		
+		// DASGUPTA - HELP HERE!!!
+		// Use that above msg['_id'] to make request to /match endpoint, just like suggestMatches function in home.component.ts
+		// u get a array of cards, like in homepage
+		// display them in the way u like it!
+
+		await axios.get(apiUrl + '/newmatch?id=' + msg['_id'] + '&type=' + this.resourceType)
+			.then((response) => {
+				this.matchCards = response.data;
+				console.log(response.data);
+			})
+			.catch((error) => { console.log('Failed to fetch matches!', error); });
+
 	}
 }

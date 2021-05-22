@@ -5,23 +5,31 @@
 		<nb-card size="large">
 			<nb-card-header>
 				New Resources <div style="float: right;">
-								<label *ngIf="parseFail" ngButtonLabel class="btn-sm btn-danger">Failed to parse text! Try again or enter manually</label>
-								<label *ngIf="parseTypeFail" ngButtonLabel class="btn-sm btn-danger">Tweet is neither a need nor a availability</label>
-								<label *ngIf="invalidText" ngbButtonLabel class="btn-sm btn-danger">Tweet text is required.</label>
-								<label *ngIf="invalidType" ngbButtonLabel class="btn-sm btn-danger">Resource type is required/invalid.</label>
-								<label *ngIf="invalidResources" ngbButtonLabel class="btn-sm btn-danger">Need to select resources.</label>
-								<label *ngIf="quantityMismatch" ngbButtonLabel class="btn-sm btn-warning">Quantity and resource items do not match.</label>
-								<label *ngIf="postError" ngbButtonLabel class="btn-sm btn-daner">Error in creating resource</label>
-								<label *ngIf="postSuccess" ngbButtonLabel class="btn-sm btn-success">Saved resource</label>
-							</div>
+					<label *ngIf="parseFail" ngButtonLabel class="btn-sm btn-danger">Failed to parse text! Try again or
+						enter manually</label>
+					<label *ngIf="parseTypeFail" ngButtonLabel class="btn-sm btn-danger">Tweet is neither a need nor a
+						availability</label>
+					<label *ngIf="invalidText" ngbButtonLabel class="btn-sm btn-danger">Tweet text is required.</label>
+					<label *ngIf="invalidType" ngbButtonLabel class="btn-sm btn-danger">Resource type is
+						required/invalid.</label>
+					<label *ngIf="invalidResources" ngbButtonLabel class="btn-sm btn-danger">Need to select
+						resources.</label>
+					<label *ngIf="quantityMismatch" ngbButtonLabel class="btn-sm btn-warning">Quantity and resource
+						items do not match.</label>
+					<label *ngIf="postError" ngbButtonLabel class="btn-sm btn-daner">Error in creating resource</label>
+					<label *ngIf="postSuccess" ngbButtonLabel class="btn-sm btn-success">Saved resource</label>
+				</div>
 			</nb-card-header>
 			<nb-card-body style="padding: 10px 50px;">
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="form-group">
 							<label for="tweetText">Tweet text</label>
-							<input type="text" class="form-control" nbInput fullWidth placeholder="Full width" [(ngModel)]="tweetText" id="tweetText">
-							<button nbButton hero status="success" (click)="parseText()">Parse</button> <div style="float: right;font-size: 1.5em;" *ngIf="sourceDesc!==''"class="icon"> <i class="fas fa-map-marker-alt"></i> : {{sourceDesc}}</div>
+							<input type="text" class="form-control" nbInput fullWidth placeholder="Full width"
+								[(ngModel)]="tweetText" id="tweetText">
+							<button nbButton hero status="success" (click)="parseText()">Parse</button>
+							<div style="float: right;font-size: 1.5em;" *ngIf="sourceDesc!==''" class="icon"> <i
+									class="fas fa-map-marker-alt"></i> : {{sourceDesc}}</div>
 						</div>
 					</div>
 				</div>
@@ -31,8 +39,8 @@
 						<!-- category -->
 						<div class="form-group">
 							<label for="tweetCategory">Category</label>
-							<div [(ngModel)]="resourceType" id="tweetCategory" ngbRadioGroup 
-							class="btn-group btn-group-toggle btn-outline-toggle-group btn-group-full-width btn-toggle-radio-group">
+							<div [(ngModel)]="resourceType" id="tweetCategory" ngbRadioGroup
+								class="btn-group btn-group-toggle btn-outline-toggle-group btn-group-full-width btn-toggle-radio-group">
 								<label ngbButtonLabel class="btn btn-outline-success">
 									<input ngbButton type="radio" value="Need"> Need
 								</label>
@@ -43,7 +51,7 @@
 									<input ngbButton type="radio" value="Other"> Other
 								</label>
 							</div>
-						<!-- <input type="text" class="form-control" id="tweetCategory" placeholder="First Name"> -->
+							<!-- <input type="text" class="form-control" id="tweetCategory" placeholder="First Name"> -->
 						</div>
 
 						<!-- resource -->
@@ -60,24 +68,23 @@
 							<label for="tweetContact">Contact</label>
 							<input type="text" class="form-control" id="tweetContact" [(ngModel)]="tweetContact" placeholder="+91 1234567890">
 						</div> -->
-						
+
 						<!-- quantity -->
 						<!-- <div class="form-group">
 							<label for="tweetSource">Source</label>
 							<input type="text" class="form-control" id="tweetSource" [(ngModel)]="tweetSource" placeholder="Haryana">
 						</div> -->
 					</div>
-					
+
 				</div>
-				
+
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="form-group">
 							<label for="tweetQuantity">Resources</label>
 							<br />
-							<textarea nbInput fullWidth 
-								placeholder="{'food packets': '40'}" 
-								id="tweetQuantity" [(ngModel)]="tweetQuantity" style="height: 150px;"></textarea>
+							<textarea nbInput fullWidth placeholder="{'food packets': '40'}" id="tweetQuantity"
+								[(ngModel)]="tweetQuantity" style="height: 150px;"></textarea>
 							<!-- <div *ngFor="let eachResource of quantityArray">
 								{{eachResource.resource}} {{eachResource.quantity}} <br />
 							</div> -->
@@ -95,7 +102,6 @@
 						</div>
 					</div>
 				</div>
-
 			</nb-card-body>
 
 			<nb-card-footer>
@@ -106,8 +112,19 @@
 					<button type="submit" (click)="saveResource()" class="btn btn-success">Save</button>
 				</div>
 			</nb-card-footer>
-	</nb-card>
+		</nb-card>
+	</div>
 </div>
 
-<div class="col-xl-2 col-lg-2 col-md-2"></div>
-</div>
+<div class="col-xl-8 col-md-8" id="cards">
+	<div class="card-col" *ngFor="let match of matchCards">
+		<nb-card size="tiny" accent="success">
+			<nb-card-body>
+				<div style="float: right;" class="icon" (click)="makeMatch(Need)">
+					<i class="ion-checkmark"></i>
+				</div>
+				{{match.text}}
+			</nb-card-body>
+		</nb-card>
+	</div>
+</div> 
