@@ -7,26 +7,26 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/home',
     home: true,
   },
-  {
-    title: 'Completed',
-    icon: 'nb-checkmark',
-    link: '/completed',
-  },
+  // {
+  //   title: 'Completed',
+  //   icon: 'nb-checkmark',
+  //   link: '/completed',
+  // },
   {
     title: 'New',
     icon: 'nb-plus',
     link: '/new',
   },
-  {
-    title: 'Savitr',
-    icon: 'nb-bar-chart',
-    link: '/savitr',
-  },
-  {
-    title: 'Manual',
-    icon: 'nb-lightbulb',
-    link: '/manual',
-  }
+  // {
+  //   title: 'Savitr',
+  //   icon: 'nb-bar-chart',
+  //   link: '/savitr',
+  // },
+  // {
+  //   title: 'Manual',
+  //   icon: 'nb-lightbulb',
+  //   link: '/manual',
+  // }
 
 ];
 
