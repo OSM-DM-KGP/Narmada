@@ -2,7 +2,7 @@
 	<div class="col-xl-2 col-lg-2 col-md-2"></div>
 	<!-- https://tanoy009.github.io/ng4-geoautocomplete/ -->
 	<div class="col-xl-8 col-lg-8 col-md-8">
-		<nb-card size="large">
+		<nb-card size="tiny">
 			<nb-card-header>
 				New Resources <div style="float: right;">
 					<label *ngIf="parseFail" ngButtonLabel class="btn-sm btn-danger">Failed to parse text! Try again or
@@ -20,7 +20,7 @@
 					<label *ngIf="postSuccess" ngbButtonLabel class="btn-sm btn-success">Saved resource</label>
 				</div>
 			</nb-card-header>
-			<nb-card-body >
+			<nb-card-body>
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="form-group">
@@ -58,9 +58,7 @@
 				</div>
 
 				<div style="align-items: center;" class="row">
-					<div class="col-sm-3"></div>
 					<button class="btn btn-danger" (click)="discard()">Discard</button>
-					<div class="col-sm-2"></div>
 					<button type="submit" (click)="saveResource()" class="btn btn-success">Save</button>
 				</div>
 			</nb-card-body>
@@ -69,9 +67,9 @@
 		</nb-card>
 	</div>
 </div>
-<div class="row">
-	<div class="col-sm-5" id="cards">
-		<div class="card-col" *ngFor="let match of matchCards">
+<div class="row" id="bottom-cards">
+	<div class="col-sm-3" *ngFor="let match of matchCards">
+		<div class="card-col">
 			<nb-card size="tiny" accent="success">
 				<nb-card-body>
 					<div style="float: right;" class="icon" (click)="makeMatch(Need)">
