@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { apiUrl, parseApiUrl } from '../../app.module';
+import { apiUrl, parseApiUrl, api_2_Url } from '../../app.module';
 import { ObjectUnsubscribedError } from 'rxjs';
+import { RouterModule, Routes, Router } from '@angular/router';
 var axios = require('axios');
 
 @Component({
@@ -20,8 +21,12 @@ export class NewComponent {
 	invalidResources = false; quantityMismatch = false;
 	postError = false; postMsg = '';
 	postSuccess = false;
+
 	// vars
-	tweetText = ''; resourceType = 'Other';
+	tweetText = '';
+	loading = false; parsed = false;
+	resourceString = ''; resourceType = 'Need';
+	locationString = '';
 	selectedItems = [];
 	resourceWords = [];
 	locations = [];
@@ -30,6 +35,14 @@ export class NewComponent {
 	sourceDesc = ''; sourceLat = 0; sourceLong = 0;
 	matchCards = []
 	// sourceDesc = 'Assam, India'; sourceLat = 26.0737044; sourceLong = 83.18594580000001;
+
+
+	constructor(private router: Router) {
+	}
+
+	goToHome() {
+		this.router.navigate(['/alltweets'], { queryParams: {} });
+	}
 
 	ngOnInit() {
 		this.dropdownList = [
@@ -90,7 +103,11 @@ export class NewComponent {
 	parseText() {
 		this.parseFail = false; this.parseTypeFail = false;
 		this.quantityArray = [];
-		this.sourceDesc = ''; this.resourceType = 'Other';
+		this.sourceDesc = '';
+
+		this.tweetText = ('I ' + this.resourceType + ' ' + this.resourceString + ' in ' + this.locationString).toLowerCase();
+		console.log(this.tweetText)
+
 		axios.post(parseApiUrl + '/parse', { text: this.tweetText })
 			.then((response) => {
 				this.parseFail = false;
@@ -139,7 +156,10 @@ export class NewComponent {
 					console.log(this.tweetQuantity);
 				}
 				else this.tweetQuantity = '';
+				this.matchCards = [];
+				this.parsed = true;
 			})
+			.then(data => this.saveResource())
 			.catch((error) => {
 				this.parseFail = true;
 				console.log('Error in parsing', error);
@@ -156,10 +176,13 @@ export class NewComponent {
 	}
 
 	async saveResource() {
+
+		this.loading = true;
 		this.parseFail = false; this.parseTypeFail = false;
 		this.invalidText = false; this.invalidType = false;
 		this.invalidResources = false; this.quantityMismatch = false;
 		this.postError = false; this.postMsg = ''; this.postSuccess = false;
+
 		// no condition on location, contact, source
 		// if(!this.tweetText) {
 		// 	this.invalidText = true;
@@ -219,6 +242,10 @@ export class NewComponent {
 		// 	delete tweet.Sources;
 		// }
 
+		this.matchCards = [];
+		// this.resourceWords = this.resourceString.split(',');
+		// this.locations = this.locationString.split(',');
+
 		let tweet = {
 			'Classification': this.resourceType,
 			'ResourceWords': this.resourceWords,
@@ -250,7 +277,39 @@ export class NewComponent {
 
 		await axios.get(apiUrl + '/newmatch?id=' + msg['_id'] + '&type=' + this.resourceType)
 			.then((response) => {
-				this.matchCards = response.data;
+				console.log(response);
+				setTimeout(() => {
+					this.loading = false;
+					let resFromBackend = response.data
+					let tweet_messages = new Set()
+					let results = []
+					
+					resFromBackend.forEach(item => {
+						item['Timestamp'] = item['Timestamp'].slice(0,-4)
+						let link = item['TweetLink']
+						let link_array = link.split('/')
+						let username = link_array[link_array.length - 3]
+						item['username'] = username
+						item['userlink'] = `https://twitter.com/${username}`
+						if(tweet_messages.has(item['text']) === false) {
+							results.push(item)
+							tweet_messages.add(item['text'])
+						}
+					})
+
+					console.log("resFromBackend.length ", resFromBackend.length)
+					console.log("results.length ", results.length)
+
+
+					results.sort((a,b) => {
+						let t1 = new Date(a['Timestamp']).getTime();
+						let t2 = new Date(b['Timestamp']).getTime();
+						return t2 - t1
+					});
+					this.matchCards = results
+					this.parsed = false;
+				}, 1000);
+
 				console.log(response.data);
 			})
 			.catch((error) => { console.log('Failed to fetch matches!', error); });

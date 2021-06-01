@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+
 import { NgxEchartsModule } from 'ngx-echarts';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
@@ -8,20 +9,21 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 // import { LeafletComponent } from './leaflet/leaflet.component';
 import { PlotlyModule } from 'angular-plotly.js';
 import * as Plotly from 'plotly.js';
-import { NbListModule, NbCheckboxModule } from '@nebular/theme';
+import { NbListModule, NbCheckboxModule, NbActionsModule } from '@nebular/theme';
 
 @NgModule({
 	imports: [
-	ThemeModule,
-	NgxEchartsModule,
-	NgxChartsModule,
-	PlotlyModule,
-	LeafletModule,
-	NbListModule,
-	NbCheckboxModule,
+		ThemeModule,
+		NgxEchartsModule,
+		NgxChartsModule,
+		PlotlyModule,
+		NbActionsModule,
+		LeafletModule,
+		NbListModule,
+		NbCheckboxModule,
 	],
 	declarations: [
-	HomeComponent,
+		HomeComponent,
 	],
 	providers: [
 	],
@@ -30,34 +32,34 @@ import { NbListModule, NbCheckboxModule } from '@nebular/theme';
 export class HomeModule {
 	public graph: Object = {
 		data: [{
-			type:'scattermapbox',
-			lat:['45.5017'],
-			lon:['-73.5673'],
-			mode:'markers',
+			type: 'scattermapbox',
+			lat: ['45.5017'],
+			lon: ['-73.5673'],
+			mode: 'markers',
 			marker: {
-				size:14
+				size: 14
 			},
-			text:['Montreal']
+			text: ['Montreal']
 		}],
 
 		layout: {
 			autosize: true,
-			hovermode:'closest',
+			hovermode: 'closest',
 			mapbox: {
-				bearing:0,
+				bearing: 0,
 				center: {
-					lat:45,
-					lon:-73
+					lat: 45,
+					lon: -73
 				},
-				pitch:0,
-				zoom:5
+				pitch: 0,
+				zoom: 5
 			},
 		}
 	};
 
-  // Plotly.setPlotConfig({
-  //   mapboxAccessToken: 'pk.eyJ1IjoiZXRwaW5hcmQiLCJhIjoiY2luMHIzdHE0MGFxNXVubTRxczZ2YmUxaCJ9.hwWZful0U2CQxit4ItNsiQ'
-  // });
+	// Plotly.setPlotConfig({
+	//   mapboxAccessToken: 'pk.eyJ1IjoiZXRwaW5hcmQiLCJhIjoiY2luMHIzdHE0MGFxNXVubTRxczZ2YmUxaCJ9.hwWZful0U2CQxit4ItNsiQ'
+	// });
 
-  // Plotly.plot('PlotlyMap', data, layout);
+	// Plotly.plot('PlotlyMap', data, layout);
 }

@@ -1,9 +1,40 @@
 button{
 	margin: 0.8rem auto;
 }
-	
+
+#top-button{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 #bottom-cards{
 	display: flex;
+	align-items: center;
+	justify-content: center;
 	box-sizing: border-box;
 	margin-right: 0;
+}
+
+#loader{
+	background-color: #EBEFF5;
+	height: 10rem;
+	width: 10rem;
+}
+
+button{
+	i {
+		font-weight: bolder !important;
+		font-size: 1.3rem !important;
+	}
+	font-weight: bolder !important;
+	align-items: center !important;
+	justify-content: center !important;
+
+	animation: shadow 5s infinite;
+
+	@keyframes shadow{
+		50% {box-shadow: 10px 20px 30px gray;}
+	}
 }

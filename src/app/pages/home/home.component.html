@@ -1,231 +1,207 @@
-<div class="row">
+<div class="row" id="main">
 	<!--  Needs -->
-	<div class="col-xl-3 col-lg-3 col-md-6">
-		<nb-card size="xlarge">
-			<nb-card-header>
-				<span>
-					Needs
-					<!-- 	 *ngIf="showMatches && selectedResource.Matched==='-1' && selectedResource.Classification==='Availability'; else DefaultNeedText" -->
-					<!-- Matching Needs -->
-				</span>
-				<ng-template #DefaultNeedText>
-					Needs
-				</ng-template>
-			</nb-card-header>
-			<nb-card-body style="background-color: #E5E9F1 !important;">
-				<!-- List of cards -->
-				<span
-					*ngIf="showMatches && selectedResource.Matched==='-1' && selectedResource.Classification==='Availability'; else DefaultNeeds">
-					<nb-reveal-card *ngFor="let Need of MatchingNeeds">
-						<nb-card-front (click)="makeMatch(Need)"
-							[ngStyle]="{'background-color': Need._id===selectedResource._id ? '#bdf0ff': '#E5E9F1'}">
-							<nb-card size="xxsmall" status="info" accent="danger">
-								<nb-card-body>
-									<div style="float: right;" class="icon" (click)="makeMatch(Need)">
-										<i class="ion-checkmark"></i>
-									</div>
-									<b><span>
-											<span>MMM {{Need.text}}</span>
-										</span></b> @ {{Need.username}} <br>
-									{{humanReadableDate(Need.created)}}
-								</nb-card-body>
-								<!-- <nb-card-footer>By Wikipedia</nb-card-footer> -->
-							</nb-card>
-						</nb-card-front>
-					</nb-reveal-card>
-				</span>
-				<ng-template #DefaultNeeds>
-					<nb-reveal-card *ngFor="let Need of Needs">
-						<nb-card-front>
-							<nb-card size="xxsmall" status="info" accent="warning" (click)="display(Need)"
-								[ngStyle]="{'background-color': Need._id===selectedResource._id ? '#bdf0ff': 'white'}">
-								<nb-card-body>
-									<span *ngIf="Need.url!==''">
-										<a href={{Need.url}} target="_blank">
-											<div style="float: right;" class="icon"><i class="fab fa-twitter"></i></div>
-										</a>
-									</span>
-									<b><span [ngStyle]="{'color': Need.Matched==='-1' ? 'black': 'grey'}">
-											<span>{{Need.text}}</span>
-										</span> @ {{Need.username}} </b><br>
-									{{humanReadableDate(Need.created)}}
-								</nb-card-body>
-								<!-- <nb-card-footer>By Wikipedia</nb-card-footer> -->
-							</nb-card>
-						</nb-card-front>
 
-					</nb-reveal-card>
-					<div style="text-align: center;"><a href="javascript:;" (click)="showMoreNeeds()">Show More</a>
-					</div>
-				</ng-template>
-			</nb-card-body>
-		</nb-card>
-	</div>
-	<!-- Matching Availabilites -->
-	<div class="col-xl-3 col-lg-3 col-md-6">
-		<nb-card size="xlarge">
-			<nb-card-header>
-				<!-- <span *ngIf="showMatches && selectedResource.Matched==='-1' && selectedResource.Classification==='Need'; else DefaultAvailText">
-					Matching AvailabilitesS
-				</span>
-				<ng-template #DefaultAvailText>
-					Matching AvailabilitesS
+	<!-- <button class="btn btn-success" style="margin-bottom: 1rem; background-color: #f8f8f8; color: #736f6f;" -->
+	<button class="btn" style="margin-bottom: 2rem; background-color:white; color: black;" (click)="goToNew()"><i
+			class="nb-search" style="height: 10rem;width: 10rem;margin-right: 0.5rem;"></i>Find
+		Tweets</button>
+
+	<div id="body">
+		<div class="col-xl-3 col-lg-3 col-md-6">
+			<nb-card size="xlarge">
+				<nb-card-header>
+					<span>
+						Needs
+						<!-- 	 *ngIf="showMatches && selectedResource.Matched==='-1' && selectedResource.Classification==='Availability'; else DefaultNeedText" -->
+						<!-- Matching Needs -->
+					</span>
+					<ng-template #DefaultNeedText>
+						Needs
+					</ng-template>
+				</nb-card-header>
+				<nb-card-body style="background-color: #E5E9F1 !important;">
+					<!-- List of cards -->
+					<span
+						*ngIf="showMatches && selectedResource.Matched==='-1' && selectedResource.Classification==='Availability'; else DefaultNeeds">
+						<nb-card *ngFor="let Need of MatchingNeeds" (click)="makeMatch(Need)"
+							[ngStyle]="{'background-color': Need._id===selectedResource._id ? '#bdf0ff': '#E5E9F1'}"
+							size="xxsmall" status="info" accent="danger">
+							<nb-card-header>{{match.Timestamp}}</nb-card-header>
+							<nb-card-body>
+								<div style="float: right;" class="icon" (click)="makeMatch(Need)">
+									<i class="ion-checkmark"></i>
+								</div>
+								<b><span>
+										<span>{{Need.text}}</span>
+									</span></b> @ {{Need.username}} <br>
+								{{humanReadableDate(Need.created)}}
+								<hr />{{Need.Timestamp}}
+							</nb-card-body>
+							<!-- <nb-card-footer>By Wikipedia</nb-card-footer> -->
+						</nb-card>
+					</span>
+					<ng-template #DefaultNeeds>
+						<nb-card *ngFor="let Need of Needs" size="xxsmall" status="info" accent="warning"
+							(click)="display(Need)"
+							[ngStyle]="{'background-color': Need._id===selectedResource._id ? '#bdf0ff': 'white'}">
+							<nb-card-body>
+								<a href={{Need.TweetLink}} target="_blank">
+									<div style="float: right;" class="icon"><i class="fab fa-twitter"></i></div>
+								</a>
+								<b><span [ngStyle]="{'color': Need.Matched==='-1' ? 'black': 'grey'}">
+										<span>{{Need.text}}</span>
+									</span> @ {{Need.username}} </b><br>
+								{{humanReadableDate(Need.created)}}
+								<hr />{{Need.Timestamp}}
+							</nb-card-body>
+							<!-- <nb-card-footer>By Wikipedia</nb-card-footer> -->
+						</nb-card>
+
+						<div style="text-align: center;"><a href="javascript:;" (click)="showMoreNeeds()">Show More</a>
+						</div>
+					</ng-template>
+				</nb-card-body>
+			</nb-card>
+		</div>
+		<!-- Matching Availabilites -->
+		<div class="col-xl-3 col-lg-3 col-md-6">
+			<nb-card size="xlarge">
+				<nb-card-header>
+					<!-- <span *ngIf="showMatches && selectedResource.Matched==='-1' && selectedResource.Classification==='Need'; else DefaultAvailText">
+						Matching AvailabilitesS
+					</span>
+					<ng-template #DefaultAvailText>
+						Matching AvailabilitesS
 				</ng-template> -->
-				<span>Matching Availiablities</span>
-			</nb-card-header>
-			<nb-card-body style="background-color: #E5E9F1 !important;">
-				<!-- List of cards -->
-				<span>
-					<!-- *ngIf="showMatches && selectedResource.Matched==='-1'&& selectedResource.Classification==='Need'; else DefaultAvails" -->
-					<nb-reveal-card *ngFor="let Avail of MatchingAvails">
-						<nb-card-front>
-							<nb-card size="xxsmall" status="info" accent="danger" (click)="makeMatch(Avail)">
-								<nb-card-body>
-									<div style="float: right;" class="icon" (click)="makeMatch(Avail)"> <i
-											class="ion-checkmark"></i> </div>
-									<b><span>
-											<span
-												[ngStyle]="{'background-color': Avail._id===selectedResource._id ? '#bdf0ff': 'white'}">{{Avail.text}}</span>
-										</span></b> @ {{Avail.username}} <br>
-									{{humanReadableDate(Avail.created)}}
-								</nb-card-body>
-							</nb-card>
-						</nb-card-front>
+					<span>Matches</span>
+				</nb-card-header>
+				<nb-card-body style="background-color: #E5E9F1 !important;">
+					<!-- List of cards -->
+					<span>
+						<!-- *ngIf="showMatches && selectedResource.Matched==='-1'&& selectedResource.Classification==='Need'; else DefaultAvails" -->
+						<nb-card *ngFor="let match of Matchings" size="xxsmall" status="info" accent="danger"
+							(click)="makeMatch(match)">
+							<nb-card-body>
+								<div style="float: right;" class="icon" (click)="makeMatch(match)"> <i
+										class="ion-checkmark"></i> </div>
+								<b><span>
+										<span
+											[ngStyle]="{'background-color': match._id===selectedResource._id ? '#bdf0ff': 'white'}">{{match.text}}</span>
+									</span></b> @ {{match.username}} <br>
+								{{humanReadableDate(match.created)}}
+								<hr />{{match.Timestamp}}
+							</nb-card-body>
+						</nb-card>
+					</span>
 
-					</nb-reveal-card>
-				</span>
+					<!-- <div style="text-align: center;"> <a href="javascript:;" (click)="showMoreAvails()">Show More</a></div> -->
+				</nb-card-body>
+			</nb-card>
+		</div>
 
-				<!-- <div style="text-align: center;"> <a href="javascript:;" (click)="showMoreAvails()">Show More</a></div> -->
-			</nb-card-body>
-		</nb-card>
-	</div>
-
-	<!-- Matching Needs -->
-	<div class="col-xl-3 col-lg-3 col-md-6">
-		<nb-card size="xlarge">
-			<nb-card-header>
-				<span>
-					<!-- 	 *ngIf="showMatches && selectedResource.Matched==='-1' && selectedResource.Classification==='Availability'; else DefaultNeedText" -->
-					Matching Needs
-				</span>
-				<ng-template #DefaultNeedText>
+		<!-- Matching Needs -->
+		<!-- <div class="col-xl-3 col-lg-3 col-md-6">
+				<nb-card size="xlarge">
+					<nb-card-header>
+						<span>
+							Matching Needs
+						</span>
+						<ng-template #DefaultNeedText>
 					Needs
 				</ng-template>
 			</nb-card-header>
 			<nb-card-body style="background-color: #E5E9F1 !important;">
-				<!-- List of cards -->
 				<span>
-					<!-- *ngIf="showMatches && selectedResource.Matched==='-1' && selectedResource.Classification==='Availability'; else DefaultNeeds" -->
-					<nb-reveal-card *ngFor="let Need of MatchingNeeds">
-						<nb-card-front (click)="makeMatch(Need)"
-							[ngStyle]="{'background-color': Need._id===selectedResource._id ? '#bdf0ff': '#E5E9F1'}">
-							<nb-card size="xxsmall" status="info" accent="danger">
-								<nb-card-body>
-									<div style="float: right;" class="icon" (click)="makeMatch(Need)"> <i
-											class="ion-checkmark"></i> </div>
-									<b><span>
-											<span>MMM {{Need.text}}</span>
-										</span></b> @ {{Need.username}} <br>
-									{{humanReadableDate(Need.created)}}
-								</nb-card-body>
-								<!-- <nb-card-footer>By Wikipedia</nb-card-footer> -->
-							</nb-card>
-						</nb-card-front>
-
-					</nb-reveal-card>
+					<nb-card *ngFor="let Need of MatchingNeeds" (click)="makeMatch(Need)"
+					[ngStyle]="{'background-color': Need._id===selectedResource._id ? '#bdf0ff': '#E5E9F1'}"
+					size="xxsmall" status="info" accent="danger">
+					<nb-card-body>
+						<div style="float: right;" class="icon" (click)="makeMatch(Need)"> <i
+							class="ion-checkmark"></i> </div>
+							<b><span>
+								<span>{{Need.text}}</span>
+							</span></b> @ {{Need.username}} <br>
+							{{humanReadableDate(Need.created)}}
+						</nb-card-body>
+					</nb-card>
 				</span>
 				<ng-template #DefaultNeeds>
-					<nb-reveal-card *ngFor="let Need of Needs">
-						<nb-card-front>
-							<nb-card size="xxsmall" status="info" accent="warning" (click)="display(Need)"
-								[ngStyle]="{'background-color': Need._id===selectedResource._id ? '#bdf0ff': 'white'}">
-								<nb-card-body>
-									<span *ngIf="Need.url!==''">
-										<a href={{Need.url}} target="_blank">
-											<div style="float: right;" class="icon"><i class="fab fa-twitter"></i></div>
-										</a>
-									</span>
-									<b><span [ngStyle]="{'color': Need.Matched==='-1' ? 'black': 'grey'}">
-											<span>{{Need.text}}</span>
-										</span> @ {{Need.username}} </b><br>
-									{{humanReadableDate(Need.created)}}
-								</nb-card-body>
-								<!-- <nb-card-footer>By Wikipedia</nb-card-footer> -->
-							</nb-card>
-						</nb-card-front>
+					<nb-card *ngFor="let Need of Needs" size="xxsmall" status="info" accent="warning"
+					(click)="display(Need)"
+					[ngStyle]="{'background-color': Need._id===selectedResource._id ? '#bdf0ff': 'white'}">
+					<nb-card-body>
+						<a href={{Need.TweetLink}} target="_blank">
+							<div style="float: right;" class="icon"><i class="fab fa-twitter"></i></div>
+						</a>
+						<b><span [ngStyle]="{'color': Need.Matched==='-1' ? 'black': 'grey'}">
+							<span>{{Need.text}}</span>
+						</span> @ {{Need.username}} </b><br>
+						{{humanReadableDate(Need.created)}}
+					</nb-card-body>
+				</nb-card>
+				<div style="text-align: center;"><a href="javascript:;" (click)="showMoreNeeds()">Show More</a>
+				</div>
+			</ng-template>
+		</nb-card-body>
+	</nb-card>
+</div> -->
 
-					</nb-reveal-card>
-					<div style="text-align: center;"><a href="javascript:;" (click)="showMoreNeeds()">Show More</a>
+
+		<!--  Availabilites -->
+		<div class="col-xl-3 col-lg-3 col-md-6">
+			<nb-card size="xlarge">
+				<nb-card-header>
+					<span
+						*ngIf="showMatches && selectedResource.Matched==='-1' && selectedResource.Classification==='Need'; else DefaultAvailText">
+						Availabilites
+					</span>
+					<ng-template #DefaultAvailText>
+						Availabilites
+					</ng-template>
+				</nb-card-header>
+				<nb-card-body style="background-color: #E5E9F1 !important;">
+					<!-- List of cards -->
+					<span
+						*ngIf="showMatches && selectedResource.Matched==='-1'&& selectedResource.Classification==='Need'; else DefaultAvails">
+						<nb-card *ngFor="let Avail of MatchingAvails" size="xxsmall" status="info" accent="danger"
+							(click)="makeMatch(Avail)">
+							<nb-card-header>{{Avail.Timestamp}}</nb-card-header>
+							<nb-card-body>
+								<div style="float: right;" class="icon" (click)="makeMatch(Avail)"> <i
+										class="ion-checkmark"></i> </div>
+								<b><span>
+										<span
+											[ngStyle]="{'background-color': Avail._id===selectedResource._id ? '#bdf0ff': 'white'}">{{Avail.text}}</span>
+									</span></b> @ {{Avail.username}} <br>
+								{{humanReadableDate(Avail.created)}}
+							</nb-card-body>
+						</nb-card>
+					</span>
+					<ng-template #DefaultAvails>
+						<nb-card *ngFor="let Avail of Avails" size="xxsmall" status="info" accent="info"
+							(click)="display(Avail)"
+							[ngStyle]="{'background-color': Avail._id===selectedResource._id ? '#bdf0ff': 'white'}">
+							<!-- <nb-card-header>Tweet text @user </nb-card-header> -->
+							<nb-card-body>
+								<a href={{Avail.TweetLink}} target="_blank">
+									<div style="float: right;" class="icon"><i class="fab fa-twitter"></i></div>
+								</a>
+								<b><span [ngStyle]="{'color': Avail.Matched==='-1' ? 'black': 'grey'}">
+										<span>{{Avail.text}}</span>
+										<!-- <span *ngIf="Avail._id===selectedResource._id" style="background-color: #bdf0ff;">{{Avail.text}}</span><span *ngIf="Avail._id!==selectedResource._id">{{Avail.text}}</span> -->
+									</span></b> @ {{Avail.username}}
+								<br> {{humanReadableDate(Avail.created)}}
+								<br /> {{Avail.contact}}
+								<hr />{{Avail.Timestamp}}
+							</nb-card-body>
+						</nb-card>
+					</ng-template>
+
+					<div style="text-align: center;"> <a href="javascript:;" (click)="showMoreAvails()">Show More</a>
 					</div>
-				</ng-template>
-			</nb-card-body>
-		</nb-card>
+				</nb-card-body>
+			</nb-card>
+		</div>
+
 	</div>
-
-
-	<!--  Availabilites -->
-	<div class="col-xl-3 col-lg-3 col-md-6">
-		<nb-card size="xlarge">
-			<nb-card-header>
-				<span
-					*ngIf="showMatches && selectedResource.Matched==='-1' && selectedResource.Classification==='Need'; else DefaultAvailText">
-					Availabilites
-				</span>
-				<ng-template #DefaultAvailText>
-					Availabilites
-				</ng-template>
-			</nb-card-header>
-			<nb-card-body style="background-color: #E5E9F1 !important;">
-				<!-- List of cards -->
-				<span
-					*ngIf="showMatches && selectedResource.Matched==='-1'&& selectedResource.Classification==='Need'; else DefaultAvails">
-					<nb-reveal-card *ngFor="let Avail of MatchingAvails">
-						<nb-card-front>
-							<nb-card size="xxsmall" status="info" accent="danger" (click)="makeMatch(Avail)">
-								<nb-card-body>
-									<div style="float: right;" class="icon" (click)="makeMatch(Avail)"> <i
-											class="ion-checkmark"></i> </div>
-									<b><span>
-											<span
-												[ngStyle]="{'background-color': Avail._id===selectedResource._id ? '#bdf0ff': 'white'}">{{Avail.text}}</span>
-										</span></b> @ {{Avail.username}} <br>
-									{{humanReadableDate(Avail.created)}}
-								</nb-card-body>
-							</nb-card>
-						</nb-card-front>
-
-					</nb-reveal-card>
-				</span>
-				<ng-template #DefaultAvails>
-					<nb-reveal-card *ngFor="let Avail of Avails">
-						<nb-card-front>
-							<nb-card size="xxsmall" status="info" accent="info" (click)="display(Avail)"
-								[ngStyle]="{'background-color': Avail._id===selectedResource._id ? '#bdf0ff': 'white'}">
-								<!-- <nb-card-header>Tweet text @user </nb-card-header> -->
-								<nb-card-body>
-									<span *ngIf="Avail.url!==''">
-										<a href={{Avail.url}} target="_blank">
-											<div style="float: right;" class="icon"><i class="fab fa-twitter"></i></div>
-										</a>
-									</span>
-									<b><span [ngStyle]="{'color': Avail.Matched==='-1' ? 'black': 'grey'}">
-											<span>{{Avail.text}}</span>
-											<!-- <span *ngIf="Avail._id===selectedResource._id" style="background-color: #bdf0ff;">{{Avail.text}}</span><span *ngIf="Avail._id!==selectedResource._id">{{Avail.text}}</span> -->
-										</span></b> @ {{Avail.username}}
-									<br> {{humanReadableDate(Avail.created)}}
-									<br /> {{Avail.contact}}
-								</nb-card-body>
-								<!-- <nb-card-footer>By Wikipedia</nb-card-footer> -->
-							</nb-card>
-						</nb-card-front>
-
-					</nb-reveal-card>
-				</ng-template>
-
-				<div style="text-align: center;"> <a href="javascript:;" (click)="showMoreAvails()">Show More</a></div>
-			</nb-card-body>
-		</nb-card>
-	</div>
-
-		
 </div>

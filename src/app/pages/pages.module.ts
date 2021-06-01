@@ -11,6 +11,7 @@ import { CompletedModule } from './completed/completed.module';
 import { NewModule } from './new/new.module';
 import { SavitrModule } from './savitr/savitr.module';
 import { ManualModule } from './manual/manual.module';
+import { AboutComponent } from './about/about.component';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -31,6 +32,7 @@ const PAGES_COMPONENTS = [
   ],
   declarations: [
     ...PAGES_COMPONENTS,
+    AboutComponent,
   ],
 })
 export class PagesModule {

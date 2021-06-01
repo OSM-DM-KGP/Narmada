@@ -4,9 +4,9 @@ import { Component } from '@angular/core';
   selector: 'ngx-footer',
   styleUrls: ['./footer.component.scss'],
   template: `
-    <span class="created-by">NARMADA: Need and Available Resource Managing Assistant for Disasters and Adversities</span>
+    <span style="margin-left: 10rem;" class="created-by">NARMADA: Need and Available Resource Managing Assistant for Disasters and Adversities</span>
     <div class="socials">
-      <a href="https://github.com/" target="_blank" class="ion ion-social-github"></a>
+      <a href="https://osm-dm-kgp.github.io/Narmada" target="_blank" class="ion ion-social-github"></a>
     </div>
   `,
   // Update a href later

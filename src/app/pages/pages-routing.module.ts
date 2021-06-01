@@ -10,13 +10,17 @@ import { CompletedComponent } from './completed/completed.component';
 import { NewComponent } from './new/new.component';
 import { SavitrComponent } from './savitr/savitr.component';
 import { ManualComponent } from './manual/manual.component';
+import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [{
 	path: '',
 	component: PagesComponent,
 	children: [{
-		path: 'home',
+		path: 'alltweets',
 		component: HomeComponent,
+	}, {
+		path: 'about',
+		component: AboutComponent,
 	}, {
 		path: 'completed',
 		component: CompletedComponent,
@@ -61,7 +65,7 @@ const routes: Routes = [{
 		loadChildren: './miscellaneous/miscellaneous.module#MiscellaneousModule',
 	}, {
 		path: '',
-		redirectTo: 'home',
+		redirectTo: 'new',
 		pathMatch: 'full',
 	}, {
 		path: '**',

@@ -2,31 +2,42 @@ import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
-    title: 'Home',
+    title: 'Find Tweets',
+    icon: 'nb-search',
+    link: '/new',
+  },
+  {
+    title: 'All Tweets',
     icon: 'nb-home',
-    link: '/home',
+    link: '/alltweets',
     home: true,
+  },
+  {
+    title: 'About Us',
+    icon: 'nb-grid-a',
+    link: '/about',
   },
   // {
   //   title: 'Completed',
   //   icon: 'nb-checkmark',
   //   link: '/completed',
   // },
-  {
-    title: 'New',
-    icon: 'nb-plus',
-    link: '/new',
-  },
   // {
   //   title: 'Savitr',
   //   icon: 'nb-bar-chart',
   //   link: '/savitr',
   // },
-  // {
-  //   title: 'Manual',
-  //   icon: 'nb-lightbulb',
-  //   link: '/manual',
-  // }
+  {
+    title: 'Manual',
+    icon: 'nb-checkmark',
+    link: '/manual',
+  },
+  {
+    title: 'Feedback',
+    icon: 'nb-lightbulb',
+    url: 'https://docs.google.com/forms/d/e/1FAIpQLScke93Uvi_6pky_4a_gnFf7kWey24sNR2oqn2N_srs8NpLE9g/viewform',
+    target: '_blank',
+  },
 
 ];
 

@@ -1,4 +1,37 @@
+#main{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+#body{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+
+	@media screen and (max-width: 800px) {
+		flex-direction: column;
+	}
+}
+
 .entry {
 	padding: 7px;
 	text-align: center;
+}
+
+button{
+	i {
+		font-weight: bolder !important;
+		font-size: 1.3rem !important;
+	}
+	font-weight: bolder !important;
+	align-items: center !important;
+	justify-content: center !important;
+
+	animation: shadow 5s infinite;
+
+	@keyframes shadow{
+		50% {box-shadow: 10px 20px 30px gray;}
+	}
 }
