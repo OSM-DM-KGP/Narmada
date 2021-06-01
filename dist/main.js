@@ -4515,8 +4515,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 // no trailing slashes
-// export const apiUrl = 'http://localhost:3000';
-var apiUrl = 'https://2be950e3.ngrok.io';
+// export const apiUrl = 'http://localhost:5000';
+var apiUrl = 'http://206.189.133.117:3000';
 // export const parseApiUrl = 'http://localhost:5000'
 var parseApiUrl = apiUrl;
 var AppModule = /** @class */ (function () {
@@ -4657,7 +4657,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/kaustubh/GitHub/personal/Narmada/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /home/narmada/Narmada/src/main.ts */"./src/main.ts");
 
 
 /***/ })

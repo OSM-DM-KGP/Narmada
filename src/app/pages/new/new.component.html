@@ -1,113 +1,95 @@
 <div class="row">
+
+	<div id="top-button">
+		<button class="btn" style="margin-bottom: 2rem; background-color:white; color: black;" (click)="goToHome()"><i
+				class="nb-home" style="height: 10rem;width: 10rem;margin-right: 0.5rem;"></i>All
+			Tweets</button>
+	</div>
+
 	<div class="col-xl-2 col-lg-2 col-md-2"></div>
 	<!-- https://tanoy009.github.io/ng4-geoautocomplete/ -->
 	<div class="col-xl-8 col-lg-8 col-md-8">
-		<nb-card size="large">
+		<nb-card size="tiny">
 			<nb-card-header>
-				New Resources <div style="float: right;">
-								<label *ngIf="parseFail" ngButtonLabel class="btn-sm btn-danger">Failed to parse text! Try again or enter manually</label>
-								<label *ngIf="parseTypeFail" ngButtonLabel class="btn-sm btn-danger">Tweet is neither a need nor a availability</label>
-								<label *ngIf="invalidText" ngbButtonLabel class="btn-sm btn-danger">Tweet text is required.</label>
-								<label *ngIf="invalidType" ngbButtonLabel class="btn-sm btn-danger">Resource type is required/invalid.</label>
-								<label *ngIf="invalidResources" ngbButtonLabel class="btn-sm btn-danger">Need to select resources.</label>
-								<label *ngIf="quantityMismatch" ngbButtonLabel class="btn-sm btn-warning">Quantity and resource items do not match.</label>
-								<label *ngIf="postError" ngbButtonLabel class="btn-sm btn-daner">Error in creating resource</label>
-								<label *ngIf="postSuccess" ngbButtonLabel class="btn-sm btn-success">Saved resource</label>
-							</div>
+				Find Tweets <div style="float: right;">
+					<label *ngIf="parseFail" ngButtonLabel class="btn-sm btn-danger">Failed to parse text! Try again or
+						enter manually</label>
+					<label *ngIf="parseTypeFail" ngButtonLabel class="btn-sm btn-danger">Tweet is neither a need nor a
+						availability</label>
+					<label *ngIf="invalidText" ngbButtonLabel class="btn-sm btn-danger">Tweet text is required.</label>
+					<label *ngIf="invalidType" ngbButtonLabel class="btn-sm btn-danger">Resource type is
+						required/invalid.</label>
+					<label *ngIf="invalidResources" ngbButtonLabel class="btn-sm btn-danger">Need to select
+						resources.</label>
+					<label *ngIf="quantityMismatch" ngbButtonLabel class="btn-sm btn-warning">Quantity and resource
+						items do not match.</label>
+					<label *ngIf="postError" ngbButtonLabel class="btn-sm btn-daner">Error in creating resource</label>
+					<!-- <label *ngIf="postSuccess" ngbButtonLabel class="btn-sm btn-success">Saved resource</label> -->
+				</div>
 			</nb-card-header>
-			<nb-card-body style="padding: 10px 50px;">
+			<nb-card-body>
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="form-group">
-							<label for="tweetText">Tweet text</label>
-							<input type="text" class="form-control" nbInput fullWidth placeholder="Full width" [(ngModel)]="tweetText" id="tweetText">
-							<button nbButton hero status="success" (click)="parseText()">Parse</button> <div style="float: right;font-size: 1.5em;" *ngIf="sourceDesc!==''"class="icon"> <i class="fas fa-map-marker-alt"></i> : {{sourceDesc}}</div>
+							<label for="resourceString">Resources</label>
+							<input type="text" class="form-control" nbInput fullWidth
+								placeholder="Eg. Oxygen,beds etc."
+								[(ngModel)]="resourceString" id="resourceString">
+							<label style="margin-top: 1rem;" for="locationString">Name of city/town</label>
+							<input type="text" class="form-control" nbInput fullWidth placeholder=" Eg. Mumbai"
+								[(ngModel)]="locationString" id="locationString">
+							<!-- <button nbButton hero status="success" (click)="parseText()">Find Category</button>
+							<div style="float: right;font-size: 1.5em;" *ngIf="sourceDesc!==''" class="icon"> <i
+									class="fas fa-map-marker-alt"></i> : {{sourceDesc}}</div> -->
 						</div>
 					</div>
 				</div>
 
-				<div class="row">
-					<div class="col-sm-6">
-						<!-- category -->
-						<div class="form-group">
-							<label for="tweetCategory">Category</label>
-							<div [(ngModel)]="resourceType" id="tweetCategory" ngbRadioGroup 
+				<!-- <div *ngIf="parsed" class="row"> -->
+				<div class="col-sm-6">
+					<!-- category -->
+					<div class="form-group">
+						<label for="tweetCategory">Category </label>
+						<div id="tweetCategory" ngbRadioGroup [(ngModel)]="resourceType"
 							class="btn-group btn-group-toggle btn-outline-toggle-group btn-group-full-width btn-toggle-radio-group">
-								<label ngbButtonLabel class="btn btn-outline-success">
-									<input ngbButton type="radio" value="Need"> Need
-								</label>
-								<label ngbButtonLabel class="btn btn-outline-success">
-									<input ngbButton type="radio" value="Availability"> Availability
-								</label>
-								<label ngbButtonLabel class="btn btn-outline-success">
-									<input ngbButton type="radio" value="Other"> Other
-								</label>
-							</div>
+							<label ngbButtonLabel class="btn btn-outline-success">
+								<input ngbButton type="radio" value="Need"> You need it
+							</label>
+							<label ngbButtonLabel class="btn btn-outline-success">
+								<input ngbButton type="radio" value="Availability"> You have it
+							</label>
+						</div>
 						<!-- <input type="text" class="form-control" id="tweetCategory" placeholder="First Name"> -->
-						</div>
-
-						<!-- resource -->
-						<!-- <div class="form-group">
-							<label for="tweetResource">Resource</label>
-							<ng-multiselect-dropdown id="tweetResource" [placeholder]="'Select Resource(s)'" [data]="dropdownList" [(ngModel)]="selectedItems"
-							 [settings]="dropdownSettings" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
-							</ng-multiselect-dropdown>
-						</div> -->
-						<!-- <input type="text" class="form-control" id="tweetResource" placeholder="Multiple select of 5"> -->
-
-						<!-- contact -->
-						<!-- <div class="form-group">
-							<label for="tweetContact">Contact</label>
-							<input type="text" class="form-control" id="tweetContact" [(ngModel)]="tweetContact" placeholder="+91 1234567890">
-						</div> -->
-						
-						<!-- quantity -->
-						<!-- <div class="form-group">
-							<label for="tweetSource">Source</label>
-							<input type="text" class="form-control" id="tweetSource" [(ngModel)]="tweetSource" placeholder="Haryana">
-						</div> -->
-					</div>
-					
-				</div>
-				
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="form-group">
-							<label for="tweetQuantity">Resources</label>
-							<br />
-							<textarea nbInput fullWidth 
-								placeholder="{'food packets': '40'}" 
-								id="tweetQuantity" [(ngModel)]="tweetQuantity" style="height: 150px;"></textarea>
-							<!-- <div *ngFor="let eachResource of quantityArray">
-								{{eachResource.resource}} {{eachResource.quantity}} <br />
-							</div> -->
-							<!-- <table mat-table class="mat-elevation-z8">
-								<tr>
-									<th>Resource</th>
-									<th>Quantity</th>
-								</tr>
-								<tr mat-row *ngFor="let element of quantityArray">
-									<td>{{element.resource}}</td>
-									<td>{{element.quantity}} </td>
-								</tr>
-							</table> -->
-							<!-- <input type="text" class="form-control" id="tweetQuantity" [(ngModel)]="tweetQuantity" placeholder="2 kg"> -->
-						</div>
 					</div>
 				</div>
+				<!-- </div> -->
 
-			</nb-card-body>
-
-			<nb-card-footer>
 				<div style="align-items: center;" class="row">
-					<div class="col-sm-3"></div>
 					<button class="btn btn-danger" (click)="discard()">Discard</button>
-					<div class="col-sm-2"></div>
-					<button type="submit" (click)="saveResource()" class="btn btn-success">Save</button>
+					<button type="submit" (click)="parseText()" class="btn btn-success">Find Matches</button>
 				</div>
-			</nb-card-footer>
-	</nb-card>
+			</nb-card-body>
+		</nb-card>
+	</div>
 </div>
-
-<div class="col-xl-2 col-lg-2 col-md-2"></div>
+<div class="row" id="bottom-cards">
+	<div id="loader" *ngIf="loading" [nbSpinner]="loading" nbSpinnerStatus="basic">
+	</div>
+	<div class="col-sm-3" *ngFor="let match of matchCards">
+		<div class="card-col">
+			<nb-card size="tiny" status="success">
+				<nb-card-header>{{match.Timestamp}}</nb-card-header>
+				<nb-card-body>
+					<div style="float: right;" class="icon" (click)="makeMatch(Need)">
+						<i class="ion-checkmark"></i>
+					</div>
+					{{match.text}}
+					<br/>
+					<a href="{{ match.userlink }}" target="_blank">@{{ match.username }}</a>
+					<hr />
+					<a href={{match.TweetLink}} target="_blank">Twitter Link</a>
+				</nb-card-body>
+			</nb-card>
+		</div>
+	</div>
 </div>

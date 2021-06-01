@@ -4,18 +4,21 @@ import { ThemeModule } from '../../@theme/theme.module';
 import { NewComponent } from './new.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { Ng4GeoautocompleteModule } from 'ng4-geoautocomplete';
-import { NbButtonModule, NbInputModule } from '@nebular/theme';
+import { NbButtonModule, NbInputModule, NbLayoutModule, NbCardModule, NbSpinnerModule, } from '@nebular/theme';
 
 @NgModule({
 	imports: [
-	ThemeModule,
-	NbButtonModule,
-	NbInputModule,
-	NgMultiSelectDropDownModule.forRoot(),
-	Ng4GeoautocompleteModule.forRoot(),
+		ThemeModule,
+		NbButtonModule,
+		NbInputModule,
+		NbLayoutModule,
+		NbCardModule,
+		NbSpinnerModule,
+		NgMultiSelectDropDownModule.forRoot(),
+		Ng4GeoautocompleteModule.forRoot(),
 	],
 	declarations: [
-	NewComponent,
+		NewComponent,
 	],
 	providers: [
 	],
