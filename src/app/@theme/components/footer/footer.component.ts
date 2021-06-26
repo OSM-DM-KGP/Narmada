@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   template: `
     <span style="margin-left: 10rem;" class="created-by">NARMADA: Need and Available Resource Managing Assistant for Disasters and Adversities</span>
     <div class="socials">
-      <a href="https://osm-dm-kgp.github.io/Narmada" target="_blank" class="ion ion-social-github"></a>
+      <a href="https://github.com/OSM-DM-KGP/" target="_blank" class="ion ion-social-github"></a>
     </div>
   `,
   // Update a href later
